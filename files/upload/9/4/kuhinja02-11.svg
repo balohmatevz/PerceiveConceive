@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.879px" height="453.879px" viewBox="0 0 453.879 453.879" enable-background="new 0 0 453.879 453.879"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+	
+		<rect x="0.168" y="-453.375" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect x="453.711" y="-453.375" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.544" height="453.543"/>
+	
+		<rect x="0.168" y="0.168" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect x="453.711" y="0.168" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.544" height="453.543"/>
+	
+		<rect x="0.168" y="453.711" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect x="453.711" y="453.711" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.544" height="453.543"/>
+</g>
+<g id="Layer_1" display="none">
+</g>
+<g id="Layer_2">
+	<g id="rdeča7bela">
+	</g>
+	<g>
+		<g>
+			<path fill="#BBBDBF" stroke="#000000" stroke-width="8" stroke-miterlimit="10" d="M132.608,361.385
+				c0,7.039,5.762,12.799,12.799,12.799h166.862c7.039,0,12.798-5.76,12.798-12.799V126.971H132.608V361.385z"/>
+			<path fill="#D0D2D3" stroke="#000000" stroke-width="8" stroke-miterlimit="10" d="M281.398,172.534
+				c0-3.52,2.881-6.399,6.4-6.399h10.49c3.522,0,6.4,2.88,6.4,6.399v163.284c0,3.521-2.878,6.402-6.4,6.402h-10.49
+				c-3.52,0-6.4-2.882-6.4-6.402V172.534z"/>
+			<path fill="#D0D2D3" stroke="#000000" stroke-width="8" stroke-miterlimit="10" d="M238.596,172.534
+				c0-3.52,2.877-6.399,6.398-6.399h10.49c3.521,0,6.402,2.88,6.402,6.399v163.284c0,3.521-2.881,6.402-6.402,6.402h-10.49
+				c-3.521,0-6.398-2.882-6.398-6.402V172.534z"/>
+			<path fill="#D0D2D3" stroke="#000000" stroke-width="8" stroke-miterlimit="10" d="M195.792,172.534
+				c0-3.52,2.879-6.399,6.398-6.399h10.49c3.521,0,6.4,2.88,6.4,6.399v163.284c0,3.521-2.879,6.402-6.4,6.402h-10.49
+				c-3.52,0-6.398-2.882-6.398-6.402V172.534z"/>
+			<path fill="#D0D2D3" stroke="#000000" stroke-width="8" stroke-miterlimit="10" d="M152.986,172.534c0-3.52,2.88-6.399,6.4-6.399
+				h10.491c3.518,0,6.399,2.88,6.399,6.399v163.284c0,3.521-2.881,6.402-6.399,6.402h-10.491c-3.52,0-6.4-2.882-6.4-6.402V172.534z"
+				/>
+		</g>
+		<path fill="#A6A8AB" stroke="#000000" stroke-width="8" stroke-miterlimit="10" d="M327.615,94.841h-61.097v-6.625
+			c0-3.52-2.877-6.399-6.4-6.399h-62.563c-3.52,0-6.398,2.88-6.398,6.399v6.625H130.06c-3.52,0-6.401,2.881-6.401,6.399v28.33
+			c0,3.521,2.881,6.4,6.401,6.4h197.555c3.521,0,6.399-2.88,6.399-6.4v-28.33C334.014,97.722,331.136,94.841,327.615,94.841z"/>
+	</g>
+</g>
+<g id="pivot" display="none">
+	<circle display="inline" fill="#EC008C" cx="228.836" cy="366.327" r="7.857"/>
+</g>
+</svg>

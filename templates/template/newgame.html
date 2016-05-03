@@ -1,0 +1,389 @@
+	<div class='FirstContentContainer'>
+		<div class="row">
+			<div class="col-lg-12 PageHearderContainer">
+				<h3 class='ContentHeader ContentHeaderDark'>{{NEWGAME_TITLE}}</h3>
+				<img src='{{TEMPLATE_DIR}}/images/line.svg' class='PageHeaderLineImg'>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{NEWGAME_SELECT_TEMPLATE}}</div>
+				
+				<div class='SubpageInstructions'>{{NEWGAME_SELECT_TEMPLATE_INSTRUCTIONS}}</div>
+				
+				<form id='GamesListForm' class='FormTag'>
+					<select id="GamesList" name="gameID">
+						<option value='NEW'>{{NEWGAME_NEW_TEMPLATE}}</option>
+						<option value='NEW'>----</option>
+					</select>
+				</form>
+			</div>
+		</div>
+
+	<form id="NewTemplateUploadForm" target="_blank" enctype="multipart/form-data" action="api/GameCreate.php" method="POST">
+		<div class="row">
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{NEWGAME_BASIC_INFORMATION}}</div>
+				
+				<div class='SubpageInstructions'>{{NEWGAME_BASIC_INFORMATION_INSTRUCTIONS}}</div>
+		
+				<input id='GameIDInput' type='hidden' name='GameID' value='NEW'>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_NAME}}</div>
+				<input type='text' name='newGameName' class='FormEntryInputText'>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_FILE}}</div>
+				<input type='file' name='GameFile'>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_DESCRIPTION}}</div>
+				<textarea name="newGameDescription" class="FormEntryTextarea"></textarea>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_AUTHORS}}</div>
+				<input type='text' name='newGameAuthor' class='FormEntryInputText'>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_DATE_OF_BUILD}}</div>
+				<input type='date' name='newGameDateOfBuild' class='FormEntryInputText'>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_VERSION}}</div>
+				<input type='number' name='newGameVersion' class='FormEntryInputText' value="1" min="0" step="0.1">
+					
+				<div class='FormEntryTitle'>{{NEWGAME_LICENSE}}</div>
+				<select name='newGameLicense' class='FormEntryInputSelect'>
+					<option value='FRI'>{{NEWGAME_LICENSE_FRI}}</option>
+					<option value='A2'>{{NEWGAME_LICENSE_A2}}</option>
+					<option value='AGPL'>{{NEWGAME_LICENSE_AGPL}}</option>
+					<option value='MIT'>{{NEWGAME_LICENSE_MIT}}</option>
+					<option value='CC-PD'>{{NEWGAME_LICENSE_CC_PD}}</option>
+					<option value='CC-BY'>{{NEWGAME_LICENSE_CC_BY}}</option>
+					<option value='CC-BY-SA'>{{NEWGAME_LICENSE_CC_BY_SA}}</option>
+				</select>
+			</div>
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{NEWGAME_EDITING_INSTRUCTIONS}}</div>
+				
+				<div class='SubpageInstructions'>{{NEWGAME_EDITING_INSTRUCTIONS_INSTRUCTIONS}}</div>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_TEACHER_INSTRUCTIONS}}</div>
+				<textarea name="newGameTeacherInstructions" class="FormEntryTextarea"></textarea>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_COMMENT}}</div>
+				<textarea name="newGameComment" class="FormEntryTextarea"></textarea>
+				
+				<div class='FormEntryTitle'>{{NEWGAME_STYLES_AVAILABLE}}</div>
+				<div class='FormEntryTitle'>
+					<input name='newGameStylesAvailable-default' type='checkbox' value='Default'>
+					Default
+				</div>
+				<div class='FormEntryTitle'>
+					<input name='newGameStylesAvailable-blind' type='checkbox' value='blind'>
+					Blind
+				</div>
+				<div class='FormEntryTitle'>
+					<input name='newGameStylesAvailable-inverted' type='checkbox' value='inverted'>
+					Inverted colours
+				</div>
+				<div class='FormEntryTitle'>
+					<input name='newGameStylesAvailable-contrast' type='checkbox' value='contrast'>
+					High contrast
+				</div>
+				<div class='FormEntryTitle'>
+					<input name='newGameStylesAvailable-protanopia' type='checkbox' value='protanopia'>
+					Protanopia
+				</div>
+				<div class='FormEntryTitle'>
+					<input name='newGameStylesAvailable-tritanopia' type='checkbox' value='tritanopia'>
+					Tritanopia
+				</div>
+				<div class='FormEntryTitle'>
+					<input name='newGameStylesAvailable-achromatopsia' type='checkbox' value='achromatopsia'>
+					Achromatopsia
+				</div>
+			</div>
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{NEWGAME_LANGUAGE_SETTINGS}}</div>
+				
+				<div class='SubpageInstructions'>{{NEWGAME_LANGUAGE_SETTINGS_INSTRUCTIONS}}</div>
+				<table id='LangVarList' style='width: 100%'>
+					
+				</table>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{NEWGAME_VARIABLES}}</div>
+				
+				<div class='SubpageInstructions'>{{NEWGAME_VARIABLES_INSTRUCTIONS}}</div>
+				<table style='width: 100%'>
+					<tr>
+						<th style='width: 10%; text-align: center;' class='FormEntryTitle'>{{NEWGAME_PREDEFINED_VARIABLE_NAME}}</th>
+						<th style='width: 10%; text-align: center;' class='FormEntryTitle'>{{NEWGAME_PREDEFINED_VARIABLE_EDITABLE}}</th>
+						<th style='width: 8%; text-align: center;' class='FormEntryTitle'>{{NEWGAME_PREDEFINED_VARIABLE_VALUE}}</th>
+						<th style='width: 17%; text-align: center;' class='FormEntryTitle'>{{NEWGAME_PREDEFINED_VARIABLE_MIN_MAX}}</th>
+						<th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_PREDEFINED_VARIABLE_EDIT_INSTRUCTIONS}}</th>
+					</tr>
+					<tr>
+						<th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_PREDEFINED_VARIABLE_DIFFICULTY}}</th>
+						<td style='text-align: center;'><input type="checkbox" name="DifficultyEditable" value="1"></td>
+						<td style='text-align: center;'><input type="number" class='FormEntryInputText' name="DifficultyValue" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td class='FormEntryTitle' style='text-align: center;'><input type="number" class='FormEntryInputText' name="DifficultyMin" value="1" step="1" min="1" max="100" style='width: inherit;'> {{NEWGAME_PREDEFINED_VARIABLE_AND}} <input type="number" class='FormEntryInputText' name="DifficultyMax" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td><textarea name="DifficultyInstructions" style='height: 50px; width: 100%;'></textarea></td>
+					</tr>
+					<tr>
+						<th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_PREDEFINED_VARIABLE_TIME_LIMIT}}</th>
+						<td style='text-align: center;'><input type="checkbox" name="TimeLimitEditable" value="1"></td>
+						<td style='text-align: center;'><input type="number" class='FormEntryInputText' name="TimeLimitValue" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td class='FormEntryTitle' style='text-align: center;'><input type="number" class='FormEntryInputText' name="TimeLimitMin" value="1" step="1" min="1" max="100" style='width: inherit;'> {{NEWGAME_PREDEFINED_VARIABLE_AND}} <input type="number" class='FormEntryInputText' name="TimeLimitMax" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td><textarea name="TimeLimitInstructions" style='height: 50px; width: 100%;'></textarea></td>
+					</tr>
+					<tr>
+						<th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_PREDEFINED_VARIABLE_LEVELS}}</th>
+						<td style='text-align: center;'><input type="checkbox" name="LevelsEditable" value="1"></td>
+						<td style='text-align: center;'><input type="number" class='FormEntryInputText' name="LevelsValue" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td class='FormEntryTitle' style='text-align: center;'><input type="number" class='FormEntryInputText' name="LevelsMin" value="1" step="1" min="1" max="100" style='width: inherit;'> {{NEWGAME_PREDEFINED_VARIABLE_AND}} <input type="number" class='FormEntryInputText' name="LevelsMax" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td><textarea name="LevelsInstructions" style='height: 50px; width: 100%;'></textarea></td>
+					</tr>
+					<tr>
+						<th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_PREDEFINED_VARIABLE_RETRIES_AVAILABLE}}</th>
+						<td style='text-align: center;'><input type="checkbox" name="RetriesEditable" value="1"></td>
+						<td style='text-align: center;'><input type="number" class='FormEntryInputText' name="RetriesValue" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td class='FormEntryTitle' style='text-align: center;'><input type="number" class='FormEntryInputText' name="RetriesMin" value="1" step="1" min="1" max="100" style='width: inherit;'> {{NEWGAME_PREDEFINED_VARIABLE_AND}} <input type="number" class='FormEntryInputText' name="RetriesMax" value="1" step="1" min="1" max="100" style='width: inherit;'></td>
+						<td><textarea name="RetriesInstructions" style='height: 50px; width: 100%;'></textarea></td>
+					</tr>
+				</table>
+		
+				<table id='VarList' style='width: 100%; margin-top: 40px;'>
+				
+				</table>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{NEWGAME_CONSTANTS}}</div>
+				
+				<div class='SubpageInstructions'>{{NEWGAME_CONSTANTS_INSTRUCTIONS}}</div>
+				
+				<table id='ConstList' style='width: 100%;'>
+				
+				</table>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{NEWGAME_CONFIRM}}</div>
+				
+				<div class='SubpageInstructions'>{{NEWGAME_CONFIRM_INSTRUCTIONS}}</div>
+				
+				<div id='DeleteInstanceButton' class="FormButton">
+					<div class="FormButtonContent FormButtonDark" onclick='$("#NewTemplateUploadForm").submit();'>
+						<span>{{NEWGAME_BUTTON_UPLOAD}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+	<script type='text/javascript'>
+		UserCheck();
+		AdminCheck();
+		
+		var langVar_index = 0;
+		var var_index = 0;
+		var const_index = 0;
+		
+		//Clears the language table 
+		function clearLangTable(){
+			langVar_index = 0;
+			$("#LangVarList").html("<tr><th class='FormEntryTitle' style='text-align: center; width: 33%;'>{{NEWGAME_LANGUAGE_VARIABLE_NAME}}</th><th class='FormEntryTitle' style='text-align: center; width: 33%;'>{{NEWGAME_LANGUAGE_VARIABLE_ENGLISH}}</th><th class='FormEntryTitle' style='text-align: center; width: 33%;'>{{NEWGAME_LANGUAGE_VARIABLE_SLOVENIAN}}</th></tr>");
+		}
+		
+		//Clears the language table 
+		function clearVarTable(){
+			var_index = 0;
+			$("#VarList").html("<tr><th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_VARIABLE_NAME}}</th><th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_VARIABLE_TYPE}}</th><th class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_VARIABLE_CONSTRAINTS}}</th></tr><tr><th colspan='3' class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_VARIABLE_DEFAULT_VALUE}}</th></tr><tr><th colspan='3' class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_VARIABLE_DESCRIPTION}}</th></tr><tr><th colspan='3' class='FormEntryTitle' style='text-align: center;'>{{NEWGAME_VARIABLE_TEACHER_INSTRUCTIONS}}</th></tr>");
+		}
+		
+		//Clears the language table 
+		function clearConstTable(){
+			const_index = 0;
+			$("#ConstList").html("<tr><th class='FormEntryTitle' style='text-align: center; width: 20%;'>{{NEWGAME_CONSTANTS_NAME}}</th><th class='FormEntryTitle' style='text-align: center; width: 80%;'>{{NEWGAME_CONSTANTS_VALUE}}</th></tr>");
+		}
+		
+		//Adds a language variable row
+		function addLangVar(varName, valueSL, valueEN){
+			$("#AddLangVar").detach();
+			$("#LangVarList").append($("<tr><th><input class='FormEntryInputText' name='langvarname"+langVar_index+"' type='text' value='"+varName+"' placeholder='{{NEWGAME_LANGUAGE_VARIABLE_NAME}}'></th><td style='text-align: center;'><input class='FormEntryInputText' name='langvarenglish"+langVar_index+"' type='text' value='"+valueEN+"' placeholder='{{NEWGAME_LANGUAGE_VARIABLE_ENGLISH}}'></td><td style='text-align: center;'><input class='FormEntryInputText' name='langvarslovene"+langVar_index+"' type='text' value='"+valueSL+"' placeholder='{{NEWGAME_LANGUAGE_VARIABLE_SLOVENIAN}}'></td></tr>"));
+			$("#LangVarList").append($("<div id='AddLangVar' class='FormButton'><div class='FormButtonContent FormButtonDark' onclick='addLangVar(\"\", \"\", \"\", \"\", \"\", \"\")'><span>{{NEWGAME_LANGUAGE_VARIABLE_ADD}}</span></div></div>"));
+			langVar_index++;
+		}
+		
+		//Adds a variable row
+		function addVar(varName, varType, varValue, varDesc, varInstructions, varConstraints){
+			$("#AddVar").detach();
+			$("#VarList").append($("<tr><th><input name='varname"+var_index+"' class='FormEntryInputText' type='text' value='"+varName+"' placeholder='{{NEWGAME_VARIABLE_NAME}}'></th><td><select name='vartype"+var_index+"' class='FormEntryInputSelect'><option value='' disabled selected>{{NEWGAME_VARIABLE_TYPE}}</option><option value='int'>{{NEWGAME_VARIABLE_TYPE_INTEGER}}</option><option value='float'>{{NEWGAME_VARIABLE_TYPE_FLOAT}}</option><option value='string'>{{NEWGAME_VARIABLE_TYPE_STRING}}</option><option value='stringlist'>{{NEWGAME_VARIABLE_TYPE_STRINGLIST}}</option><option value='file'>{{NEWGAME_VARIABLE_TYPE_FILE}}</option><option value='filelist'>{{NEWGAME_VARIABLE_TYPE_FILELIST}}</option></select></td><td><input name='varconstraints"+var_index+"' class='FormEntryInputText' type='text' value='"+varConstraints+"' placeholder='{{NEWGAME_VARIABLE_CONSTRAINTS}}'></td></tr><tr><td colspan='3'><input name='varvalue"+var_index+"' class='FormEntryInputText' type='text' value='"+varValue+"' placeholder='{{NEWGAME_VARIABLE_DEFAULT_VALUE}}'></td></tr><tr><td colspan='3'><input name='vardesc"+var_index+"' class='FormEntryInputText' type='text' value='"+varDesc+"' placeholder='{{NEWGAME_VARIABLE_DESCRIPTION}}'></td></tr><tr><td colspan='3'><input name='varinstructions"+var_index+"' class='FormEntryInputText' type='text' value='"+varInstructions+"' placeholder='{{NEWGAME_VARIABLE_TEACHER_INSTRUCTIONS}}' style='margin-bottom: 20px;'></td></tr>"));
+			$("#VarList").append($("<div id='AddVar' class='FormButton'><div class='FormButtonContent FormButtonDark' onclick='addVar(\"\", \"\", \"\", \"\", \"\", \"\")'><span>{{NEWGAME_VARIABLES_ADD}}</span></div></div>"));
+			$("[name='vartype"+var_index+"']").val(varType);
+			var_index++;
+		}
+		
+		//Adds a row for constants
+		function addConst(constName, constValue){
+			$("#AddConst").detach();
+			$("#ConstList").append($("<tr><th><input name='constname"+const_index+"' class='FormEntryInputText' type='text' value='"+constName+"' placeholder='{{NEWGAME_CONSTANTS_NAME}}'></th><td><input type='text' name='constvalue"+const_index+"' class='FormEntryInputText' value='"+constValue+"' placeholder='{{NEWGAME_CONSTANTS_VALUE}}'></td></tr>"));
+			$("#ConstList").append($("<div id='AddConst' class='FormButton'><div class='FormButtonContent FormButtonDark' onclick='addConst(\"\", \"\");'><span>{{NEWGAME_CONSTANTS_ADD}}</span></div></div>"));
+			const_index++;
+		}
+		
+		var ValidationParametersUploadNewGame = {
+			apiURL: "api/GameCreate.php",
+			method: "POST",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				for(var index = 0; index < response.gamelist.length; index++){
+					var game = response.gamelist[index];
+					$("#GamesList").append($("<option value='"+game["id"]+"'>"+game["name"]+" ("+game["id"]+")</option>"));
+				}
+				
+				$("#GamesList").change(function(){
+					ajaxRequest("GamesListForm", ValidationParametersNewGameExistingGameInfo);
+				});
+			}
+		};
+		
+		var ValidationParametersNewGameGames = {
+			apiURL: "api/GameGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				for(var index = 0; index < response.gamelist.length; index++){
+					var game = response.gamelist[index];
+					$("#GamesList").append($("<option value='"+game["id"]+"'>"+game["name"]+" ("+game["id"]+")</option>"));
+				}
+				
+				$("#GamesList").change(function(){
+					ajaxRequest("GamesListForm", ValidationParametersNewGameExistingGameInfo);
+				});
+			}
+		};
+		
+		var ValidationParametersNewGameExistingGameInfo = {
+			apiURL: "api/GameGetInfo.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				butt = response;
+				$("#GameIDInput").val( $("#GamesList").val() );
+				
+				$("[name='newGameName']").val(response["name"]);
+				$("[name='newGameDescription']").val(response["description"]);
+				$("[name='newGameAuthor']").val(response["author"]);
+				$("[name='newGameDateOfBuild']").val(response["date_of_build"]);
+				$("[name='newGameVersion']").val(response["version"]);
+				$("[name='newGameLicense']").val(response["license"]);
+				$("[name='newGameTeacherInstructions']").val(response["teacher_instructions"]);
+				$("[name='newGameComment']").val(response["comment"]);
+				
+				//Apply style checkboxes
+				var styles_available = response["styles_available"].toLowerCase().split("|");
+				var styles_list = ["default", "blind", "inverted", "contrast", "protanopia", "tritanopia", "achromatopsia"];
+				for(var index = 0; index < styles_list.length; index++){
+					var style = styles_list[index];
+					if(styles_available.indexOf(style) > -1){
+						$("[name='newGameStylesAvailable-"+style+"']")[0].checked = true;
+					}else{
+						$("[name='newGameStylesAvailable-"+style+"']")[0].checked = false;
+					}
+				}
+				
+				//Insert language values
+				clearLangTable();
+				if(response["dictionary"] && response["dictionary"]["SL"] && response["dictionary"]["EN"]){
+					var dictSL = response["dictionary"]["SL"]["dict"];
+					var dictEN = response["dictionary"]["EN"]["dict"];
+					for(var index in dictSL){
+						var SL = dictSL[index];
+						var EN = dictEN[index];
+						addLangVar(index, SL, EN);
+					}
+				}
+				addLangVar("", "", "");
+				
+				//Handle predefined variables
+				var predefined_list = ["Difficulty", "TimeLimit", "Levels", "Retries"];
+				var predefined_list_info = ["default_difficulty", "default_time_limit", "default_levels", "default_retries_available"];
+				for(var index in predefined_list){
+					var predefinedVar = predefined_list[index];
+					var predefinedInfo = predefined_list_info[index];
+					var defaultValue = response[predefinedInfo]["default"];
+					var defaultInstructions = response[predefinedInfo]["edit_instructions"];
+					var defaultEditable = response[predefinedInfo]["editable"];
+					var defaultMin = response[predefinedInfo]["min"];
+					var defaultMax = response[predefinedInfo]["max"];
+					
+					$("[name='"+predefinedVar+"Value']").val(defaultValue);
+					$("[name='"+predefinedVar+"Instructions']").val(defaultInstructions);
+					$("[name='"+predefinedVar+"Min']").val(defaultMin);
+					$("[name='"+predefinedVar+"Max']").val(defaultMax);
+					
+					if(parseInt(defaultEditable) == 1){
+						$("[name='"+predefinedVar+"Editable']")[0].checked = true;
+					}else{
+						$("[name='"+predefinedVar+"Editable']")[0].checked = false;
+					}
+				}
+				
+				//Insert variables
+				clearVarTable();
+				if(typeof response["variables"] != "undefined" || response["variables"].length > 0){
+					var variableList = response["variables"];
+					for (var property in variableList) {
+						if (variableList.hasOwnProperty(property)) {
+							var varType = variableList[property]["type"];
+							var varValue = variableList[property]["default_value"];
+							var varDesc = variableList[property]["description"];
+							var varInstructions = variableList[property]["edit_instructions"];
+							var varConstraints = variableList[property]["constraints"];
+							if(varType == "filelist" || varType == "stringlist"){
+								varValue = varValue.join("|");
+							}
+							addVar(property, varType, varValue, varDesc, varInstructions, varConstraints);
+						}
+					}
+				}
+				addVar("", "", "");
+				
+				//Insert constants
+				clearConstTable();
+				if(typeof response["constants"] != "undefined"){
+					var constantsList = response["constants"];
+					for (var property in constantsList) {
+						if (constantsList.hasOwnProperty(property)) {
+							var constantValue = constantsList[property];
+							addConst(property, constantValue);
+						}
+					}
+				}
+				addConst("", "", "");
+				
+				$("[name='newGameAuthor']").val(response["name"]);
+				$("[name='newGameAuthor']").val(response["name"]);
+				$("[name='newGameAuthor']").val(response["name"]);
+				$("[name='newGameAuthor']").val(response["name"]);
+				$("[name='newGameAuthor']").val(response["name"]);
+				
+			}
+		};
+		
+		$(document).ready(function(){
+			clearLangTable();
+			clearVarTable();
+			clearConstTable();
+			addLangVar("", "", "");
+			addVar("", "", "", "", "", "");
+			addConst("", "");
+			
+			ajaxRequest("", ValidationParametersNewGameGames);
+		});
+	</script>
+</div>

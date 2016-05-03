@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	
+		<path display="inline" fill="#E5A157" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M299.195,110.283c0,0-54.855,6.452-76.367,6.452c-21.513,0-68.48-6.452-68.48-6.452c-14.256,0-25.815,11.559-25.815,25.813v30.723
+		c0,14.257,11.559,25.814,25.815,25.814h6.731c-0.164,1.174-0.277,2.365-0.277,3.586l-21.513,121.225
+		c0,14.257,11.559,25.815,25.814,25.815h123.336c14.259,0,25.814-11.56,25.814-25.815L292.742,196.22
+		c0-1.221-0.113-2.412-0.277-3.586h6.73c14.259,0,25.814-11.559,25.814-25.814v-30.723
+		C325.011,121.842,313.455,110.283,299.195,110.283z"/>
+</g>
+<g id="cb">
+	<g id="rdeča7bela_copy">
+	</g>
+	<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="square" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M299.195,110.283c0,0-54.855,6.452-76.367,6.452c-21.513,0-68.48-6.452-68.48-6.452c-14.256,0-25.815,11.559-25.815,25.813v30.723
+		c0,14.257,11.559,25.814,25.815,25.814h6.731c-0.164,1.174-0.277,2.365-0.277,3.586l-21.513,121.225
+		c0,14.257,11.559,25.815,25.814,25.815h123.336c14.259,0,25.814-11.56,25.814-25.815L292.742,196.22
+		c0-1.221-0.113-2.412-0.277-3.586h6.73c14.259,0,25.814-11.559,25.814-25.814v-30.723
+		C325.011,121.842,313.455,110.283,299.195,110.283z"/>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="221.799" cy="340.941" r="14.133"/>
+</g>
+</svg>

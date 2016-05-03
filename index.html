@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang='en'>
+	<head>
+		<meta charset='utf-8'>
+		<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+		<meta name='viewport' content='width=device-width, initial-scale=1'>
+		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+		<meta name='description' content=''>
+		<meta name='author' content=''>
+		<link rel='icon' href='favicon.png'>
+		<title>ZaznajSpoznaj app distribution platform</title>
+
+		<!-- Bootstrap core CSS -->
+		<link href='bootstrap/css/bootstrap.min.css' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="css/jquery.cookiebar.css" />
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<link href="css/toastr.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="css/jstree.css" />
+
+	</head>
+	<body>
+		<span id='HeaderLocation'></span>
+		
+		<div id='PageOverlayDimmer' style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); z-index: 10; display: none;'></div>
+		<div id='PageOverlay' style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 15; border-radius: 10px; display: none;'></div>
+
+		<div class='container' id='PageContent'>
+			
+		</div><br />
+		
+		<!-- Bootstrap core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script type='text/javascript' src='js/jquery.js'></script> 
+		<script type='text/javascript' src='js/jquery-ui.js'></script> 
+		<script type='text/javascript' src='js/jquery-touch.js'></script> 
+		<script type='text/javascript' src='js/jquery.cookiebar.js'></script> 
+		<script src='bootstrap/js/bootstrap.min.js'></script>
+		<script type='text/javascript' src='js/mustache.js'></script>
+		<script type='text/javascript' src='lang/SL.js'></script>
+		<script type='text/javascript' src="js/chart.js"></script>
+		<script type='text/javascript' src="js/jquery-color.js"></script>
+		<script type='text/javascript' src="js/jstree.min.js"></script>
+		<script type='text/javascript' src="js/jquery.canvasjs.min.js"></script>
+		<script type="text/javascript" src="js/toastr.js"></script>
+		<form id='ScoreInsertForm'>
+			<input type='hidden' value='' id='ScoreInsertFormGameID' name='LogScoreInstanceID'>
+			<input type='hidden' value='' id='ScoreInsertFormValue' name='LogScoreValue'>
+			<input type='hidden' value='' id='ScoreInsertFormText' name='LogScoreText'>
+		</form>
+	</body>
+	<script>
+		if(jQuery.cookieBar('cookies')){
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-12941137-8', 'auto');
+			ga('send', 'pageview');
+		}
+	</script>
+</html>
+
+<script type='text/javascript'>
+	var editingImage = "";
+	var editingImageInputField = "";
+	var chosenFile = "";
+	var fileListRetrieved = false;
+	var FileStructure = [];
+	var currentPath = "/";
+	var PageToOpen = 0;
+	var userInfo = {};
+	var userLanguage = "SL";
+	var isAdmin = false;
+	
+	function ReplaceAll(find, replace, str) {
+		return str.replace(new RegExp(find, 'g'), replace);
+	}
+	
+	window.addEventListener("popstate", function(event) {
+		location.reload();
+	});
+	
+	function fromGetRequest(name){
+		if(name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search)){
+			return decodeURIComponent(name[1]);
+		}
+	}
+
+	var validationParamsLogIn = {
+		apiURL: "api/LogIn.php",
+		method: "POST",
+		alertOnSuccess: false,
+		alertOnFail: false,
+		callback: function(response){
+			if(response.result == "SUCCESS"){
+			
+				console.log(response);
+				userID = response.user_id
+				userInfo = response;
+				$("#LoggedInUserDropdownTitle").html(userInfo["name"]);
+				switch(userInfo["style"].toLowerCase()){
+					case "default":
+					break;
+					case "contrast":
+						$('head').append('<link rel="stylesheet" href="'+template+'/contrast.css" type="text/css" />');
+					break;
+					case "inverted":
+						$('head').append('<link rel="stylesheet" href="'+template+'/inverted.css" type="text/css" />');
+					break;
+					default:
+						$('head').append('<link rel="stylesheet" href="'+template+'/site.css" type="text/css" />');
+					break;
+				}
+				
+				if(parseInt(userInfo["role"]) == 2){
+					//Admin
+					$("#AdminPanelButton").show(200);
+					$("#AdminMenuDivider").show(200);
+					isAdmin = true;
+				}else{
+					//User
+					$("#AdminPanelButton").hide(200);
+					$("#AdminMenuDivider").hide(200);
+					isAdmin = false;
+				}
+				
+				$("#JoinSignInButton").fadeOut(200, 
+					function(){
+						$("#LogOutButton").fadeIn(200);
+						$("#UserSettingsButton").fadeIn(200);
+						$("#DashButton").fadeIn(200);
+						$("#UserDropdownButton").fadeIn(200);
+					}
+				);
+				
+				fetchContent("DASH");
+			}else if(response.result == "WARNING"){
+				$("#LoginLogin").fadeOut(200, function(){$("#LoginRegister").fadeIn(); $("#createUserName").focus();});
+			}
+		}
+	};
+	
+	function GameSaveScore(value, description){
+	
+		if(typeof value == "undefined"){
+			alert("Saving score with blank value");
+			return;
+		}
+		
+		value = parseInt(value);
+		
+		if(typeof description == "undefined"){
+			description = "";
+		}
+	
+		$("#ScoreInsertFormGameID").val(openInstanceID);
+		$("#ScoreInsertFormValue").val(value);
+		$("#ScoreInsertFormText").val(description);
+		
+		ajaxRequest("ScoreInsertForm", validationParamsGameLogScore);
+	}
+
+	var validationParamsGameLogScore = {
+		apiURL: "api/ScoreInsert.php",
+		method: "POST",
+		alertOnSuccess: false,
+		alertOnFail: false,
+		callback: function(response){
+			//console.log(response);
+		}
+	};
+
+	var validationParamsLogOut = {
+		apiURL: "api/LogOut.php",
+		method: "POST",
+		alertOnSuccess: false,
+		alertOnFail: false,
+		callback: function(response){
+			userID = -1;
+			userInfo = {};
+			$("#UserSettingsButton").fadeOut(200);
+			$("#AdminPanelButton").hide();
+			$("#AdminMenuDivider").hide();
+			isAdmin = false;
+			$("#DashButton").fadeOut(200);
+			$("#UserDropdownButton").fadeOut(200);
+			$("#LogOutButton").fadeOut(200, 
+				function(){
+					$("#JoinSignInButton").fadeIn(200);
+				}
+			);
+			
+			fetchContent("MAIN");
+		}
+	};
+	
+	var validationParamsRegister = {
+		apiURL: "api/UserCreateRegister.php",
+		method: "POST",
+		alertOnSuccess: true,
+		alertOnFail: true,
+		callback: function(response){
+			if(response.result == "SUCCESS"){
+				$("#LoginRegister").fadeOut(200, function(){$("#LoginLogin").fadeIn(); $("#LogInSubmit").focus();});
+				
+			}
+		}
+	};
+	
+	//This one is called normally (when NOT pressing the browser's back button)
+	var validationParamsLoginThroughSessionID = {
+		apiURL: "api/IsLoggedIn.php",
+		method: "POST",
+		alertOnSuccess: false,
+		alertOnFail: false,
+		callback: function(response){
+			if(response.result == "SUCCESS"){
+				userID = response.user_id;
+				userInfo = response;
+				userLanguage = response.language.toUpperCase();
+				jQuery.getScript("lang/"+userLanguage+".js", function(){
+					fetchContent("HEADER");
+					if(typeof page != "undefined"){
+						fetchContent(page, SiteLanguage, true);
+					}else{
+						fetchContent("DASH");
+					}
+				});
+			}else{
+				fetchContent("HEADER");
+				fetchContent("MAIN");
+			}
+		}
+	};
+	
+	//This one is called when pressing the browser's "back" button
+	var validationParamsLoginThroughSessionIDOnPopState = {
+		apiURL: "api/IsLoggedIn.php",
+		method: "POST",
+		alertOnSuccess: false,
+		alertOnFail: false,
+		callback: function(response){
+			if(response.result == "SUCCESS"){
+				userID = response.user_id;
+				userInfo = response;
+				userLanguage = response.language.toUpperCase();
+				
+				switch(userInfo["style"].toLowerCase()){
+					case "default":
+						$('head').append('<link rel="stylesheet" href="'+template+'/site.css" type="text/css" />');
+					break;
+					case "contrast":
+						$('head').append('<link rel="stylesheet" href="'+template+'/site.css" type="text/css" />');
+						$('head').append('<link rel="stylesheet" href="'+template+'/contrast.css" type="text/css" />');
+					break;
+					case "inverted":
+						$('head').append('<link rel="stylesheet" href="'+template+'/site.css" type="text/css" />');
+						$('head').append('<link rel="stylesheet" href="'+template+'/inverted.css" type="text/css" />');
+					break;
+					default:
+						$('head').append('<link rel="stylesheet" href="'+template+'/site.css" type="text/css" />');
+					break;
+				}
+				
+				jQuery.getScript("lang/"+userLanguage+".js", function(){
+					fetchContent("HEADER");
+					if(typeof page != "undefined"){
+						fetchContent(page, SiteLanguage, true);
+					}else{
+						fetchContent("DASH");
+					}
+				});
+			}else{
+				fetchContent("HEADER");
+				if(currentPage != "MAIN"){
+					fetchContent("MAIN");
+				}
+			}
+		}
+	};
+	
+	function GetListOfStyles(){
+		return ["default", "blind", "inverted", "contrast", "protanopia", "tritanopia", "achromatopsia"];
+	}
+	
+	function LogIn(){
+		$("#createUserUsername").val($("#LogInUsername").val());
+		$("#createUserPassword").val($("#LogInPassword").val());
+		
+		ajaxRequest("LogInForm", validationParamsLogIn);
+		
+		return false;
+	}
+	
+	function LogOut(){
+		ajaxRequest("", validationParamsLogOut);
+		return false;
+	}
+	
+	function RegisterUser(){
+		ajaxRequest("RegisterForm", validationParamsRegister);
+		return false;
+	}
+	
+	//Checks whether the current user is logged in, kicks them off the page if not
+	function UserCheck(){
+		if(userID == -1){
+			$(".FirstContentContainer").hide();
+			fetchContent("MAIN");
+			return false;
+		}
+		return true;
+	}
+	
+	//Checks if the current user is an admin, kicks them off the page if not, use in conjunction with UserCheck()
+	function AdminCheck(){
+		if(parseInt(userInfo["role"]) != 2){
+			$(".FirstContentContainer").hide();
+			fetchContent("DASH");
+			return false;
+		}
+		return true;
+	}
+	
+	//uiModeOnSuccess = Which UI mode to enter upon success (ie main window on login success) - optional.
+	function ajaxRequest(formID, validationParams){
+		if(formID){
+			if( $("#"+formID).is(":visible") == false ){
+				alert(formID+" request with closed form"); //RMV
+				return; //Form is closed, ignore.
+			}
+		}
+		var validationResult = [];
+		var stopRequest = false;
+		var warningMessage = "";
+		
+		var methodFunction = $.get;
+		if(validationParams.method == "POST"){
+			methodFunction = $.post;
+		}
+		
+		if(stopRequest){
+			showWarningMessage(warningMessage);
+			return;
+		}
+		
+		methodFunction( validationParams.apiURL, $( "#"+formID ).serialize() ).done(function(responseTXT){
+			var response;
+			try {
+				response = jQuery.parseJSON(responseTXT);
+			}
+			catch (err) {
+				alert("The service sent something strange!<br>Response: "+responseTXT);
+				console.log(responseTXT);
+				return
+			}
+			
+			if(validationParams.callback){
+				validationParams.callback(response);
+			}
+			
+			switch(response.result){
+				case "SUCCESS":
+					if(validationParams.alertOnSuccess){
+						toastr.success(Mustache.render(response.resultText, SiteLanguage))
+					}
+				break;
+				default:
+					if(validationParams.alertOnFail){
+						toastr.warning(Mustache.render(response.resultText, SiteLanguage))
+					}
+				break;
+			}
+		})
+	}
+
+	$(document).ready(function(){
+		document.addEventListener('ontouchstart', function(e) {e.preventDefault()}, false);
+		document.addEventListener('ontouchmove', function(e) {e.preventDefault()}, false);
+		$("#PageContent22").draggable();
+	});
+	
+	function addVariablesToTemplate(dictionary){
+		//Merge site language with provided dictionary
+		if(!dictionary){
+			dictionary = SiteLanguage;
+		}else{
+			dictionary = jQuery.extend(dictionary, SiteLanguage);
+		}
+		
+		//Custom variables
+		dictionary["TEMPLATE_DIR"] = template;
+		
+		//Return corrected dictionary
+		return dictionary;
+	}
+
+	var openClassID = -1;
+	var currentPage = "";
+	var overlayPage = "";
+	var template = "templates/template";
+	$('head').append('<link rel="stylesheet" href="'+template+'/site.css" type="text/css" />');
+	function fetchContent(page, dictionary, popStateLoad){
+	
+		if(page == "HOME"){
+			if(userID == -1){
+				page = "MAIN";
+			}else{
+				page = "DASH";
+			}
+		}
+	
+		console.log(page);
+		var requestURL = "";
+		var backButtonDisplayed = false;
+		var fullscreenButtonDisplayed = false;
+		var editButtonDisplayed = false;
+		var targetContainer = "PageContent";
+		var saveAsOpenPage = true;
+		overlayPage = "";
+		
+		if(typeof popStateLoad == "undefined"){
+			popStateLoad = false;
+		}
+		
+		//Add variables
+		dictionary = addVariablesToTemplate(dictionary);
+		
+		//Determine site behaviour based on which page we want to load
+		switch(page){
+			case "MAIN":
+				requestURL = template+"/main.html";
+			break;
+			case "HEADER":
+				requestURL = template+"/header.html";
+				saveAsOpenPage = false;
+				targetContainer = "HeaderLocation";
+			break;
+			case "LOGIN":
+				fetchOverlay("LOGIN");
+				return;
+			break;
+			case "ABOUT":
+				requestURL = template+"/about2.html";
+			break;
+			case "DASH":
+				requestURL = template+"/dash.html";
+			break;
+			case "CLASS":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/class.html";
+				editButtonDisplayed = true;
+			break;
+			case "INSTANCELIST":
+				requestURL = template+"/instancelist.html";
+				targetContainer = "InstanceList";
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				editButtonDisplayed = true;
+				saveAsOpenPage = false;
+			break;
+			case "CLASSLIST":
+				requestURL = template+"/classlist.html";
+				targetContainer = "ClassList";
+				saveAsOpenPage = false;
+			break;
+			case "MANAGEGAMES":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/managegames.html"
+			break;
+			case "PLAY":
+				backButtonScreen = "CLASS";
+				backButtonDisplayed = true;
+				fullscreenButtonDisplayed = true;
+				requestURL = template+"/play.html";
+			break;
+			case "STATISTICS":
+				backButtonScreen = "CLASS";
+				backButtonDisplayed = true;
+				requestURL = template+"/statistics.html";
+			break;
+			case "TEACHER":
+				requestURL = template+"/teacher.html";
+			break;
+			case "NEWINSTANCE":
+				backButtonScreen = "CLASS";
+				backButtonDisplayed = true;
+				requestURL = template+"/newinstance.html";
+			break;
+			case "SELECTIMAGE":
+				fetchOverlay("SELECTIMAGE");
+				return;
+			break;
+			case "NEWFILE":
+				requestURL = template+"/newfile.html";
+			break;
+			case "UPLOADGAME":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/newgame.html";
+			break;
+			case "ADMINPANEL":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/adminpanel.html";
+			break;
+			case "UPLOADFILE":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/newfile.html";
+			break;
+			case "USERSETTINGS":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/usersettings.html";
+			break;
+			case "MANAGEUSERS":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/manageusers.html";
+			break;
+			case "MANAGECLASSES":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/manageclasses.html";
+			break;
+			case "MANAGEINSTANCES":
+				backButtonScreen = "DASH";
+				backButtonDisplayed = true;
+				requestURL = template+"/manageinstances.html";
+			break;
+			default:
+				alert("Unknown page request: "+ page);
+				return;
+			break;
+		}
+		
+		$.get( requestURL, "" ).done(function(responseTXT){
+			if(targetContainer == "PageContent" && currentPage != page){
+				$("#"+targetContainer).fadeOut(200, function(){
+					//$("#"+targetContainer).html(Mustache.render(responseTXT, dictionary));
+					$("#"+targetContainer).html(Mustache.render(responseTXT, dictionary));
+				})
+			}else{
+				$("#"+targetContainer).html(Mustache.render(responseTXT, dictionary));
+			}
+			
+			if(backButtonDisplayed){
+				$("#BackButton").fadeIn();
+			}else{
+				$("#BackButton").fadeOut();
+			}
+			
+			if(fullscreenButtonDisplayed){
+				$("#FullScreenButton").fadeIn();
+			}else{
+				$("#FullScreenButton").fadeOut();
+			}
+			
+			if(editButtonDisplayed){
+				$("#EditButton").fadeIn();
+			}else{
+				$("#EditButton").fadeOut();
+			}
+			
+			$("#PageContent").fadeIn(200);
+			closeOverlay();
+			if(saveAsOpenPage){
+				//If we want to save this as a state the back button will take us to, and this is not 
+				//us loading that state (meaning this isn't the result of the back button being clicked);
+				if(typeof openInstanceID == "undefined"){
+					openInstanceID = 0;
+				}
+				if(typeof openClassID == "undefined"){
+					openClassID = 0;
+				}
+				if(!popStateLoad){
+					window.history.pushState("butts", "butts", "?page="+page+"&classID="+openClassID+"&instanceID="+openInstanceID);
+				}
+				var doCloseGame = false;
+				
+				if(currentPage == "PLAY"){
+					doCloseGame = true;
+				}
+				
+				currentPage = page;
+				
+				if(doCloseGame){
+					closeGame();
+				}
+			}
+		})
+	}
+	
+	function fetchOverlay(page, dictionary){
+		var requestURL = "";
+		
+		//Add variables
+		dictionary = addVariablesToTemplate(dictionary);
+		
+		switch(page){
+			case "SELECTIMAGE":
+				requestURL = template+"/selectimage.html";
+			break;
+			case "LOGIN":
+				requestURL = template+"/login.html";
+			break;
+			case "ABOUT":
+				requestURL = template+"/about.html";
+			break;
+			default:
+				alert("Unknown overlay request: "+ page);
+				return;
+			break;
+		}
+		overlayPage = page;
+		$.get( requestURL, "" ).done(function(responseTXT){
+			$(document.body).css("overflow", "hidden");
+			$("#PageOverlay").html(Mustache.render(responseTXT, dictionary));
+			$("#PageOverlay").fadeIn(200);
+			$("#PageOverlayDimmer").fadeIn(200);
+		})
+	}
+	
+	function closeOverlay(){
+		if(overlayPage == "SELECTIMAGE"){
+			if(chosenFile == "DELETE"){
+				if($("#"+editingImage).attr("removableImage") == "1"){
+					$("#"+editingImage).parent().parent().detach();
+				}
+			}else if(chosenFile != ""){
+				$("#"+editingImage).attr("src", chosenFile);
+				$("#"+editingImageInputField).attr("value", chosenFile);
+			}
+		}
+		
+		$(document.body).css("overflow", "auto");
+		$("#PageOverlayDimmer").fadeOut(200);
+		$("#PageOverlay").fadeOut(200);
+	}
+	
+	function ScrollTo(trgt){
+
+        //get the top offset of the target anchor
+        var target_offset = $("#"+trgt).offset();
+        var target_top = target_offset.top;
+		
+		$("#"+trgt).css({backgroundColor: "#ffcc00"});
+		$("#"+trgt).animate({backgroundColor: "#ffffff"});
+		$('html, body').animate({scrollTop:target_top - 70}, 300);
+	}
+	
+	var userID = -1;
+	var searchString = "";
+	//var instanceID = 5;
+	
+	var page = fromGetRequest("page");
+	
+	if(typeof page != "undefined"){
+		openInstanceID = parseInt(parseInt(fromGetRequest("instanceID")));
+		openClassID = parseInt(parseInt(fromGetRequest("classID")));
+		ajaxRequest("", validationParamsLoginThroughSessionIDOnPopState);
+		/*
+		switch(page){
+			case "play":
+				openInstanceID = parseInt(fromGetRequest("instanceID"));
+				fetchContent("PLAY");
+			break;
+			default:
+				fetchContent("MAIN"); 
+			break;
+		}
+		*/
+	}else{
+		ajaxRequest("", validationParamsLoginThroughSessionID);
+	}
+</script>

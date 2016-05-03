@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	<g display="inline">
+		<g>
+			
+				<path fill="#E73088" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M272.92,83.268c8.729,2.694,36.314,11.325,60.871,18.922c27.561,8.524,35.053,58.755,35.053,58.755l-23.053,43.477
+				l-39.813-27.523c0,0,30.323,178.218,19.201,189.341c-5.386,5.387-191.433,5.387-196.817,0
+				c-11.122-11.123,19.2-189.341,19.2-189.341l-39.811,27.523l-23.054-43.477c0,0,7.492-50.229,35.054-58.755
+				c24.555-7.597,52.14-16.228,60.87-18.922c0,0,5.865,30,46.148,30C267.053,113.268,272.92,83.268,272.92,83.268z"/>
+			<circle cx="227.148" cy="173.692" r="9.994"/>
+			<circle cx="227.148" cy="222.081" r="9.994"/>
+			<circle cx="227.148" cy="270.47" r="9.994"/>
+			<circle cx="227.148" cy="318.859" r="9.994"/>
+		</g>
+	</g>
+</g>
+<g id="cb">
+	<g id="rdeča7bela_copy">
+	</g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="square" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M272.92,83.268c8.729,2.694,36.314,11.325,60.871,18.922c27.561,8.524,35.053,58.755,35.053,58.755l-23.053,43.477l-39.813-27.523
+			c0,0,30.323,178.218,19.201,189.341c-5.386,5.387-191.433,5.387-196.817,0c-11.122-11.123,19.2-189.341,19.2-189.341
+			l-39.811,27.523l-23.054-43.477c0,0,7.492-50.229,35.054-58.755c24.555-7.597,52.14-16.228,60.87-18.922c0,0,5.865,30,46.148,30
+			C267.053,113.268,272.92,83.268,272.92,83.268z"/>
+		<circle cx="227.148" cy="173.692" r="9.994"/>
+		<circle cx="227.148" cy="222.081" r="9.994"/>
+		<circle cx="227.148" cy="270.47" r="9.994"/>
+		<circle cx="227.148" cy="318.859" r="9.994"/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="230.45" cy="371.772" r="14.133"/>
+</g>
+</svg>

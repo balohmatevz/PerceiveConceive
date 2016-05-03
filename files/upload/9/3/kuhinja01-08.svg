@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+	
+		<rect x="-453.543" y="-453.543" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect y="-453.543" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect x="453.543" y="-453.543" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.545" height="453.543"/>
+	
+		<rect x="-453.543" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect x="453.543" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.545" height="453.543"/>
+</g>
+<g id="Layer_1" display="none">
+</g>
+<g id="Layer_2">
+	<g id="rdeča7bela">
+	</g>
+	<g>
+		
+			<path fill="#009D73" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M337.022,211.539c0-13.448-52.324-34.351-116.868-34.351c-64.542,0-116.866,20.902-116.866,34.351l0.269,4.661
+			c0,31.152,56.254,60.835,120.699,60.835s112.299-34.953,112.299-60.489C336.556,216.546,337.022,211.815,337.022,211.539z"/>
+		
+			<path fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M337.022,211.539c0-13.448-52.324-34.351-116.868-34.351c-64.542,0-116.866,20.902-116.866,34.351l0.269,4.661
+			c14.609,13.029,61.324,27.835,116.699,27.835c54.885,0,101.26-14.546,116.299-27.489l0.389-4.181
+			C336.991,212.091,337.022,211.815,337.022,211.539z"/>
+	</g>
+	<rect fill="none" width="453.543" height="453.543"/>
+</g>
+<g id="pivot" display="none">
+	<circle display="inline" fill="#EC008C" cx="217.155" cy="269.179" r="7.856"/>
+</g>
+</svg>

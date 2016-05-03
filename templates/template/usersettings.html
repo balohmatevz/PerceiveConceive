@@ -1,0 +1,215 @@
+	<div class='FirstContentContainer'>
+		<div class="row">
+			<div class="col-lg-12 PageHearderContainer">
+				<h3 class='ContentHeader'>{{USERSETTINGS_TITLE}}</h3>
+				<img src='{{TEMPLATE_DIR}}/images/line.svg' class='PageHeaderLineImg'>
+			</div>
+		</div>
+		<div class="row">
+			<div class='col-lg-12 NavigationContainer'>
+				{{USERSETTINGS_TITLE}}:
+				<a id='PartButton1' class='NavigationItemSelected' href='#' onclick='ShowPart1(); return false;'>{{USERSETTINGS_STEP_BASIC}}</a>
+				
+				<img src='{{TEMPLATE_DIR}}/images/arrow_right.svg' class='NavigationArrowImg'> 
+				
+				<a id='PartButton2' class='NavigationItemUnselected' href='#' onclick='ShowPart2(); return false;'>{{USERSETTINGS_STEP_PASSWORD}}</a>
+				
+				<img src='{{TEMPLATE_DIR}}/images/arrow_right.svg' class='NavigationArrowImg'> 	
+				
+				<a id='PartButton3' class='NavigationItemUnselected' href='#' onclick='ShowPart3(); return false;'>{{USERSETTINGS_STEP_MY_CLASSES}}</a>
+			</div>
+		</div>
+		<div class="row">
+			<div id='UserSettingsPart1' class='col-lg-12 FormContainer'>
+				<form id='UserSettingsForm' class='FormTag'>
+					<input id='UserSettingsUserID' type='hidden' name='updateUserID' value=''>
+					
+					<div class='FormEntryTitle'>{{USERSETTINGS_NAME}}</div>
+					<input type='text' id='UserName' name='updateUserName' class='FormEntryInputText'>
+					
+					<div class='FormEntryTitle'>{{USERSETTINGS_LASTNAME}}</div>
+					<input type='text' id='UserSurname' name='updateUserSurname' class='FormEntryInputText'>
+					
+					<div class='FormEntryTitle'>{{USERSETTINGS_STYLE}}</div>
+					<select id='preferredUserStyle' name='preferredUserStyle' class='FormEntryInputSelect'> 
+						<option value='default'>{{USERSETTINGS_STYLE_DEFAULT}}</option>
+						<option value='blind'>{{USERSETTINGS_STYLE_BLIND}}</option>
+						<option value='inverted'>{{USERSETTINGS_STYLE_INVERTED}}</option>
+						<option value='contrast'>{{USERSETTINGS_STYLE_CONTRAST}}</option>
+						<option value='protanopia'>{{USERSETTINGS_STYLE_PROTANOPIA}}</option>
+						<option value='tritanopia'>{{USERSETTINGS_STYLE_TRITANOPIA}}</option>
+						<option value='achromatopsia'>{{USERSETTINGS_STYLE_ACHROMATOPSIA}}</option>
+					</select>
+				
+					<div class='FormEntryTitle'>{{USERSETTINGS_LANGUAGE}}</div>
+					<select id='preferredUserLanguage' name='preferredUserLanguage' class='FormEntryInputText'> 
+						<option value='SL'>{{USERSETTINGS_LANGUAGE_slo}}</option>
+						<option value='EN'>{{USERSETTINGS_LANGUAGE_eng}}</option>
+					</select><br /><br />
+					
+					<div id='SaveUserSettings' class="FormButton">
+						<div class="FormButtonContent">
+							<span>{{USERSETTINGS_SAVE}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div id='UserSettingsPart2' class='col-lg-12 FormContainer' style='display: none;'>
+				<form method='POST' id='UserSettingsChangePasswordForm' class='FormTag'>
+					<input id='UserSettingsChangePasswordUserID' type='hidden' name='userID' value=''>
+					
+					<div class='FormEntryTitle'>{{USERSETTINGS_PASSWORD_CURRENT}}</div>
+					<input type='password' id='UserPasswordOld' name='updateUserPasswordOld' class='FormEntryInputText'>
+					
+					<div class='FormEntryTitle'>{{USERSETTINGS_PASSWORD_NEW}}</div>
+					<input type='password' id='UserPassword1' name='updateUserPassword1' class='FormEntryInputText'>
+					
+					<div class='FormEntryTitle'>{{USERSETTINGS_PASSWORD_NEW_REPEAT}}</div>
+					<input type='password' id='UserPassword2' name='updateUserPassword2' class='FormEntryInputText'><br /><br />
+					
+					<div id='SaveUserSettingsPasswordChange' class="FormButton">
+						<div class="FormButtonContent">
+							<span>{{USERSETTINGS_PASSWORD_BUTTON_CHANGE}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div id='UserSettingsPart3' class='col-lg-12 FormContainer' style='display: none;'>
+				<form method='POST' id='UserSettingsChangePasswordForm' class='FormTag'>
+					<input id='UserSettingsChangePasswordUserID' type='hidden' name='userID' value=''>
+					<div id='UserSettingsClassList'>
+						<!-- see validationParamsClassGetForUser.callback -->
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type='text/javascript'>
+		UserCheck();
+	
+		function ShowPart1(){
+			$("#UserSettingsPart1").show();
+			$("#UserSettingsPart2").hide();
+			$("#UserSettingsPart3").hide();
+			$("#PartButton1").addClass("NavigationItemSelected").removeClass("NavigationItemUnselected");
+			$("#PartButton2").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton3").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+		}
+	
+		function ShowPart2(){
+			$("#UserSettingsPart1").hide();
+			$("#UserSettingsPart2").show();
+			$("#UserSettingsPart3").hide();
+			$("#PartButton1").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton2").addClass("NavigationItemSelected").removeClass("NavigationItemUnselected");
+			$("#PartButton3").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+		}
+	
+		function ShowPart3(){
+			$("#UserSettingsPart1").hide();
+			$("#UserSettingsPart2").hide();
+			$("#UserSettingsPart3").show();
+			$("#PartButton1").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton2").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton3").addClass("NavigationItemSelected").removeClass("NavigationItemUnselected");
+		}
+	
+		var validationParamsUserGetPrefs = {
+			apiURL: "api/UserPrefs.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var user = response;
+				$("#UserSettingsUserID").val(user.user_id);
+				$("#UserSettingsChangePasswordUserID").val(user.user_id);
+				$("#UserName").val(user.name);
+				$("#UserSurname").val(user.surname);
+				$("#preferredUserLanguage").val(user.language);
+				$("#preferredUserStyle").val(user.style);
+				
+				var userStyles = user.style;
+				ajaxRequest("", validationParamsClassGetForUser);
+			}
+		};
+		
+		var validationParamsUpdateUserInfo = {
+			apiURL: "api/UserUpdate.php",
+			method: "POST",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				location.reload();
+			}
+		};
+		
+		var validationParamsChangeUserPassword = {
+			apiURL: "api/UserChangePassword.php",
+			method: "POST",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				$("#UserPasswordOld").val("");
+				$("#UserPassword1").val("");
+				$("#UserPassword2").val("");
+			}
+		};
+		
+		
+		
+		var validationParamsStudentUnenroll = {
+			apiURL: "api/StudentUnenroll.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("", validationParamsClassGetForUser);
+			}
+		};
+		
+		var validationParamsStudentEnroll = {
+			apiURL: "api/StudentEnroll.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("", validationParamsClassGetForUser);
+			}
+		};
+		
+		var validationParamsClassGetForUser = {
+			apiURL: "api/ClassGetForUser.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var classes = response.classlist;
+				$("#UserSettingsClassList").html("");
+				for(var index = 0; index < classes.length; index++){
+					var cls = classes[index];
+					$("#UserSettingsClassList").append("<form id='UserSettingsClass-"+cls.id+"'><input type='hidden' name='classID' value='"+cls.id+"'></form>");
+					
+					if(cls.enrolled >= 1){
+						$("#UserSettingsClassList").append("<div class='FormListEntry'>"+cls["name"]+" <div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a href='#' onclick='ajaxRequest(\"UserSettingsClass-"+cls.id+"\", validationParamsStudentUnenroll); return false;'>{{USERSETTINGS_UNENROLL_BUTTON}}</a></div></div></div>");
+					}
+					/*
+						$("#UserSettingsClassList").append("<li><b>"+cls["name"]+"</b> (Not enrolled) <input type='button' value='Enroll' onclick='ajaxRequest(UserSettingsClass-"+cls.id+"\", validationParamsStudentEnroll);'></li>");
+					}*/
+				}
+			}
+		};
+		
+		ajaxRequest("", validationParamsUserGetPrefs);
+		
+		$("#SaveUserSettings").click(function(){
+			ajaxRequest("UserSettingsForm", validationParamsUpdateUserInfo);
+		});
+		$("#SaveUserSettingsPasswordChange").click(function(){
+			ajaxRequest("UserSettingsChangePasswordForm", validationParamsChangeUserPassword);
+		});
+	</script>

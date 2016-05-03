@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.544px" height="453.543px" viewBox="0 0 453.544 453.543" enable-background="new 0 0 453.544 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	<g display="inline">
+		<path stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M274.093,161.607c0,6.627-5.373,12-12,12H191.45c-6.627,0-12-5.373-12-12V148.95c0-6.627,5.373-12,12-12h70.643
+			c6.627,0,12,5.373,12,12V161.607z"/>
+		<path stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M208.442,282.011V162.205c0-13.208,5.373-23.919,12-23.919h12.658c6.627,0,12,10.711,12,23.919v119.807
+			c0,13.211-3.334,34.583-18.664,34.583C211.108,316.594,208.442,295.223,208.442,282.011z"/>
+		
+			<rect x="201.612" y="192.269" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="50.32" height="5.332"/>
+		
+			<rect x="201.612" y="215.704" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="50.32" height="5.332"/>
+		
+			<rect x="201.612" y="239.141" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="50.32" height="5.332"/>
+		
+			<rect x="201.612" y="262.576" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="50.32" height="5.332"/>
+	</g>
+</g>
+<g id="cb">
+	<g id="rdeča7bela_copy">
+	</g>
+	<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+		M262.093,136.95H191.45c-6.627,0-12,5.373-12,12v12.657c0,6.627,5.373,12,12,12h16.992v18.662h-6.83v5.332h6.83v18.104h-6.83v5.332
+		h6.83v18.104h-6.83v5.332h6.83v18.104h-6.83v5.332h6.83v14.104c0,13.211,2.666,34.583,17.994,34.583
+		c15.33,0,18.664-21.371,18.664-34.583v-14.104h6.832v-5.332h-6.832v-18.104h6.832v-5.332h-6.832v-18.104h6.832v-5.332h-6.832
+		v-18.104h6.832v-5.332h-6.832v-18.662h16.992c6.627,0,12-5.373,12-12V148.95C274.093,142.323,268.72,136.95,262.093,136.95z"/>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="223.556" cy="318.375" r="14.133"/>
+</g>
+</svg>

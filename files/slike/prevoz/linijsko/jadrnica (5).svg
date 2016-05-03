@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color" display="none">
+	<g display="inline">
+		
+			<rect x="219.462" y="95.561" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="4.821" height="212.006"/>
+		
+			<path fill="#57B2E5" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M218.701,145.908v114.484h-89.382C129.319,260.393,209.714,196.736,218.701,145.908z"/>
+		
+			<path fill="#0075A5" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M349.397,260.393c0,0-114.756-113.354-129.935-164.832v164.832H349.397z"/>
+		
+			<path fill="#EED2A3" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M299.397,357.982c-46.447,0-113.387,0-145.25,0s-50-63.867-50-63.867h245.25C349.397,294.115,345.843,357.982,299.397,357.982z"/>
+	</g>
+	<g id="rdeča7bela" display="inline">
+	</g>
+</g>
+<g id="cb">
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M226.772,145.908v114.484H137.39C137.39,260.393,217.786,196.736,226.772,145.908z"/>
+		<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M356.707,260.393c0,0-114.756-113.354-129.935-164.832v164.832H356.707z"/>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M219.462,294.115H104.147c0,0,18.137,63.867,50,63.867s98.803,0,145.25,0c46.446,0,50-63.867,50-63.867H224.284"/>
+			
+				<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="224.284" y1="294.115" x2="219.462" y2="294.115"/>
+		</g>
+		
+			<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="226.772" y1="247.561" x2="226.772" y2="291.867"/>
+	</g>
+	<g id="rdeča7bela_copy">
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="222.702" cy="352.478" r="14.133"/>
+</g>
+</svg>

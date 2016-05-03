@@ -1,0 +1,661 @@
+@font-face {
+    font-family: FiraSans;
+    src: url(FiraSans-Regular.otf);
+}
+
+@font-face {
+    font-family: FiraSansLight;
+    src: url(FiraSans-Light.otf);
+}
+
+@font-face {
+    font-family: SourceSansPro;
+    src: url(SourceSansPro-Regular.otf);
+}
+
+@font-face {
+    font-family: SourceSansProLight;
+    src: url(SourceSansPro-Light.otf);
+}
+
+@font-face {
+    font-family: SourceSansProExtraLight;
+    src: url(SourceSansPro-ExtraLight.otf);
+}
+
+body{
+	font-family: SourceSansPro, sans-serif;
+	background-color: #ffffff;
+}
+
+.Cell{
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.GameTileHeader{
+	text-align: center;
+}
+
+.ClassTile, .InstanceTile{
+	background-color: #ffffff;
+	padding: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #aaaaaa;
+	overflow: hidden;
+}
+
+.ClassTile:hover{
+	background-color: #fafafa;
+}
+
+.Middle{
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.Width500px{
+	width: 500px;
+	text-align: center;
+}
+
+.ClassImage{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.ContentHeader{
+	color: #32BCAD;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 40px;
+}
+
+.ContentHeaderDark{
+	color: #355182;
+}
+
+.FirstContentContainer{
+	margin-top: 90px;
+}
+
+.InputField{
+	border-radius: 0px;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
+.InputButton{
+	border-radius: 0px;
+}
+
+.InputButton:hover{
+
+}
+
+.align-right{
+	text-align: right;
+}
+
+.MainContainer{
+	border-radius: 2px; 
+	background-color: #ffffff; 
+	margin-top: 100px;
+	padding: 0px 10px 10px;
+}
+
+.OverlayContainer{
+	border-radius: 10px; 
+	background-color: #252525; 
+	margin-top: 100px;
+	padding: 0px 10px 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.HeaderRow{
+	margin-left: auto; 
+	margin-right: auto; 
+	color: #888888;
+}
+
+.ContentRow{
+	margin-left: auto; 
+	margin-right: auto;
+}
+
+.FooterRow{
+	border-radius: 20px; 
+	margin-left: auto; 
+	margin-right: auto; 
+	background-color: #353535; 
+	border: solid 10px #252525; 
+	color: #888888;
+}
+
+.Centered{
+	text-align: center;
+}
+
+.HeaderCircle{
+	margin-left: auto; 
+	margin-right: auto; 
+	width: 300px; 
+	height: 300px; 
+	border-radius: 150px; 
+	background-color: #eeeeee; 
+	border: solid 10px #252525; 
+	margin-top: -225px; 
+	text-align: center; 
+	display: block;
+}
+
+.ContentColumn{
+	border-radius: 20px; 
+	margin-left: auto; 
+	margin-right: auto; 
+	background-color: #fdfdfd; 
+	border: solid 10px #252525;
+}
+
+.ContentTextColumn{
+	padding: 15px 0px 10px; 
+	text-align: center;
+}
+
+.ClassList{
+	margin-top: 35px;
+}
+
+.ClassListing:hover{
+	background-color: #ffffdd;
+	cursor: pointer;
+}
+
+.InstanceListing:hover{
+	background-color: #ffffdd;
+	cursor: pointer;
+}
+
+.EnrolledBar0{
+	background-color: #dddddd;
+}
+
+.EnrolledBar1{
+	background-color: #ddffdd;
+}
+
+.EnrolledBar2{
+	background-color: #ffdddd;
+}
+
+.EnrolledBar3{
+	background-color: #ffffdd;
+}
+
+.SmallButton{
+	opacity: 0.6;
+	width: 50%; 
+	display: inline-block; 
+	height: 150px;
+	cursor: pointer;
+}
+
+.SmallButton:hover{
+	opacity: 1;
+}
+
+.MediumButton{
+	opacity: 0.6;
+	width: 100%; 
+	display: inline-block; 
+	height: 150px;
+	cursor: pointer;
+}
+
+.MediumButton:hover{
+	opacity: 1;
+}
+
+.ClassTileTextDiv{
+	cursor: pointer;
+	padding: 13px 10px;
+}
+
+.InstanceEntry{
+	color: black;
+}
+
+.InstanceName{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	color: #000000;
+}
+
+.PointerCursor{
+	cursor: pointer;
+}
+
+.MoreClassesButton{
+	opacity: 1;
+	width: 250px;
+}
+
+.MoreClassesButton:hover{
+	opacity: 0.8;
+}
+
+.AAILink{
+	color: #808080;
+	text-decoration: none;
+}
+
+.AAILink:link{
+	color: #808080;
+	text-decoration: none;
+}
+
+.AAILink:visited{
+	color: #808080;
+	text-decoration: none;
+}
+
+.AAILink:active{
+	color: #000000;
+	text-decoration: none;
+}
+.AAILink:hover{
+	color: #000000;
+	text-decoration: none;
+}
+
+.navbar{
+	font-size: 16px;
+	background-color: white;
+	border-bottom: solid 1px #ccccccc;
+}
+
+.FormEntryTitle{
+	margin-bottom: 5px;
+	font-size: 20px;
+}
+
+.FormEntryInputText, .FormEntryInputSelect, .FormEntryTextarea{
+	width: 100%;  
+	font-size: 20px; 
+	margin-bottom: 10px; 
+	padding-left: 5px; 
+	height: 34px;
+}
+
+.FormEntryTextarea{
+	height: 100px;
+}
+
+.FormInputImageContainer{
+	padding: 10px; 
+	min-height: 200px;
+}
+
+.FormInputImageBorder{
+	background-color: white;
+    border: solid 1px #cccccc;
+	height: 190px;
+	width: 190px;
+}
+
+.FormInputImage{
+	opacity: 1;
+	cursor: pointer;
+	width: 100%;
+	max-width: 100%;
+}
+
+.FormInputImage:hover{
+	opacity: 0.8;
+}
+
+.FormTag{
+	font-size: 20px;
+}
+
+.FormContainer{
+	background-color: #F5FAFD; 
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.FormButton{
+	cursor: pointer;
+	opacity: 1;
+	max-width: 220px;
+	width: 100%;
+	display: inline-block;
+}
+
+.FormButton:hover{
+	opacity: 0.8;
+}
+
+.FormButtonContent{
+	max-width: 220px;
+	width: 100%;
+	height: 50px;
+	background-color: #32BCAD;
+	color: white;
+	display: inline-block;
+	padding-top: 7px;
+	font-size: 25px;
+	text-align: center;
+}
+
+.FormButtonDark{
+	background-color: #203341;
+}
+
+.FormButtonContentSmall{
+	height: 37px;
+	font-size: 20px;
+	padding-top: 5px;
+	max-width: 160px;
+}
+
+.NavigationContainer{
+	background-color: #F7F8F8; 
+	font-size: 22px; 
+	padding-top: 8px; 
+	padding-bottom: 8px;
+	margin-bottom: 20px;
+}
+
+.NavigationArrowImg{
+	width: 6px;
+}
+
+.NavigationItemSelected{
+	text-decoration: none;
+	font-family: SourceSansProLight;
+	color: #4FCEF3;
+	margin: 0px 10px;
+}
+
+.NavigationItemSelected:hover{
+	text-decoration: none;
+	color: #36A4C4;
+}
+
+.NavigationItemSelected:active{
+	text-decoration: none;
+	color: #4FCEF3;
+}
+
+.NavigationItemSelected:visited{
+	text-decoration: none;
+	color: #4FCEF3;
+}
+
+.NavigationItemUnselected{
+	text-decoration: none;
+	font-family: SourceSansProLight;
+	color: #9BA2B9;
+	margin: 0px 10px;
+}
+
+.NavigationItemUnselected:hover{
+	text-decoration: none;
+	color: #757C92;
+}
+
+.NavigationItemUnselected:active{
+	text-decoration: none;
+	color: #9BA2B9;
+}
+
+.NavigationItemUnselected:visited{
+	text-decoration: none;
+	color: #9BA2B9;
+}
+
+.NavigationItemDisabled{
+	color: #dddddd;
+	cursor: default;
+}
+
+.NavigationItemDisabled:hover{
+	color: #dddddd;
+	cursor: default;
+}
+
+.NavigationItemDisabled:active{
+	color: #dddddd;
+	cursor: default;
+}
+
+.NavigationItemDisabled:visited{
+	color: #dddddd;
+	cursor: default;
+}
+
+.PageHearderContainer{
+	margin-bottom: 10px;
+}
+
+.PageHeaderTitle{
+	color: #32BCAD;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 20px;
+	font-size: 40px;
+}
+
+.PageHeaderLineImg{
+	width: 100%; 
+	margin-top: 25px; 
+	margin-bottom: 15px;
+}
+
+.FormListEntry{
+	width: 100%; 
+	height: 50px; 
+	background-color: white; 
+	border: solid 1px #cccccc; 
+	padding: 15px;
+	margin-bottom: 10px;
+	font-size: 14px;
+}
+
+.FormListEntryActionable:hover{
+	cursor: pointer;
+}
+
+.FormListEntryActionable:hover{
+	background-color: #eeeeee; 
+}
+
+
+.FormListEntryButtonGroup{
+	display: inline-block; 
+	float: right;
+}
+.FormListEntryButtonContainer{
+	margin-left: 20px; 
+	display: inline-block;
+}
+.FormListEntryButton{
+
+}
+
+
+
+.NewInstanceBaseTile{
+	background-color: #ffffff;
+	padding: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #aaaaaa;
+	overflow: hidden;
+	height: 260px; 
+	cursor: pointer;
+	text-align: center;
+}
+
+.NewInstanceBaseTile:hover{
+	background-color: #fafafa;
+}
+
+.NewInstanceBaseTileSelected:hover{
+	background-color: #e8e8e8;
+}
+
+.NewInstanceBaseTileSelected{
+	background-color: #eeeeee;
+}
+
+.FolderExplorerFolder{
+	height: 50px; 
+	cursor: pointer;
+	background-color: #ffffff;
+	padding: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #aaaaaa;
+	overflow: hidden;
+}
+
+.FolderExplorerFolder:hover{
+	background-color: #fafafa;
+}
+
+.FolderExplorerFolderSelected{
+	background-color: #eeeeee;
+}
+
+.FolderExplorerFolderSelected:hover{
+	background-color: #d8d8d8;
+}
+
+
+
+.FolderExplorerFileContainer{
+	margin-bottom: 5px;
+	cursor: pointer;
+}
+
+.FolderExplorerFile{
+	background-color: #ffffff;
+	padding: 10px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #aaaaaa;
+	overflow: hidden;
+	height: 112px;
+}
+
+.FolderExplorerFileImageContainer{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	width: 1000px;
+	height: 60px;
+}
+
+.FolderExplorerFileImage{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.FolderExplorerFileTextContainer{
+	height: 40px;
+}
+
+.FolderExplorerFileText{
+	line-height: 40px;
+}
+
+.FolderExplorerFile:hover{
+	background-color: #f6f6f6;
+}
+
+.FolderExplorerFileSelected{
+	background-color: #eeeeee;
+}
+
+.FolderExplorerFileSelected:hover{
+	background-color: #d8d8d8;
+}
+
+.SubpageHeader{
+	font-size: 34px;
+	font-family: SourceSansProExtraLight;
+}
+
+.SubpageInstructions{
+	font-size: 20px;
+	margin-bottom: 10px;
+	font-family: SourceSansProLight;
+}
+
+.HoveringTileMenu{
+	text-align: center;
+	opacity: 0.8;
+	background-clip: content-box;
+	cursor: pointer;
+	height: 50px;
+	margin: 9px;
+	width: 50px;
+	float: right;
+}
+
+.HoveringTileMenu:hover{
+}
+
+.HoveringTileMenuImage{
+	opacity: 0.8;
+	width: 37px;
+}
+
+.HoveringTileMenuImage:hover{
+	opacity: 1;
+}
+
+.HoveringMenu{
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	display: none; 
+	z-index: 20;
+	cursor: pointer;
+	border: solid 1px #bbbbbb;
+	box-sizing: content-box;
+}
+
+.HoveringMenuEntry{
+	opacity: 1;
+	background-color: white;
+	height: 29px;
+	padding-top: 4px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.HoveringMenuEntry:hover{
+	background-color: #F5F5F5; 
+}
+
+#cookie-bar .cb-enable{
+	background-color: #203341;
+}
+
+#cookie-bar .cb-enable:hover{
+	background-color: #203341;
+	opacity: 0.8;
+}
+
+.pointer{
+	cursor: pointer;
+}
+
+a:focus{
+	#outline: #00FF00 dotted thick;
+}

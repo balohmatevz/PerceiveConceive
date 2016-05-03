@@ -1,0 +1,67 @@
+	<div class='FirstContentContainer'>
+		<div class="row">
+			<div class="col-lg-12 PageHearderContainer">
+				<h3 class='ContentHeader ContentHeaderDark'>{{ADMIN_ADMIN_PANEL}}</h3>
+				<img src='{{TEMPLATE_DIR}}/images/line.svg' class='PageHeaderLineImg'>
+			</div>
+		</div>
+			
+		<div class="row">
+			<div class='col-lg-12 FormContainer'>
+				<form class='FormTag'>
+					<div class='SubpageHeader'>{{ADMIN_ADMIN_UPLOAD}}</div>
+					
+					<div class='SubpageInstructions'>{{ADMIN_ADMIN_UPLOAD_INSTRUCTIONS}}</div>
+					
+					<div id='UploadGameButton' class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick='fetchContent("UPLOADGAME"); return false;'>
+							<span>{{ADMINPANEL_UPLOAD_GAME}}</span>
+						</div>
+					</div>
+					
+					<div id='UploadFileButton' class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick='fetchContent("UPLOADFILE"); return false;'>
+							<span>{{ADMINPANEL_UPLOAD_FILE}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			
+			<div class='col-lg-12 FormContainer'>
+				<form class='FormTag'>
+					<div class='SubpageHeader'>{{ADMIN_ADMIN_EDIT}}</div>
+					
+					<div class='SubpageInstructions'>{{ADMIN_ADMIN_EDIT_INSTRUCTIONS}}</div>
+					
+					<div id='UploadGameButton' class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick='fetchContent("MANAGEUSERS"); return false;'>
+							<span>{{ADMINPANEL_MANAGE_USERS}}</span>
+						</div>
+					</div>
+					
+					<div id='UploadFileButton' class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick='fetchContent("MANAGECLASSES"); return false;'>
+							<span>{{ADMINPANEL_MANAGE_CLASSES}}</span>
+						</div>
+					</div>
+					
+					<div id='UploadFileButton' class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick='fetchContent("MANAGEINSTANCES"); return false;'>
+							<span>{{ADMINPANEL_MANAGE_INSTANCES}}</span>
+						</div>
+					</div>
+					
+					<div id='UploadFileButton' class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick='fetchContent("MANAGEGAMES"); return false;'>
+							<span>{{ADMINPANEL_MANAGE_GAMES}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script type='text/javascript'>
+		UserCheck();
+		AdminCheck();
+	</script>

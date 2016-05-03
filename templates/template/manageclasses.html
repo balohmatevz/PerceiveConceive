@@ -1,0 +1,329 @@
+	<div class='FirstContentContainer'>
+		<div class="row">
+			<div class="col-lg-12 PageHearderContainer">
+				<h3 class='ContentHeader ContentHeaderDark'>{{MANAGECLASSES_TITLE}}</h3>
+				<img src='{{TEMPLATE_DIR}}/images/line.svg' class='PageHeaderLineImg'>
+			</div>
+		</div>
+		<div class="row">
+			<div class='col-lg-12 NavigationContainer'>
+				{{MANAGECLASSES_STEPS}}:
+				<a id='PartButton1' class='NavigationItemSelected' href='#' onclick='ShowPart1(); return false;'>{{MANAGECLASSES_STEP_NEW_CLASS}}</a>
+				
+				<img src='{{TEMPLATE_DIR}}/images/arrow_right.svg' class='NavigationArrowImg'> 
+				
+				<a id='PartButton2' class='NavigationItemUnselected' href='#' onclick='ShowPart2(); return false;'>{{MANAGECLASSES_STEP_STUDENT}}</a>
+				
+				<img src='{{TEMPLATE_DIR}}/images/arrow_right.svg' class='NavigationArrowImg'> 
+				
+				<a id='PartButton3' class='NavigationItemUnselected' href='#' onclick='ShowPart3(); return false;'>{{MANAGECLASSES_STEP_DELETE}}</a>
+			</div>
+		</div>
+			
+		<div class="row">
+			<div id='ManageClassesPart1' class='col-lg-12 FormContainer'>
+				<form id='ManageClassesNewClassForm' class='FormTag'>
+					<div class='SubpageHeader'>{{MANAGECLASSES_STEP_NEW_CLASS}}</div>
+					
+					<div class='SubpageInstructions'>{{MANAGECLASSES_NEW_CLASS_INSTRUCTIONS}}</div>
+					
+					<div class='FormEntryTitle'>{{MANAGECLASSES_NEW_CLASS_NAME}}</div>
+					<input type='text' name='className' class='FormEntryInputText' maxlength="20"><br />
+					
+					<div class='FormEntryTitle'>{{MANAGECLASSES_NEW_CLASS_DESCRIPTION}}</div>
+					<textarea name='classDescription' class='FormEntryTextarea'></textarea><br />
+					
+					<div class='FormEntryTitle'><input type='checkbox' name='classPublic' value='1'> {{MANAGECLASSES_NEW_CLASS_PUBLIC_CLASS}} <div style='display: inline-block' data-toggle='tooltip' data-placement='top' title='{{MANAGECLASSES_TOOLTIP_PUBLIC_CLASS}}'><img src='{{TEMPLATE_DIR}}/images/i.svg' style='width: 16px; margin-bottom: 2px;'></div></div>
+					
+					<div class='FormEntryTitle'>{{MANAGECLASSES_NEW_CLASS_PIC}}</div>
+					<div class='FormInputImageContainer' onclick="editingImage = 'classGlyph'; editingImageInputField = 'classGlyphInputField'; fetchContent('SELECTIMAGE');">
+						<div class='FormInputImageBorder'>
+							<input type='hidden' name='classGlyph', id='classGlyphInputField' value="">
+							<img id='classGlyph' src='{{TEMPLATE_DIR}}/images/blankimage.svg' class='FormInputImage' />
+						</div>
+					</div>
+					
+					<div id='AddClassButton' class="FormButton">
+						<div class="FormButtonContent FormButtonDark">
+							<span>{{MANAGECLASSES_NEW_CLASS_SAVE}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+			
+		<div class="row">
+			<div id='ManageClassesPart2' class='col-lg-12 FormContainer' style='display: none;'>
+				<div class='SubpageHeader'>{{MANAGECLASSES_STEP_STUDENT}}</div>
+				
+				<div class='SubpageInstructions'>{{MANAGECLASSES_STUDENT_INSTRUCTIONS}}</div>
+				
+				<form id='ManageClassesClassListForm' class='FormTag'>
+					<div class='FormEntryTitle'>{{MANAGECLASSES_STUDENT_CLASS}}</div>
+					<select name='classID' id='ManageClassesClassList' class='FormEntryInputSelect'>
+						
+					</select>
+				</form>
+				
+				<div class='FormEntryTitle'>{{MANAGECLASSES_STUDENT_STUDENT}}</div>
+				
+				<span id='ManageClassesEnrolleeList'>
+					
+				</span>
+				<span id='ManageClassesOtherUsersList'>
+				
+				</span>
+			</div>
+		</div>
+			
+		<div class="row">
+			<div id='ManageClassesPart3' class='col-lg-12 FormContainer' style='display: none;'>
+				<div class='SubpageHeader'>{{MANAGECLASSES_STEP_DELETE}}</div>
+				
+				<div class='SubpageInstructions'>{{MANAGECLASSES_DELETE_INSTRUCTIONS}}</div>
+				
+				<form id='ManageClassesClassListForm2' class='FormTag'>
+					<div class='FormEntryTitle'>{{MANAGECLASSES_DELETE_CLASS}}</div>
+					<select name='classID' id='ManageClassesClassList2' class='FormEntryInputSelect'>
+						
+					</select>
+				</form>
+				
+				<div class='SubpageInstructions'>{{MANAGECLASSES_DELETE_WARNING}}</div> 
+				
+				<div id='DeleteClassButton' class="FormButton">
+					<div class="FormButtonContent FormButtonDark" style='margin-top: 10px;'>
+						<span>{{MANAGECLASSES_DELETE_BUTTON_DELETE}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+				
+			<!-- 
+		
+			<p><br /><b>Select Class:</b>
+			
+			<input type='button' value='Edit class' id='EditClassButton'>
+			
+			-->
+	<script type='text/javascript'>
+		UserCheck();
+		AdminCheck();
+	
+		function ShowPart1(){
+			$("#ManageClassesPart1").show();
+			$("#ManageClassesPart2").hide();
+			$("#ManageClassesPart3").hide();
+			$("#PartButton1").addClass("NavigationItemSelected").removeClass("NavigationItemUnselected");
+			$("#PartButton2").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton3").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+		}
+	
+		function ShowPart2(){
+			$("#ManageClassesPart1").hide();
+			$("#ManageClassesPart2").show();
+			$("#ManageClassesPart3").hide();
+			ajaxRequest("ManageClassesClassListForm", validationParamsClassGetOne);
+			$("#PartButton1").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton2").addClass("NavigationItemSelected").removeClass("NavigationItemUnselected");
+			$("#PartButton3").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+		}
+	
+		function ShowPart3(){
+			$("#ManageClassesPart1").hide();
+			$("#ManageClassesPart2").hide();
+			$("#ManageClassesPart3").show();
+			$("#PartButton1").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton2").addClass("NavigationItemUnselected").removeClass("NavigationItemSelected");
+			$("#PartButton3").addClass("NavigationItemSelected").removeClass("NavigationItemUnselected");
+		}
+	
+	
+		var validationParamsClassGetAll = {
+			apiURL: "api/ClassGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var classes = response.classlist;
+				$("#ManageClassesClassList").html("");
+				$("#ManageClassesClassList2").html("");
+				var oneExists = false;
+				
+				for(var index = 0; index < classes.length; index++){
+					var cls = classes[index];
+					var bracketText = "";
+					if(cls.is_public){
+						bracketText = " ({{MANAGECLASSES_PUBLIC_CLASS_TAG}})";
+					}
+					$("#ManageClassesClassList").append("<option value='"+cls["id"]+"'>"+cls["name"]+bracketText+"</option>");
+					$("#ManageClassesClassList2").append("<option value='"+cls["id"]+"'>"+cls["name"]+bracketText+"</option>");
+					oneExists = true;
+				}
+				
+				$("#ManageClassesClassList").change(function(){
+					ajaxRequest("ManageClassesClassListForm", validationParamsClassGetOne);
+				});
+				
+				if(oneExists){
+					$("#EditClassButton").show();
+					$("#DeleteClassButton").show();
+				}
+				
+				if(PageToOpen > 0){
+					switch(PageToOpen){
+						case 1:
+							ShowPart1();
+						break;
+						case 2:
+							ShowPart2();
+						break;
+						case 3:
+							ShowPart3();
+						break;
+					}
+					PageToOpen = 0;
+				}
+			}
+		};
+		
+		
+		
+		var validationParamsStudentRemoveTeacher = {
+			apiURL: "api/StudentRemoveTeacher.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("ManageClassesClassListForm", validationParamsClassGetOne);
+			}
+		};
+		
+		var validationParamsStudentMakeTeacher = {
+			apiURL: "api/StudentMakeTeacher.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("ManageClassesClassListForm", validationParamsClassGetOne);
+			}
+		};
+		
+		var validationParamsStudentUnenroll = {
+			apiURL: "api/StudentUnenrollAdmin.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("ManageClassesClassListForm", validationParamsClassGetOne);
+			}
+		};
+		
+		var validationParamsStudentEnroll = {
+			apiURL: "api/StudentEnrollAdmin.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("ManageClassesClassListForm", validationParamsClassGetOne);
+			}
+		};
+		
+		var validationParamsClassGetOne = {
+			apiURL: "api/ClassGetOne.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var cls = response;
+				
+				$("#ManageClassesEnrolleeList").html("");
+				$("#ManageClassesOtherUsersList").html("");
+				var teacherlist = cls.teacherlist
+				for(var index = 0; index < teacherlist.length; index++){
+					var teacher = teacherlist[index];
+					$("#ManageClassesEnrolleeList").append("<form id='ManageClassUser-"+teacher["user_id"]+"'><input type='hidden' name='userID' value='"+teacher["user_id"]+"'><input type='hidden' name='classID' value='"+($("#ManageClassesClassList").val())+"'><div class='FormListEntry'>"+teacher["name"]+" "+teacher["surname"]+" ("+teacher["username"]+") <div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageClassUser-"+teacher["user_id"]+"\", validationParamsStudentRemoveTeacher); return false;'><b>{{MANAGECLASSES_CLASS_TAG_TEACHER}}</b></a></div></div></div></form>");
+				}
+				
+				var enrolleelist = cls.enrolleelist
+				for(var index = 0; index < enrolleelist.length; index++){
+					var enrollee = enrolleelist[index];
+					if($("#ManageClassUser-"+enrollee["user_id"]).length > 0){
+						continue; //enrollee already in teachers
+					}
+					$("#ManageClassesEnrolleeList").append("<form id='ManageClassUser-"+enrollee["user_id"]+"'><input type='hidden' name='userID' value='"+enrollee["user_id"]+"'><input type='hidden' name='classID' value='"+($("#ManageClassesClassList").val())+"'><div class='FormListEntry'>"+enrollee["name"]+" "+enrollee["surname"]+" ("+enrollee["username"]+") <div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageClassUser-"+enrollee["user_id"]+"\", validationParamsStudentMakeTeacher); return false;'>{{MANAGECLASSES_CLASS_TAG_TEACHER}}</a></div> <div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageClassUser-"+enrollee["user_id"]+"\", validationParamsStudentUnenroll); return false;'>{{MANAGECLASSES_CLASS_TAG_UNENROLL}}</a></div></div></div></form>");
+				}
+				
+				html = "";
+				html += "<div id='AddClassButton' class='FormButton' style='margin-bottom: 10px;'>";
+				html += "	<div class='FormButtonContent FormButtonDark' onclick='$(\".unenrolledUser\").toggle(); ScrollTo(\"ManageClassesOtherUsersList\")'>";
+				html += "		<span>+ {{MANAGECLASSES_ENROLL_STUDENT_BUTTON}}</span>";
+				html += "	</div>";
+				html += "</div>";
+				
+				$("#ManageClassesEnrolleeList").append(html);
+				
+				
+				
+				ajaxRequest("", validationParamsUsersGetAll);
+			}
+		};
+		
+		var validationParamsUsersGetAll = {
+			apiURL: "api/UserGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				$("#ManageClassesOtherUsersList").html("");
+				var userlist = response.userlist;
+				for(var index = 0; index < userlist.length; index++){
+					var user = userlist[index];
+					if($("#ManageClassUser-"+user["user_id"]).length > 0){
+						continue; //enrollee already in teachers or enrollees
+					}
+					$("#ManageClassesOtherUsersList").append("<form class='unenrolledUser' style='display: none;' id='ManageClassUser-"+user["user_id"]+"'><input type='hidden' name='userID' value='"+user["user_id"]+"'><input type='hidden' name='classID' value='"+($("#ManageClassesClassList").val())+"'><div class='FormListEntry'>"+user["name"]+" "+user["surname"]+" ("+user["username"]+") <div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageClassUser-"+user["user_id"]+"\", validationParamsStudentEnroll); return false;'>{{MANAGECLASSES_CLASS_TAG_ENROLL}}</a></div></div></div>");
+				}
+			}
+		};
+		
+		var validationParamsDeleteClass = {
+			apiURL: "api/ClassDelete.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("", validationParamsClassGetAll);
+			}
+		};
+		
+		var validationParamsAddNewClass = {
+			apiURL: "api/ClassAdd.php",
+			method: "POST",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("", validationParamsClassGetAll);
+			}
+		};
+		
+		$("#EditClassButton").click(function(){
+			openClassID = parseInt($("#ManageClassesClassList").val()); 
+			fetchContent("CLASS");
+		});
+		
+		$("#DeleteClassButton").click(function(){
+			var choice = confirm("{{MANAGECLASSES_DELETE_CLASS_CONFIRM}}");
+			if(choice){
+				ajaxRequest("ManageClassesClassListForm2", validationParamsDeleteClass);
+			}
+		});
+		
+		$("#AddClassButton").click(function(){
+			ajaxRequest("ManageClassesNewClassForm", validationParamsAddNewClass);
+		});
+		
+		ajaxRequest("", validationParamsClassGetAll);
+		$('[data-toggle="tooltip"]').tooltip();
+	</script>

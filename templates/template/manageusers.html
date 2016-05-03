@@ -1,0 +1,339 @@
+	<div class='FirstContentContainer'>
+		<div class="row">
+			<div class="col-lg-12 PageHearderContainer">
+				<h3 class='ContentHeader ContentHeaderDark'>{{MANAGEUSERS_TITLE}}</h3>
+				<img src='{{TEMPLATE_DIR}}/images/line.svg' class='PageHeaderLineImg'>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{MANAGEUSERS_STEP_SELECTUSER}}</div>
+				
+				<div class='SubpageInstructions'>{{MANAGEUSERS_STEP_SELECTUSER_INSTRUCTIONS}}</div>
+				
+				<form id='ManageUsersUserListForm' class='FormTag'>
+					<div class='FormEntryTitle'>{{MANAGEUSERS_SELECT_USER}}</div>
+					<select name='userID' id='ManageUsersUserList' class='FormEntryInputSelect'>
+						
+					</select>
+				</form>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{MANAGEUSERS_EDITING}} <span id='UserUsername'></span></div>
+				
+				<div class='SubpageInstructions'>{{MANAGEUSERS_EDITING_INSTRUCTIONS}}</div>
+				
+				<form id='ManageUsersUserSettingsForm' class='FormTag'>
+					<input id='ManageUsersUserSettingsUserID' type='hidden' name='updateUserID' value=''>
+				
+					<div class='FormEntryTitle'>{{MANAGEUSERS_EDITING_NAME}}</div>
+					<input type='text' id='UserName' name='updateUserName' class='FormEntryInputText'>
+					
+					<div class='FormEntryTitle'>{{MANAGEUSERS_EDITING_LASTNAME}}</div>
+					<input type='text' id='UserSurname' name='updateUserSurname' class='FormEntryInputText'>
+					
+					<div class='FormEntryTitle'>{{MANAGEUSERS_EDITING_STYLE}}</div>
+					<select name='preferredUserStyle' id='preferredUserStyle' class='FormEntryInputSelect'>
+						<option value='default'>{{MANAGEUSERS_EDITING_STYLE_DEFAULT}}</option>
+						<option value='blind'>{{MANAGEUSERS_EDITING_STYLE_BLIND}}</option>
+						<option value='inverted'>{{MANAGEUSERS_EDITING_STYLE_INVERTED}}</option>
+						<option value='contrast'>{{MANAGEUSERS_EDITING_STYLE_CONTRAST}}</option>
+						<option value='protanopia'>{{MANAGEUSERS_EDITING_STYLE_PROTANOPIA}}</option>
+						<option value='tritanopia'>{{MANAGEUSERS_EDITING_STYLE_TRITANOPIA}}</option>
+						<option value='achromatopsia'>{{MANAGEUSERS_EDITING_STYLE_ACHROMATOPSIA}}</option>
+					</select>
+					
+					<div class='FormEntryTitle'>{{MANAGEUSERS_LANGUAGE}}</div>
+					<select name='preferredUserLanguage' id='preferredUserLanguage' class='FormEntryInputSelect'>
+						<option value='SL'>{{MANAGEUSERS_LANGUAGE_slo}}</option>
+						<option value='EN'>{{MANAGEUSERS_LANGUAGE_eng}}</option>
+					</select>
+					
+					<div id='ManageUsersSaveUserSettings' class="FormButton">
+						<div class="FormButtonContent FormButtonDark">
+							<span>{{MANAGEUSERS_BUTTON_SAVE}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{MANAGEUSERS_CHANGE_PASSWORD}} <span id='UserUsername'></span></div>
+				
+				<div class='SubpageInstructions'>{{MANAGEUSERS_CHANGE_PASSWORD_INSTRUCTIONS}}</div>
+				
+				<form id='ManageUsersUserSettingsChangePasswordForm' class='FormTag'>
+					<input id='ManageUsersUserSettingsChangePasswordUserID' type='hidden' name='userID' value=''>
+				
+					<div class='FormEntryTitle'>{{MANAGEUSERS_PASSWORD_CHANGE}}</div>
+					<input type='password' id='UserPassword1' name='updateUserPassword1' class='FormEntryInputText'>
+					
+					<div class='FormEntryTitle'>{{MANAGEUSERS_PASSWORD_REPEAT}}</div>
+					<input type='password' id='UserPassword2' name='updateUserPassword2' class='FormEntryInputText'>
+					
+					<div id='ManageUsersSaveUserSettingsPasswordChange' class="FormButton">
+						<div class="FormButtonContent FormButtonDark">
+							<span>{{MANAGEUSERS_BUTTON_SAVE}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{MANAGEUSERS_ADMIN_CONTROL}} <span id='UserUsername'></span></div>
+				
+				<div class='SubpageInstructions'>{{MANAGEUSERS_ADMIN_CONTROL_INSTRUCTIONS}}</div>
+				
+				<form id='ManageUsersUserSettingsAdminControlForm' class='FormTag'>
+					<input id='ManageUsersUserSettingsAdminControlUserID' type='hidden' name='userID' value=''>
+					
+					<div id='ManageUsersSaveUserSettingsMakeAdmin' class="FormButton">
+						<div class="FormButtonContent FormButtonDark">
+							<span>{{MANAGEUSERS_BUTTON_MAKE_ADMIN}}</span>
+						</div>
+					</div>
+					
+					<div id='ManageUsersSaveUserSettingsRemoveAdmin' class="FormButton">
+						<div class="FormButtonContent FormButtonDark">
+							<span>{{MANAGEUSERS_BUTTON_REMOVE_ADMIN}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{MANAGEUSERS_DELETE_USER}} <span id='UserUsername'></span></div>
+				
+				<div class='SubpageInstructions'>{{MANAGEUSERS_DELETE_USER_INSTRUCTIONS}}</div>
+				
+				<form id='ManageUsersUserSettingsDeleteUserForm' class='FormTag'>
+					<input id='ManageUsersUserSettingsDeleteUserUserID' type='hidden' name='userID' value=''>
+					
+					<div id='ManageUsersSaveUserSettingsDeleteUser' class="FormButton">
+						<div class="FormButtonContent FormButtonDark">
+							<span>{{MANAGEUSERS_BUTTON_DELETE}}</span>
+						</div>
+					</div>
+				</form>
+			</div>
+			
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{MANAGEUSERS_CLASS_ENROLMENT}} <span id='UserUsername'></span></div>
+				
+				<div class='SubpageInstructions'>{{MANAGEUSERS_CLASS_ENROLMENT_INSTRUCTIONS}}</div>
+				
+				<div class='FormEntryTitle'>{{MANAGEUSERS_CLASS_ENROLMENT_CLASSES}}</div>
+				
+				<span id='ManageUsersClassList'>
+					
+				</span>
+			</div>
+		</div>
+	</div>
+	<script type='text/javascript'>
+		UserCheck();
+		AdminCheck();
+	
+		function FetchSelectedUserInfo(){
+			ajaxRequest("ManageUsersUserListForm", validationParamsUserGetPrefs);
+			ajaxRequest("ManageUsersUserListForm", validationParamsClassGetForUser);
+			manageUsersUserID = parseInt($("#ManageUsersUserList").val());
+		}
+	
+		var manageUsersUserID = -1;
+		var validationParamsUserGetAll = {
+			apiURL: "api/UserGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var users = response;
+				var oneExists = false;
+				$("#ManageUsersUserList").html("");
+				for(var index = 0; index < users.userlist.length; index++){
+					var user = users.userlist[index];
+					$("#ManageUsersUserList").append("<option value='"+user["user_id"]+"'>"+user["name"]+" "+user["surname"]+" ("+user["username"]+")</option>");
+					oneExists = true;
+				}
+				
+				$("#ManageUsersUserList").change(function(){
+					FetchSelectedUserInfo();
+				});
+				
+				//Populate content with first entry
+				if(oneExists){
+					FetchSelectedUserInfo();
+				}
+			}
+		};
+		
+		var validationParamsUserGetPrefs = {
+			apiURL: "api/UserPrefsForUser.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var user = response;
+				$("#ManageUsersUserSettingsUserID").val(user.user_id);
+				$("#ManageUsersUserSettingsChangePasswordUserID").val(user.user_id);
+				$("#ManageUsersUserSettingsDeleteUserUserID").val(user.user_id);
+				$("#ManageUsersUserSettingsAdminControlUserID").val(user.user_id);
+				$("#UserName").val(user.name);
+				$("#UserSurname").val(user.surname);
+				$("#preferredUserLanguage").val(user.language);
+				$("#preferredUserStyle").val(user.style);
+				$("#UserUsername").html(user.username);
+				
+				if(user.role == "ADMIN"){
+					$("#ManageUsersSaveUserSettingsRemoveAdmin").show();
+					$("#ManageUsersSaveUserSettingsMakeAdmin").hide();
+				}else{
+					$("#ManageUsersSaveUserSettingsRemoveAdmin").hide();
+					$("#ManageUsersSaveUserSettingsMakeAdmin").show();
+				}
+				
+				var userStyles = user.style
+			}
+		};
+		
+		var validationParamsUpdateUserInfo = {
+			apiURL: "api/UserUpdate.php",
+			method: "POST",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsChangeUserPassword = {
+			apiURL: "api/UserChangePasswordAdmin.php",
+			method: "POST",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsDeleteUser = {
+			apiURL: "api/UserDelete.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("", validationParamsUserGetAll);
+			}
+		};
+		
+		var validationParamsMakeUserAdmin = {
+			apiURL: "api/UserMakeAdmin.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsRemoveUserAdmin = {
+			apiURL: "api/UserRemoveAdmin.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsStudentRemoveTeacher = {
+			apiURL: "api/StudentRemoveTeacher.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsStudentMakeTeacher = {
+			apiURL: "api/StudentMakeTeacher.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsStudentUnenroll = {
+			apiURL: "api/StudentUnenrollAdmin.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsStudentEnroll = {
+			apiURL: "api/StudentEnrollAdmin.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				FetchSelectedUserInfo();
+			}
+		};
+		
+		var validationParamsClassGetForUser = {
+			apiURL: "api/ClassGetForUserAdmin.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var classes = response.classlist;
+				$("#ManageUsersClassList").html("");
+				for(var index = 0; index < classes.length; index++){
+					var cls = classes[index];
+					$("#ManageUsersClassList").append("<form id='ManageUsersClassInformation-"+cls.id+"-"+manageUsersUserID+"'><input type='hidden' name='classID' value='"+cls.id+"'><input type='hidden' name='userID' value='"+manageUsersUserID+"'></form>");
+					if(cls.is_public == 1){
+						$("#ManageUsersClassList").append("<div class='FormListEntry'>"+cls["name"]+" ({{MANAGEUSERS_CLASS_TAG_PUBLIC}})</div>");
+					}else{
+						if(cls.enrolled == 2){
+							$("#ManageUsersClassList").append("<div class='FormListEntry'>"+cls["name"]+" <div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageUsersClassInformation-"+cls.id+"-"+manageUsersUserID+"\", validationParamsStudentRemoveTeacher); return false;'><b>{{MANAGEUSERS_CLASS_TAG_TEACHER}}</b></a></div></div></div>");
+						}else if(cls.enrolled == 1){
+							$("#ManageUsersClassList").append("<div class='FormListEntry'>"+cls["name"]+" <div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageUsersClassInformation-"+cls.id+"-"+manageUsersUserID+"\", validationParamsStudentMakeTeacher); return false;'><b>{{MANAGEUSERS_CLASS_TAG_TEACHER}}</b></a></div></div><div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageUsersClassInformation-"+cls.id+"-"+manageUsersUserID+"\", validationParamsStudentUnenroll); return false;'><b>{{MANAGEUSERS_CLASS_TAG_UNENROLL}}</b></a></div></div></div>");
+						}else{
+							$("#ManageUsersClassList").append("<div class='FormListEntry'>"+cls["name"]+" <div class='FormListEntryButtonGroup'><div class='FormListEntryButtonContainer'><a class='FormListEntryButton' href='#' onclick='ajaxRequest(\"ManageUsersClassInformation-"+cls.id+"-"+manageUsersUserID+"\", validationParamsStudentEnroll); return false;'><b>{{MANAGEUSERS_CLASS_TAG_ENROLL}}</b></a></div></div></div>");
+						}
+					}
+				}
+			}
+		};
+		
+		ajaxRequest("", validationParamsUserGetAll);
+		
+		$("#ManageUsersSaveUserSettings").click(function(){
+			ajaxRequest("ManageUsersUserSettingsForm", validationParamsUpdateUserInfo);
+		});
+		$("#ManageUsersSaveUserSettingsPasswordChange").click(function(){
+			ajaxRequest("ManageUsersUserSettingsChangePasswordForm", validationParamsChangeUserPassword);
+		});
+		$("#ManageUsersSaveUserSettingsDeleteUser").click(function(){
+			var choice = confirm("{{MANAGEUSERS_DELETE_USER_CONFIRM}}");
+			if(choice){
+				ajaxRequest("ManageUsersUserSettingsDeleteUserForm", validationParamsDeleteUser);
+			}
+		});
+		$("#ManageUsersSaveUserSettingsMakeAdmin").click(function(){
+			ajaxRequest("ManageUsersUserSettingsAdminControlForm", validationParamsMakeUserAdmin);
+		});
+		$("#ManageUsersSaveUserSettingsRemoveAdmin").click(function(){
+			ajaxRequest("ManageUsersUserSettingsAdminControlForm", validationParamsRemoveUserAdmin);
+		});
+		
+		
+	</script>

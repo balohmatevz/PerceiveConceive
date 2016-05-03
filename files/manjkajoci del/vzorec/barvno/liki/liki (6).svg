@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="220px"
+	 height="220px" viewBox="0 0 220 220" enable-background="new 0 0 220 220" xml:space="preserve">
+<g id="bg" display="none">
+	<rect x="-1645.836" y="-3381.787" display="inline" fill="#FFFFFF" width="3240.076" height="8444.104"/>
+</g>
+<g id="Layer_3" display="none">
+</g>
+<g id="Layer_1">
+	<g>
+		<defs>
+			<rect id="SVGID_261_" x="-1200" y="-2400" width="220" height="220"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_261_"  overflow="visible"/>
+		</clipPath>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_263_" y="-2400" width="220" height="220"/>
+		</defs>
+		<clipPath id="SVGID_4_">
+			<use xlink:href="#SVGID_263_"  overflow="visible"/>
+		</clipPath>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_269_" x="-900" y="-2400" width="220" height="220"/>
+		</defs>
+		<clipPath id="SVGID_6_">
+			<use xlink:href="#SVGID_269_"  overflow="visible"/>
+		</clipPath>
+	</g>
+	<g>
+		<defs>
+			<rect id="SVGID_271_" x="-300" y="-2400" width="220" height="220"/>
+		</defs>
+		<clipPath id="SVGID_8_">
+			<use xlink:href="#SVGID_271_"  overflow="visible"/>
+		</clipPath>
+	</g>
+	<g>
+		<rect x="0" fill="#E9E3D8" width="220" height="220"/>
+		
+			<polygon fill="#F0E443" stroke="#000100" stroke-width="2.7864" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			21.906,104 17.844,60.214 13.781,16.429 53.734,34.805 93.683,53.18 57.794,78.589 		"/>
+		<g>
+			
+				<circle fill="#009E73" stroke="#000100" stroke-width="2.5206" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="50.969" cy="163.384" r="37.191"/>
+		</g>
+		
+			<rect x="118.817" y="12.999" transform="matrix(0.7311 0.6823 -0.6823 0.7311 90.789 -76.8026)" fill="#CC78A7" stroke="#000100" stroke-width="2.7864" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="48.005" height="127.534"/>
+		
+			<rect x="139.022" y="140.06" fill="#57B3E6" stroke="#000000" stroke-width="2.7864" stroke-miterlimit="10" width="60.664" height="60.664"/>
+	</g>
+</g>
+</svg>

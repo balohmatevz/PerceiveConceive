@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1920px"
+	 height="1080px" viewBox="-2102.779 5981.424 1920 1080" enable-background="new -2102.779 5981.424 1920 1080"
+	 xml:space="preserve">
+<pattern  x="460.5" y="831.5" width="40" height="40" patternUnits="userSpaceOnUse" id="pike" viewBox="0 -40 40 40" overflow="visible">
+	<g>
+		<polygon fill="none" points="0,-40 40,-40 40,0 0,0 		"/>
+		<path fill="#FFFFFF" d="M30-25c0,2.762-2.238,5-5,5s-5-2.238-5-5s2.238-5,5-5S30-27.762,30-25z"/>
+	</g>
+</pattern>
+<g id="Layer_2">
+</g>
+<g id="svg2" xmlns:cc="http://creativecommons.org/ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" inkscape:version="0.91 r13725" sodipodi:docname="pivot-02.svg" display="none">
+</g>
+<g id="Layer_3">
+	<g>
+		<g id="Layer_2_16_">
+			<rect x="-2102.779" y="5981.424" fill="#E69F00" width="1920" height="1080"/>
+		</g>
+	</g>
+	<pattern  id="SVGID_2_" xlink:href="#pike" patternTransform="matrix(1 0 0 1 -12.7793 73.416)">
+	</pattern>
+	<rect x="-2092.779" y="5994.424" fill="url(#SVGID_2_)" width="1920" height="1080"/>
+</g>
+</svg>

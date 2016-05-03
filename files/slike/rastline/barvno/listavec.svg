@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color">
+	<g id="rdeča7bela">
+	</g>
+	<g>
+		
+			<rect x="209.813" y="253.361" fill="#7E4E24" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="33.917" height="139.719"/>
+		
+			<circle fill="#93C01F" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="226.772" cy="165.634" r="105.17"/>
+		
+			<line fill="#93C01F" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="240.491" y1="236.581" x2="287.125" y2="187.432"/>
+		
+			<line fill="#93C01F" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="234.013" y1="268.821" x2="245.287" y2="193.309"/>
+		
+			<line fill="#93C01F" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="236" y1="147.389" x2="209.931" y2="200.067"/>
+		
+			<line fill="#93C01F" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="213.452" y1="236.581" x2="164.231" y2="193.309"/>
+		
+			<line fill="#93C01F" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="218.93" y1="268.821" x2="201.507" y2="137.545"/>
+	</g>
+</g>
+<g id="cb" display="none">
+	<g id="rdeča7bela_copy" display="inline">
+	</g>
+	<g display="inline">
+		<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M226.772,270.804c-5.774,0-11.438-0.473-16.959-1.368V393.08h33.917V269.436C238.208,270.331,232.546,270.804,226.772,270.804z"/>
+		
+			<circle fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="226.772" cy="165.634" r="105.17"/>
+		
+			<line fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="240.491" y1="236.581" x2="287.125" y2="187.432"/>
+		
+			<line fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="234.013" y1="268.821" x2="245.287" y2="193.309"/>
+		
+			<line fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="236" y1="147.389" x2="209.931" y2="200.067"/>
+		
+			<line fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="213.452" y1="236.581" x2="164.231" y2="193.309"/>
+		
+			<line fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="218.93" y1="268.821" x2="201.507" y2="137.545"/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="224.108" cy="387.744" r="14.133"/>
+</g>
+</svg>

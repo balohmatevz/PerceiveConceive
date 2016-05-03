@@ -1,0 +1,60 @@
+	<div class='MainContainer'>
+		<div class="row">
+			<div class="col-lg-12" id="GameArea" style='text-align: center;'>
+				<div style='width: 1024px; height: 576px; background-color: #ffddaa; display: inline-block; margin-top: 20px; margin-bottom: 20px'>
+					{{PLAY_LOADING}}
+				</div>
+			</div>
+		</div>
+	</div>
+	 
+	<script type='text/javascript'> 
+	
+	var urlOfGame = "";
+	var InstanceProperties = {};
+	var user = {};
+	
+	var validationParamsInstanceProperties = {
+		apiURL: "api/InstanceGetInfo.php?instanceID="+openInstanceID,
+		method: "GET",
+		alertOnSuccess: false,
+		alertOnFail: false,
+		callback: function(response){
+			InstanceProperties = response;
+			urlOfGame = InstanceProperties.file_location;
+			ajaxRequest("", validationParamsUserPreferences);
+		}
+	};
+	
+	var validationParamsUserPreferences = {
+		apiURL: "api/UserPrefs.php?userID="+userID,
+		method: "GET",
+		alertOnSuccess: false,
+		alertOnFail: false,
+		callback: function(response){
+			user = response;
+			
+			preferredLanguate = "SL";
+			if(typeof(InstanceProperties["lang"][user["language"]]) !== "undefined") {
+				preferredLanguate = user["language"];
+			}
+			
+			gameDictionary = {};
+			if(typeof InstanceProperties["lang"] != "undefined"){
+				if(typeof InstanceProperties["lang"][preferredLanguate] != "undefined"){
+					gameDictionary = InstanceProperties["lang"][preferredLanguate]["dict"];
+				}
+			}
+			$.get( urlOfGame, "" ).done(function(responseTXT){
+				$("#GameArea").html(Mustache.render(responseTXT, gameDictionary));
+				initGame();
+			})
+		}
+	};
+	
+	ajaxRequest("", validationParamsInstanceProperties);
+	
+	
+	
+	
+	</script>

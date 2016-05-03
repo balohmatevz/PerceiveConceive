@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat">
+</g>
+<g id="bg" display="none">
+	<rect x="-12058.158" y="-8398.64" display="inline" width="15266.867" height="13678.951"/>
+</g>
+<g id="barvno" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	<g display="inline">
+		
+			<polygon fill="#84D7CE" stroke="#000000" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			167.763,328.979 108.753,226.771 167.763,124.564 285.782,124.564 344.792,226.771 285.782,328.979 		"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="226.772" y1="129.988" x2="226.772" y2="323.555"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="341.174" y1="226.771" x2="112.37" y2="226.771"/>
+	</g>
+	
+		<rect x="-12568.443" y="-8818.648" display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" width="16736" height="13952"/>
+</g>
+<g id="sivinsko">
+	<g id="rdeča7bela_copy_3">
+	</g>
+	<g>
+		<g>
+			<polygon fill="#BDBDBD" points="167.763,328.979 108.753,226.771 167.763,124.564 285.782,124.564 344.792,226.771 
+				285.782,328.979 			"/>
+			<path d="M285.782,338.979h-118.02c-3.572,0-6.874-1.905-8.66-5l-59.01-102.207c-1.786-3.094-1.786-6.905,0-10l59.01-102.207
+				c1.786-3.094,5.088-5,8.66-5h118.02c3.572,0,6.875,1.906,8.66,5l59.01,102.207c1.787,3.094,1.787,6.906,0,10l-59.01,102.207
+				C292.657,337.072,289.354,338.979,285.782,338.979z M173.536,318.979h106.472l53.236-92.207l-53.236-92.207H173.536
+				L120.3,226.771L173.536,318.979z"/>
+		</g>
+		<g>
+			<line fill="none" x1="226.772" y1="129.988" x2="226.772" y2="323.555"/>
+			<path d="M226.772,333.555c-5.522,0-10-4.478-10-10V129.988c0-5.522,4.478-10,10-10c5.521,0,10,4.478,10,10v193.566
+				C236.772,329.077,232.295,333.555,226.772,333.555z"/>
+		</g>
+		<g>
+			<line fill="none" x1="341.174" y1="226.771" x2="112.37" y2="226.771"/>
+			<path d="M341.174,236.771H112.37c-5.522,0-10-4.479-10-10s4.478-10,10-10h228.804c5.522,0,10,4.478,10,10
+				S346.697,236.771,341.174,236.771z"/>
+		</g>
+	</g>
+	<path d="M4168.059,5133.852h-16737v-13953h16737V5133.852L4168.059,5133.852z M-12568.443,5132.852h16736l-0.5-13951h-16735.5
+		l0.5,13951H-12568.443L-12568.443,5132.852z"/>
+</g>
+<g id="linijsko" display="none">
+	<g id="rdeča7bela_copy" display="inline">
+	</g>
+	<g display="inline">
+		
+			<polygon fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			167.763,328.979 108.753,226.771 167.763,124.564 285.782,124.564 344.792,226.771 285.782,328.979 		"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="226.772" y1="129.988" x2="226.772" y2="323.555"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="341.174" y1="226.771" x2="112.37" y2="226.771"/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="222.63" cy="326.227" r="14.133"/>
+</g>
+</svg>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.544px" height="453.543px" viewBox="0 0 453.544 453.543" enable-background="new 0 0 453.544 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	<g display="inline">
+		<g>
+			
+				<rect x="229.261" y="95.559" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="4.822" height="212.006"/>
+			
+				<path fill="#57B2E5" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M234.845,145.906v114.484h89.381C324.226,260.391,243.831,196.734,234.845,145.906z"/>
+			
+				<path fill="#0075A5" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M104.147,260.391c0,0,114.756-113.354,129.936-164.832v164.832H104.147z"/>
+			
+				<path fill="#EED2A3" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M154.147,357.98c46.447,0,113.387,0,145.25,0s50-63.867,50-63.867h-245.25C104.147,294.113,107.702,357.98,154.147,357.98z"/>
+		</g>
+	</g>
+</g>
+<g id="cb">
+	<g id="rdeča7bela_copy">
+	</g>
+	<g>
+		<g>
+			<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M154.147,357.98c46.447,0,113.387,0,145.25,0s50-63.867,50-63.867h-245.25C104.147,294.113,107.702,357.98,154.147,357.98z"/>
+			<g>
+				
+					<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M232.447,147.154v114.484h89.383C321.83,261.639,241.434,197.982,232.447,147.154z"/>
+				
+					<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M102.514,261.639c0,0,114.756-113.354,129.934-164.832v164.832H102.514z"/>
+				
+					<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="232.447" y1="248.807" x2="232.447" y2="293.113"/>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="218.53" cy="358.583" r="14.133"/>
+</g>
+</svg>

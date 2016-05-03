@@ -1,0 +1,2707 @@
+<head>
+	<meta charset='utf-8'>
+	<style type='text/css'>
+		
+		.ProgressButton{
+			position: absolute;
+			border: solid 4px #008800;
+			background-color: #C9D935;
+			text-align: center;
+		}
+				
+				
+
+		@font-face {
+			font-family: SourceSansPro;
+			src: url(SourceSansPro-Regular.otf);
+		}
+				
+		
+	</style>
+	<script type="text/javascript" src="js/prototype.js"></script>
+	<script type="text/javascript" src="js/webkitdragdrop.js"></script>
+	<script type='text/javascript' src='js/jquery.js'></script>
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script type='text/javascript' src='js/mustache.js'></script>
+</head>
+
+<div id='Screen' style='width: 1024px; height: 576px; background-color: black; font-family: SourceSansPro; border: solid 1px #cccccc;'><div id='ScreenContent' style='position: relative; top: 0; left: 0; '></div></div>
+
+
+
+
+<script type='text/javascript'>
+	var userID = 9;
+	var instanceIDGame = openInstanceID; //TODO Change RECENTCHANGE
+
+	var demo = false;
+	var score = 0;
+	
+	var puzzleNum = -1;
+	var puzzleMaskNum = -1;
+	var SCENE_NONE = 0;
+	var SCENE_BATHROOM = 1;
+	
+	var ImgScale = {
+		"balon.svg": 0.15,
+		"banana.svg": 0.15,
+		"bonbon.svg": 0.15,
+		"brokoli.svg": 0.15,
+		"buca.svg": 0.15,
+		"cajnik.svg": 0.15,
+		"cajnik01.svg": 0.15,
+		"sladoled.svg": 0.15,
+		"sladoled01.svg": 0.15,
+		"cebela.svg": 0.15,  
+		"cebula.svg": 0.15,
+		"cedilo.svg": 0.15,
+		"cesen.svg": 0.15,
+		"cesnja.svg": 0.15,
+		"copic.svg": 0.15,
+		"copic02.svg": 0.15,
+		"darilo.svg": 0.15,
+		"denar.svg": 0.15,
+		"deska.svg": 0.15,
+		"detergent01.svg": 0.15,
+		"deternent.svg": 0.15,
+		"feferon.svg": 0.15,
+		"fizol.svg": 0.15,
+		"goba.svg": 0.15,
+		"grozdje.svg": 0.15,
+		"hranilnik.svg": 0.15,
+		"hrast.svg": 0.15,
+		"hrosc.svg": 0.15,
+		"hruska.svg": 0.15,
+		"izvijac.svg": 0.15,
+		"izvijac01.svg": 0.15,
+		"izvijac03.svg": 0.15,
+		"izvijac04.svg": 0.15,
+		"jabolko.svg": 0.15,
+		"jadrnica.svg": 0.20,
+		"jagoda.svg": 0.15,
+		"jajce.svg": 0.15,
+		"jajcevec.svg": 0.15,
+		"javor.svg": 0.15,
+		"jez.svg": 0.15,
+		"kalkulator.svg": 0.15,
+		"kapa.svg": 0.15,
+		"kivi.svg": 0.15,
+		"kladivo.svg": 0.15,
+		"kljuc.svg": 0.15,
+		"kljuc01.svg": 0.15,
+		"kljuc02.svg": 0.15,
+		"knjiga.svg": 0.15,
+		"knjiga.svg": 0.15,
+		"knjiga01.svg": 0.15,
+		"knjiga01.svg": 0.15,
+		"knjiga02.svg": 0.15,
+		"knjiga02.svg": 0.15,
+		"knjiga03.svg": 0.15,
+		"knjiga03.svg": 0.15,
+		"knjiga04.svg": 0.15,
+		"knjiga04.svg": 0.15,
+		"korenje.svg": 0.15,
+		"kos.svg": 0.15,
+		"kos.svg": 0.15,
+		"kosara.svg": 0.15,
+		"kosara01.svg": 0.15,
+		"kosarka.svg": 0.15,
+		"kozarec.svg": 0.15,
+		"kozarec01.svg": 0.15,
+		"kozarec02.svg": 0.15,
+		"kozarec03.svg": 0.15,
+		"kozarec04.svg": 0.15,
+		"kozarecmartini.svg": 0.15,
+		"kozarecvino.svg": 0.15,
+		"kozarecvino01.svg": 0.15,
+		"kroznik.svg": 0.15,
+		"kroznik01.svg": 0.15,
+		"ladja.svg": 0.25,
+		"lestev.svg": 0.15,
+		"letalo.svg": 0.15,
+		"lev.svg": 0.15,
+		"limona.svg": 0.15,
+		"lipa.svg": 0.15,
+		"list.svg": 0.15,
+		"lonec.svg": 0.18,
+		"lonec02.svg": 0.18,
+		"lonec03.svg": 0.18,
+		"lonec04.svg": 0.18,
+		"lonec05.svg": 0.18,
+		"lubenica.svg": 0.15,
+		"mafin.svg": 0.15,
+		"matica.svg": 0.15,
+		"matica.svg": 0.15,
+		"matica.svg": 0.15,
+		"matica.svg": 0.15,
+		"matica.svg": 0.15,
+		"medved.svg": 0.15,
+		"meso.svg": 0.15,
+		"metlica.svg": 0.15,
+		"metulj.svg": 0.15,
+		"milo.svg": 0.15,
+		"mis.svg": 0.15,
+		"muca.svg": 0.15,
+		"netopir.svg": 0.15,
+		"nogomet.svg": 0.15,
+		"noz.svg": 0.15,
+		"noz01.svg": 0.15,
+		"noz02.svg": 0.15,
+		"obracalka.svg": 0.15,
+		"obracalka01.svg": 0.15,
+		"obracalka02.svg": 0.15,
+		"ocala.svg": 0.15,
+		"odbojka.svg": 0.15,
+		"ovca.svg": 0.15,
+		"pajek.svg": 0.15,
+		"paprika.svg": 0.15,
+		"paradiznik.svg": 0.15,
+		"petir.svg": 0.15,
+		"petir01.svg": 0.15,
+		"petir02.svg": 0.15,
+		"petir03.svg": 0.15,
+		"petir04.svg": 0.15,
+		"petir05.svg": 0.15,
+		"petir06.svg": 0.15,
+		"petir07.svg": 0.15,
+		"petir08.svg": 0.15,
+		"pingvin.svg": 0.15,
+		"pingvin.svg": 0.15,
+		"pladenj.svg": 0.15,
+		"pladenj01.svg": 0.15,
+		"podmornica.svg": 0.20,
+		"pomaranca.svg": 0.15,
+		"ponev.svg": 0.19,
+		"ponev01.svg": 0.19,
+		"poper.svg": 0.15,
+		"posoda.svg": 0.15,
+		"pujs.svg": 0.15,
+		"raca.svg": 0.15,
+		"raca01.svg": 0.15,
+		"ravnilo.svg": 0.15,
+		"ravnilo01.svg": 0.15,
+		"ravnilo03.svg": 0.15,
+		"repa.svg": 0.15,
+		"repatica.svg": 0.15,
+		"riba.svg": 0.15,
+		"riba01.svg": 0.15,
+		"salca.svg": 0.15,
+		"salca01.svg": 0.15,
+		"salca02.svg": 0.15,
+		"skleda.svg": 0.15,
+		"skleda01.svg": 0.15,
+		"skleda03.svg": 0.15,
+		"sol.svg": 0.15,
+		"sova.svg": 0.15,
+		"sova.svg": 0.15,
+		"steklenica.svg": 0.15,
+		"steklenica01.svg": 0.15,
+		"steklenica02.svg": 0.15,
+		"struca.svg": 0.15,
+		"tenis.svg": 0.15,
+		"tiger.svg": 0.15,
+		"toast.svg": 0.15,
+		"torta.svg": 0.15,
+		"torta.svg": 0.15,
+		"tulipan.svg": 0.15,
+		"valj.svg": 0.25,
+		"valjar01.svg": 0.15,
+		"valjcek.svg": 0.15,
+		"vaza.svg": 0.12,
+		"vaza01.svg": 0.12,
+		"vaza02.svg": 0.12,
+		"vaza03.svg": 0.12,
+		"vaza04.svg": 0.12,
+		"vaza05.svg": 0.12,
+		"vaza06.svg": 0.12,
+		"vaza07.svg": 0.15,
+		"vaza08.svg": 0.15,
+		"vaza09.svg": 0.15,
+		"vedro.svg": 0.15,
+		"vileda.svg": 0.15,
+		"vilice.svg": 0.15,
+		"vrc.svg": 0.15,
+		"vrc01.svg": 0.15,
+		"zaba.svg": 0.15,
+		"zaga.svg": 0.15,
+		"zajec.svg": 0.15,
+		"zajemalka.svg": 0.15,
+		"zebelj.svg": 0.15,
+		"zebelj01.svg": 0.15,
+		"zlica.svg": 0.15,
+		"zlica01.svg": 0.15,
+		"zvoncek.svg": 0.15,
+		"other": 0.15
+	};
+	
+	function CreateStar(i, position, size, answerPos, answerHeight, answerWidth, answerID){
+		var Star = document.createElement("img");
+		var starID = "TMP-Star-"+i;
+		Star.id = starID;
+		$("#ScreenContent").append(Star)
+		$("#"+starID).attr("src", ""+constants["UI_StarFull"]);
+		
+		$("#"+starID).addClass("Star");
+		$("#"+starID).css("position", "absolute");
+		$("#"+starID).css("top", (position.top));
+		$("#"+starID).css("left", (position.left));
+		$("#"+starID).css("height", (size * windowHeight));
+		$("#"+starID).css("margin", (- (size/2) * windowHeight));
+		$("#"+starID).css("z-index", 40);
+		$("#"+starID).css("display", "none");
+		$("#"+starID).fadeIn(100, function(){
+			$(this).animate({top: answerPos.top + answerHeight / 2, left: answerPos.left + answerWidth / 2}, {complete: function(){
+				$("#"+starID).fadeOut(100, function(){
+					$("#"+answerID).css("background-color", colorScheme["StarHighlight"]);
+				});
+			}});
+		})
+	}
+	
+	/*
+	var imageObj = new Image();
+	imageObj.src = "img/svg/geometrija/kvadrat_navpicna.svg";
+	var maskObj = new Image();
+	maskObj.src = "img/svg/sadje/jabolko.svg";
+	
+	var pass1 = false;
+	var pass2 = false;
+	
+	imageObj.onload = function() {
+		pass1 = true;
+		if(pass2){
+			var ctx = document.getElementById('c').getContext('2d');
+			ctx.drawImage(imageObj, 0, 0);
+			ctx.globalCompositeOperation = 'source-in';
+			ctx.drawImage(maskObj, 0 , 0); 
+			var ctx2 = document.getElementById('c2').getContext('2d');
+			ctx2.drawImage(maskObj, 0, 0);
+			var ctx3 = document.getElementById('c3').getContext('2d');
+			ctx3.drawImage(imageObj, 0, 0);
+		}
+     };
+	
+	maskObj.onload = function() {
+		pass2 = true;
+		if(pass1){
+			var ctx = document.getElementById('c').getContext('2d');
+			ctx.drawImage(imageObj, 0, 0);
+			ctx.globalCompositeOperation = 'source-in';
+			ctx.drawImage(maskObj, 0 , 0); 
+			var ctx2 = document.getElementById('c2').getContext('2d');
+			ctx2.drawImage(maskObj, 0, 0);
+			var ctx3 = document.getElementById('c3').getContext('2d');
+			ctx3.drawImage(imageObj, 0, 0);
+		}
+     };*/
+	
+	var EnlargeModeOn = false;
+	var EnlargedElementID = "";
+	var EnlargedElementAction = "";
+	var puzzleDraggableObjs = [];
+	
+	function TileInteract(GameMode, TileAction, TileID){
+		TileInteract(GameMode, TileAction, TileID, 0, 0);
+	}
+	
+	var updateRemainingToSelectIndicator = function(){
+		$("#ReminingToSelectIndicator").html("");
+		var numFull = 0;
+		var numEmpty = 0;
+		var numTooMany = 0;
+		switch(gameType){
+			case GAMETYPE_SEEN:
+				numFull = Math.min($(".SelectedTile").length, selectN);
+				numEmpty = selectN - $(".SelectedTile").length;
+				numTooMany = -numEmpty;
+			break;
+			case GAMETYPE_UNSEEN:
+				numFull = numFull = Math.min($(".SelectedTile").length, (groupSizeN - selectN));
+				numEmpty = (groupSizeN - selectN) - $(".SelectedTile").length;
+				numTooMany = -numEmpty;
+			break;
+		}
+		for(var index = 0; index < numFull; index++){
+			$("#ReminingToSelectIndicator").append("<div style='height: 30px; width: 30px; display: inline-block; background-color: "+colorScheme["RemainingIndicatorFull"]+"; margin: 2px;'></div>");
+		}
+		for(var index = 0; index < numEmpty; index++){
+			$("#ReminingToSelectIndicator").append("<div style='height: 30px; width: 30px; display: inline-block; background-color: "+colorScheme["RemainingIndicatorEmpty"]+"; margin: 2px;'></div>");
+		}
+		for(var index = 0; index < numTooMany; index++){
+			$("#ReminingToSelectIndicator").append("<div style='height: 30px; width: 30px; display: inline-block; background-color: "+colorScheme["RemainingIndicatorOver"]+"; margin: 2px;'></div>");
+		}
+	}
+
+	function TileInteract(GameMode, TileAction, TileID, drawOffsetX, drawOffsetY){
+		switch(TileAction){
+			case "ENLARGE":
+				EnlargedElementID = $("#"+TileID).attr("id");
+				EnlargedElementAction = $("#"+TileID).attr("TileClickAction");
+				$("#ShadowDiv").fadeIn(200);
+				$("#EnlargeModeOverlayTileDiv").fadeIn(200);
+				EnlargedImage = $("#"+TileID).children("img");
+				if(EnlargedImage.length > 0){
+					$("#EnlargeModeOverlayTileImage").show();
+					$("#EnlargeModeOverlayTileImage").attr("src", $(EnlargedImage).attr("src"));
+				}else{
+					$("#EnlargeModeOverlayTileImage").hide();
+				}
+			break;
+			case "ENLARGECANVAS":
+				EnlargedElementID = $("#"+TileID).attr("id");
+				EnlargedElementAction = $("#"+TileID).attr("TileClickAction");
+				$("#ShadowDiv").fadeIn(200);
+				$("#EnlargeModeOverlayTileDiv").fadeIn(200);
+				EnlargedImage = $("#"+TileID).children("canvas");
+				if(EnlargedImage.length > 0){
+					$("#EnlargeModeOverlayTileImage").show();
+					var dataUrl = EnlargedImage[0].toDataURL();
+					$("#EnlargeModeOverlayTileImage").attr("src", dataUrl);
+				}else{
+					$("#EnlargeModeOverlayTileImage").hide();
+				}
+			break;
+			case "ENLARGECANVASPART":
+				EnlargedElementID = $("#"+TileID).attr("id");
+				EnlargedElementAction = $("#"+TileID).attr("TileClickAction");
+				$("#ShadowDiv").fadeIn(200);
+				$("#EnlargeModeOverlayTileDiv").fadeIn(200);
+				EnlargedImage = $("#"+TileID).children("canvas");
+				if(EnlargedImage.length > 0){
+					$("#EnlargeModeOverlayTileImage").show();
+					
+					var H = EnlargedImage.height();
+					var W = EnlargedImage.width();
+					
+					var imageFromCanvas = new Image();
+					imageFromCanvas.onload = function(){
+						var tmpcanvas = document.createElement("canvas");
+						tmpcanvas.id = "CROPCOPYCANVAS";
+						tmpcanvas.height = H;
+						tmpcanvas.width = W;
+						tmpCctx = tmpcanvas.getContext("2d");
+						tmpCctx.drawImage(imageFromCanvas, Math.floor(0.30 * W) + drawOffsetX, Math.floor(0.30 * H) + drawOffsetY, Math.floor(0.40 * W), Math.floor(0.40 * H), 0, 0, W, H);
+						var dataUrl = tmpcanvas.toDataURL();
+						$("#EnlargeModeOverlayTileImage").attr("src", dataUrl);
+					}
+					
+					var dataUrl = EnlargedImage[0].toDataURL();
+					imageFromCanvas.src = dataUrl;
+				}else{
+					$("#EnlargeModeOverlayTileImage").hide();
+				}
+			break;
+			case "SELECT":
+				$("#"+TileID).toggleClass("SelectedTile");
+				$("#"+TileID).toggleClass("UnselectedTile");
+				if(GameMode == GAMETYPE_NEGATIVE){
+					var selectedTile = $("#"+TileID)[0];
+					var selectedCanvas = selectedTile.getElementsByTagName("canvas")[0];
+					var canvasTop = $(selectedTile).css("top");
+					var canvasLeft = $(selectedTile).css("left");
+					butt = selectedTile;
+					var dataUrl = selectedCanvas.toDataURL();
+					$("#DraggablePanelCanvas").attr("src", dataUrl);
+					$("#DraggablePanelCanvas").animate({"top": 0.70 * windowHeight, "left": 0.32 * windowWidth}, 300);
+				}
+			break;
+			case "EXCLUSIVESELECT":
+				var isSelected = $("#"+TileID).hasClass("SelectedTile");
+				$(".SelectedTile").addClass("UnselectedTile");
+				$(".SelectedTile").removeClass("SelectedTile");
+				if(!isSelected){
+					TileInteract(gameType, "SELECT", TileID);
+				}
+			break;
+			case "PUTINORDERED":
+				for(var i = 0; i < selectN; i++){
+					var tile = document.getElementById("Tile-OrderedTiles-0-"+i);
+					if(tile){
+						var imgLst = tile.children;
+						if(imgLst && imgLst[0]){
+							continue;
+						}else{
+							var imgToMoveToTarget = $("#"+TileID).children().first()[0];
+							var endDiv = tile;
+							if(endDiv && imgToMoveToTarget){
+								endDiv.appendChild(imgToMoveToTarget);
+							}
+						}
+					}
+				}
+			break;
+			case "PUTINUNORDERED":
+				for(var i = 0; i < groupSizeN; i++){
+					var img = $("#"+TileID).children().first()[0];
+					var tile = document.getElementById("Tile-UnorderedTiles-0-"+i);
+					if(tile && img){
+						if(tile.getAttribute("ImageNumber") == img.getAttribute("ImageNumber")){
+							var imgToMoveToTarget = $("#"+TileID).children().first()[0];
+							var endDiv = tile;
+							if(endDiv && imgToMoveToTarget){
+								endDiv.appendChild(imgToMoveToTarget);
+								break;
+							}
+						}
+					}
+				}
+			break;
+		}
+		updateRemainingToSelectIndicator();
+	}
+	
+	var preferredLanguate = "SL";
+	var constants = {};
+	var variables = {};
+	var gameDictionary = {};
+	var colorScheme = {};
+	var colorSchemes = {};
+	
+	var windowWidth = $("#GameArea").width();
+	var windowHeight = parseInt((windowWidth / 16) * 9);
+	var gameName = InstanceProperties["instance_name"];
+	var gameInstructions = "";
+	var backgroundColor = "000000";
+	
+	var files = [];
+	var masks = [];
+	var puzzles = [];
+	var tilesToFind = [];
+	var layer1 = [];
+	var layer2 = [];
+	var layer3 = [];
+	var layer4 = [];
+	var layer6 = [];
+	var pivot = [];
+	var elementi = [];
+	
+	var cutoutImages = [];
+	var patternImages = [];
+	var answers = [];
+	
+	function allowDrop(ev) {
+		ev.preventDefault();
+	}
+	
+	var movingID = "";
+	var movingParentID = "";
+	function drag(ev) {
+		movingParentID = ev.target.parentElement.id;
+		movingID = ev.target.id;
+	}
+	function drop(ev) {
+		ev.preventDefault();
+		var imgToMoveToTarget = document.getElementById(movingID);
+		var startDiv = document.getElementById(movingParentID);
+		var endDiv = ev.target;
+		if(endDiv.tagName == "IMG"){
+			endDiv = endDiv.parentElement;
+		}
+		var imgToMoveToStart = endDiv.children[0];
+		
+		if(imgToMoveToStart){
+			startDiv.appendChild(imgToMoveToStart);
+		}
+		endDiv.appendChild(imgToMoveToTarget);
+		
+		movingParentID = "";
+		movingID = "";
+	}
+	
+	function init(){
+		preferredLanguate = "SL";
+		if(typeof(InstanceProperties["lang"][user["language"]]) !== "undefined") {
+			preferredLanguate = user["language"];
+		}
+		
+		constants = InstanceProperties["constants"];
+		variables = InstanceProperties["variables"];
+		gameDictionary = InstanceProperties["lang"][preferredLanguate]["dict"];
+		gameType = parseInt(constants["gameType"]);
+		if(typeof(variables["selectN"]) !== "undefined"){
+			selectN = variables["selectN"]["value"];
+		}
+		if(typeof(variables["groupN"]) !== "undefined"){
+			groupSizeN = variables["groupN"]["value"];
+		}
+		if(typeof(variables["reduceN"]) !== "undefined"){
+			reducedN = variables["reduceN"]["value"];
+		}
+		if(typeof(variables["progressToContinue"]) !== "undefined"){
+			progressToContinue = variables["progressToContinue"]["value"];
+		}
+		if(typeof(variables["starLossOnFail"]) !== "undefined"){
+			starLossOnFail = variables["starLossOnFail"]["value"];
+		}
+		
+		colorSchemes = {
+			"DEFAULT": {
+				"ButtonBGSolid": "#32BCAD",
+				"ButtonBGSolidText": "#eeeeee",
+				"ButtonBGSolidHover": "#454545",
+				"StarHighlight": "#ffcc00",
+				"SelectedTileHover": "#EEEEEE",
+				"SelectedTileBorder": "#000000",
+				"SelectedTileBackground": "#ffffff",
+				"MainBackground": "#ffffff",
+				"DarkBackground": "#203341",
+				"PlayBackground": "#8ED0F1",
+				"PlayDarkerBackground": "#59BAEA",
+				"RightMenuBackground": "#203341",
+				"MainTextColor": "#000000",
+				"InstructionsColorText": "#000000",
+				"InstructionsColorBackground": "#ffffff",
+				"UnselectedTileBackground": "#ffffff",
+				"UnselectedTileBorder": "#ffffff",
+				"TextOnDarkBackground": "#149DD9",
+				"RemainingIndicatorOver": "#ff0000",
+				"RemainingIndicatorEmpty": "#ffffff",
+				"RemainingIndicatorFull": "#000000",
+				"PuzzleBackground": "#f8f8f8",
+			},
+			"HIGHCONTRAST": {
+				"ButtonBGSolid": "#0000ff",
+				"ButtonBGSolidText": "#ffffff",
+				"ButtonBGSolidHover": "#888888",
+				"StarHighlight": "#ffcc00",
+				"SelectedTileHover": "#EEEEEE",
+				"SelectedTileBorder": "#252525",
+				"SelectedTileBackground": "#ffffff",
+				"MainBackground": "#ffffff",
+				"DarkBackground": "#ffffff",
+				"PlayBackground": "#00ffff",
+				"PlayDarkerBackground": "#0000ff",
+				"RightMenuBackground": "#000000",
+				"MainTextColor": "#000000",
+				"InstructionsColorText": "#000000",
+				"InstructionsColorBackground": "#ffffff",
+				"UnselectedTileBackground": "#ffffff",
+				"UnselectedTileBorder": "#ffffff",
+				"TextOnDarkBackground": "#0000ff",
+				"RemainingIndicatorOver": "#ff0000",
+				"RemainingIndicatorEmpty": "#ffffff",
+				"RemainingIndicatorFull": "#000000",
+				"PuzzleBackground": "#ffffff",
+			},
+			"INVERTED": {
+				"ButtonBGSolid": "#0000ff",
+				"ButtonBGSolidText": "#ffffff",
+				"ButtonBGSolidHover": "#888888",
+				"StarHighlight": "#ffcc00",
+				"SelectedTileHover": "#EEEEEE",
+				"SelectedTileBorder": "#ffffff",
+				"SelectedTileBackground": "#ffffff",
+				"MainBackground": "#000000",
+				"DarkBackground": "#000000",
+				"PlayBackground": "#888888",
+				"PlayDarkerBackground": "#000000",
+				"RightMenuBackground": "#000000",
+				"MainTextColor": "#ffffff",
+				"InstructionsColorText": "#00ffff",
+				"InstructionsColorBackground": "#000000",
+				"UnselectedTileBackground": "#000000",
+				"UnselectedTileBorder": "#ffffff",
+				"TextOnDarkBackground": "#00ffff",
+				"RemainingIndicatorOver": "#ff0000",
+				"RemainingIndicatorEmpty": "#ffffff",
+				"RemainingIndicatorFull": "#000000",
+				"PuzzleBackground": "#000000",
+			}
+		}
+		
+		if(typeof(user["style"]) !== "undefined") {
+			switch(user["style"].toLowerCase()){
+				case "default":
+					colorScheme = colorSchemes["DEFAULT"];
+				break;
+				case "contrast":
+					colorScheme = colorSchemes["HIGHCONTRAST"];
+				break;
+				case "inverted":
+					colorScheme = colorSchemes["INVERTED"];
+				break;
+				default:
+					colorScheme = colorSchemes["DEFAULT"];
+				break;
+			}
+		}
+		
+		//TODO: Define colour schemes based on the user's style.
+		
+		$("<style type='text/css'> .Tile{	border: solid 8px "+colorScheme["SelectedTileBorder"]+"; 		background-color: "+colorScheme["SelectedTileBackground"]+"; position: absolute; text-align: center; 	box-sizing: border-box;} .SelectableTile:hover{ background-color: "+colorScheme["SelectedTileHover"]+"; border: solid 8px "+colorScheme["SelectedTileHover"]+"; cursor: pointer; } .UnselectedTile{ border: solid 8px "+colorScheme["UnselectedTileBorder"]+"; background-color: "+colorScheme["UnselectedTileBackground"]+";} .SelectedTile, .SelectedTile:hover{ border: solid 8px "+colorScheme["SelectedTileBorder"]+"; background-color: "+colorScheme["SelectedTileBackground"]+";} .UIButton {cursor: pointer; background-color: "+colorScheme["ButtonBGSolid"]+";} .UIButton:hover {background-color: "+colorScheme["ButtonBGSolidHover"]+";}</style>").appendTo("head");
+
+		windowWidth = $("#GameArea").width();
+		windowHeight = parseInt((windowWidth / 16) * 9);
+		gameName = InstanceProperties["instance_name"];
+		gameInstructions = variables["instructions"]["value"];
+		backgroundColor = colorScheme["PlayBackground"];
+		
+		//Create list of image files
+		files = [];
+		masks = [];
+		puzzles = [];
+		puzzleList = [];
+		layer1 = [];
+		layer2 = [];
+		layer3 = [];
+		layer4 = [];
+		layer6 = [];
+		for(var varname in variables){
+			if(typeof(variables[varname]["value"]) !== "undefined") {
+				var vartype = variables[varname]["type"]
+				vartype = vartype.toLowerCase()
+				if(vartype == "file"){
+					if(varname.lastIndexOf("file", 0) === 0){ //StartsWith
+						files[files.length] = variables[varname]["value"];
+					}else if(varname.lastIndexOf("mask", 0) === 0){ //StartsWith
+						masks[masks.length] = variables[varname]["value"];
+					}else if(varname.lastIndexOf("puzzle", 0) === 0){ //StartsWith
+						if(variables[varname]["value"].length > 0){
+							puzzles[puzzles.length] = variables[varname]["value"];
+						}
+					}
+				}
+				if(vartype == "filelist"){
+					if(varname == "files"){ 
+						files = variables[varname]["value"];
+					}else if(varname == "masks"){ 
+						masks = variables[varname]["value"];
+					}else if(varname.lastIndexOf("puzzle", 0) === 0){
+						if(variables[varname]["value"].length > 0){
+							if(variables[varname]["value"][0] != ""){
+								puzzleList[puzzleList.length] = variables[varname]["value"];
+							}
+						}
+					}else if(varname == "layer1"){ 
+						layer1 = variables[varname]["value"];	//Background
+					}else if(varname == "layer2"){ 
+						layer2 = variables[varname]["value"];	//Outside
+					}else if(varname == "layer3"){ 
+						layer3 = variables[varname]["value"];	//Courtain
+					}else if(varname == "layer4"){ 
+						layer4 = variables[varname]["value"];	//Furniture
+					}else if(varname == "layer6"){ 
+						layer6 = variables[varname]["value"];	//Foreground (Above elements)
+					}else if(varname == "pivot"){ 
+						pivot = variables[varname]["value"];	//Element pivots
+					}else if(varname.lastIndexOf("elements", 0) === 0){ 
+						elementi[parseInt(varname.replace("elements", ""))] = variables[varname]["value"];	//Element pivots
+					}
+					//Layer 5 are elements
+				}
+			}
+		}
+		
+		if(typeof elementi != "undefined"){
+			if(typeof elementi.length != "undefined"){
+				if(elementi.length == 2){
+					butt2 = elementi[1].slice();
+					clone1 = elementi[1].slice();
+					clone2 = elementi[1].slice();
+					elementi.push(clone1);
+					elementi.push(clone2);
+				}
+			}
+		}
+	}
+
+	
+	//Selecting X from Y
+	var GAMETYPE_SEEN = 1;			//Game type 1 = select the same
+	var GAMETYPE_UNSEEN = 2;		//Game type 2 = select different
+	var GAMETYPE_HIDDEN = 3;		//Game type 3 = select those which were hidden
+	var GAMETYPE_ORDERED = 4;		//Game type 4 = select in order
+	var GAMETYPE_NEGATIVE = 5;		//Game type 5 = select missing piece (negative)
+	var GAMETYPE_PUZZLE = 6;		//Game type 6 = combine puzzle
+	var GAMETYPE_HIDDENOBJECT = 7;	//Game type 6 = select hidden object
+	var gameType = GAMETYPE_PUZZLE; 
+	var selectN = 1;
+	var groupSizeN = 4;
+	var reducedN = 1;
+	var progressToContinue = 3;
+	var starLossOnFail = 0;
+	
+	var currentUI; //The current screen that is displayed
+	
+	function shuffleArray(array) {
+		for (var i = array.length - 1; i > 0; i--) {
+			var j = Math.floor(Math.random() * (i + 1));
+			var temp = array[i];
+			array[i] = array[j];
+			array[j] = temp;
+		}
+		return array;
+	}
+	
+	var ImageGroup;
+	var ImageSelect;
+	var SelectedImagesToCheck;
+	var CorrectAnswer = 0;
+	
+	var progression = 0;
+	function NewGame(){
+		progression = 0;
+		ContinueGame();
+	}
+	
+	var onDragEnter = function(event) {
+		event.preventDefault();
+		$(this).addClass("dragover");
+	}, 
+
+	onDragOver = function(event) {
+		event.preventDefault(); 
+		if(!$(this).hasClass("dragover"))
+			$(this).addClass("dragover");
+	}, 
+
+	onDragLeave = function(event) {
+		event.preventDefault();
+		$(this).removeClass("dragover");
+	},
+
+	onDrop = function(event) {
+		event.preventDefault();
+		$(this).removeClass("dragover");
+		console.log(event.originalEvent.dataTransfer.files);
+	};
+	
+	//gridID = a string that is added to the tiles' id so you can tell grids apart
+	//tileList = List of images to put on tiles
+	//maxPerRow = [a, b, c] where each number is the max number of images per row, per number of rows, suggested: [5, 10, 21] means "if <=5 images put in 1 row, if <=10 put in 2 rows, if <= 21 put in 3 rows"
+	//sizeFactor = [x, y] factor which the width and height is multiplies by, used to create smaller displays
+	//positionOffset = [x, y] where both are [0..1] offsets.
+	//tilesOverride = override the number of tiles to display, tileList.length used if this is not set.
+	function DisplayTiles(gridID, tileList, maxPerRow, sizeFactor, positionOffset, tilesOverride, dragEvent, fullTileBGColor, specialClass){
+		tows = 0
+		
+		var availableSpace = 0.7; //Available vertical space
+		var tiles = tileList.length; //Number of tiles we have to show
+		if(tilesOverride){
+			tiles = tilesOverride;
+		}
+		
+		rowN = [0, 0, 0] //3 rows max
+		rows = 0;
+		
+		if(tiles <= maxPerRow[0]){
+			rowN[0] = tiles
+			rows = 1
+		}else if(tiles <= maxPerRow[1]){
+			rowN[0] = Math.ceil(tiles / 2)
+			rowN[1] = tiles - rowN[0] 
+			rows = 2
+		}else if(tiles <= maxPerRow[2]){
+			rowN[0] = Math.ceil(tiles / 3)
+			rowN[1] = Math.ceil(tiles / 3)
+			rowN[2] = tiles - rowN[0] - rowN[1]
+			rows = 3
+		}else{
+			alert("Only supports up to 21 tiles");
+		}
+		
+		//Set up tiles
+		tileSize = 0;
+		var tileSpacing = 0.025 * sizeFactor[1]
+		rowPosY = [];
+		switch(rows){
+			case 1:
+				if(maxPerRow.length == 1){
+					//If there can only ever be a single row
+					switch(tiles){
+						case 0:
+						case 1:
+						case 2:
+						case 3:
+						case 4:
+						case 5:
+						case 6:
+							tileSize = 0.25;
+							rowPosY[0] = positionOffset[1];
+						break;
+						case 7:
+							tileSize = 0.21;
+							rowPosY[0] = 0.02 + positionOffset[1];
+						break;
+						case 8:
+							tileSize = 0.18;
+							rowPosY[0] = 0.028 + positionOffset[1];
+						break;
+						case 9:
+							tileSize = 0.16;
+							rowPosY[0] = 0.045 + positionOffset[1];
+						break;
+						case 10:
+							tileSize = 0.14;
+							rowPosY[0] = 0.06 + positionOffset[1];
+						break;
+					}
+				}else{
+					tileSize = 0.3 * sizeFactor[1];
+					rowPosY[0] = 0.333 * sizeFactor[1] + positionOffset[1];
+				}
+			break;
+			case 2:
+				tileSize = 0.25 * sizeFactor[1];
+				rowPosY[0] = 0.200 * sizeFactor[1] + positionOffset[1];
+				rowPosY[1] = 0.475 * sizeFactor[1] + positionOffset[1];
+			break;
+			case 3:
+				tileSize = 0.20 * sizeFactor[1];
+				rowPosY[0] = 0.150 * sizeFactor[1] + positionOffset[1];
+				rowPosY[1] = 0.375 * sizeFactor[1] + positionOffset[1];
+				rowPosY[2] = 0.600 * sizeFactor[1] + positionOffset[1];
+			break;
+		} 
+		
+		tileSize = tileSize * windowHeight
+		tileSpacing = tileSpacing * windowHeight
+		
+		var dragEventCodeImg = "";
+		if (dragEvent == "DRAGSTART"){
+			 var dragEventCodeImg = "draggable='true' ondragstart='drag(event)'";
+		}else{
+			var dragEventCodeImg = "draggable='false'";
+		}
+		
+		var tileNum = 0;
+		for(var row = 0; row < rows; row++){
+			var pos = rowPosY[row];
+			var rowWidth = (rowN[row] * (tileSize + tileSpacing)) - tileSpacing
+			var rowOffsetX = ((windowWidth * sizeFactor[0] - rowWidth) / 2) + (positionOffset[0] * windowWidth);
+			for(var col = 0; col < rowN[row]; col++){
+				tileImg = "";
+				if(tileNum < tileList.length){
+					tileImg = tileList[tileNum];
+				}
+				var TileDiv = document.createElement("div");
+				var tileID = "Tile-"+gridID+"-"+row+"-"+col;
+				TileDiv.id = tileID;
+				$("#ScreenContent").append(TileDiv)
+				$("#"+tileID).on("dragover", function(event){ allowDrop(event); });
+				$("#"+tileID).on("drop", function(event){ drop(event); });
+				if(tileImg != ""){
+					TileDiv.innerHTML = "<img id='Image"+tileID+"' src='"+tileImg+"' ImageNumber='"+tileImg+"' "+dragEventCodeImg+" style='width: "+(tileSize*0.8)+"px; height: "+(tileSize*0.8)+"px; margin: "+(tileSize*0.1 - 4)+"px' class='TileImage' >"; 
+					
+					//var D = new webkit_draggable("#Image"+tileID, {handle: $("#ScreenContent").first(), revert: false, scroll: false, onStart: function(){alert("a")}, onEnd: function(){alert("b")}}); 
+					
+					if(fullTileBGColor){
+					//$("#"+tileID).css("backgroundColor", fullTileBGColor);
+					}
+				}
+				
+				$("#"+tileID).attr("ImageNumber", tileImg);
+				$("#"+tileID).css("top", pos * windowHeight);
+				$("#"+tileID).css("left", rowOffsetX + (col * (tileSize + tileSpacing)));
+				$("#"+tileID).css("height", tileSize);
+				$("#"+tileID).css("width", tileSize);
+				$("#"+tileID).addClass("Tile");
+				$("#"+tileID).addClass("UnselectedTile");
+				if(specialClass){
+					$("#"+tileID).addClass(specialClass);
+				}
+				
+				$("#"+tileID).click(function(){
+					if(EnlargeModeOn){
+						TileInteract(gameType, "ENLARGE", $(this).attr("id"));
+					}
+				});
+				
+				tileNum++;
+				var imgInTile = document.getElementById("Image"+tileID);
+				//new webkit_draggable(imgInTile);
+				
+			}
+		}
+		
+	}
+	
+	function ContinueGame(){
+	
+		ImageGroup = []
+		for(var i = 0; i < files.length; i++){
+			ImageGroup[i] = files[i];
+		}
+		
+		puzzleNum = -1;
+		puzzleMaskNum = -1;
+		ImageGroup = shuffleArray(ImageGroup);
+		//Shuffle the list of all images
+		ImageGroup = ImageGroup.slice(0, groupSizeN);
+		
+		//Select the correct answers
+		ImageSelect = ImageGroup.slice(0, selectN);
+		
+		//Create a reduced selection
+		ImageSelectReduced = ImageSelect.slice(0, Math.max(0, ImageSelect.length - reducedN));
+		if(gameType == GAMETYPE_ORDERED){
+			ImageSelectReduced = [];
+		}
+		
+		//Select the correct answers + a few extra
+		ImageSelect = shuffleArray(ImageSelect);
+		ImageSelectReduced = shuffleArray(ImageSelectReduced);
+		ImageGroup = shuffleArray(ImageGroup);
+		
+		
+		SelectedImagesToCheck = [];
+	}
+	
+	function CheckAnswer(){
+		var correct = true;
+		
+		//Check if the selection is correct
+		switch(gameType){
+			case GAMETYPE_SEEN:
+				SelectedImagesToCheck.sort();
+				var CorrectImages = ImageSelect.slice();;
+				CorrectImages.sort();
+				
+				if(SelectedImagesToCheck.length != CorrectImages.length){
+					correct = false;
+				}else{
+					for(var i = 0; i < CorrectImages.length; i++){
+						if(CorrectImages[i] != SelectedImagesToCheck[i]){
+							correct = false;
+						}
+					}
+				}
+			break;
+			case GAMETYPE_UNSEEN:
+				var CorrectImages = ImageGroup.slice();;
+				for(var i = 0; i < ImageSelect.length; i++){
+					var index = CorrectImages.indexOf(ImageSelect[i]);
+					CorrectImages.splice(index, 1);
+				}
+				
+				CorrectImages.sort();
+				SelectedImagesToCheck.sort();
+				
+				if(SelectedImagesToCheck.length != CorrectImages.length){
+					correct = false;
+				}else{
+					for(var i = 0; i < CorrectImages.length; i++){
+						if(CorrectImages[i] != SelectedImagesToCheck[i]){
+							correct = false;
+						}
+					}
+				}
+			break;
+			case GAMETYPE_HIDDEN:
+				var CorrectImages = ImageSelect.slice();;
+				for(var i = 0; i < ImageSelectReduced.length; i++){
+					var index = CorrectImages.indexOf(ImageSelectReduced[i]);
+					CorrectImages.splice(index, 1);
+				}
+				
+				CorrectImages.sort();
+				SelectedImagesToCheck.sort();
+				
+				if(SelectedImagesToCheck.length != CorrectImages.length){
+					correct = false;
+				}else{
+					for(var i = 0; i < CorrectImages.length; i++){
+						if(CorrectImages[i] != SelectedImagesToCheck[i]){
+							correct = false;
+						}
+					}
+				}
+			break;
+			case GAMETYPE_ORDERED:
+				var CorrectImages = ImageSelect.slice();
+				
+				if(SelectedImagesToCheck.length != CorrectImages.length){
+					correct = false;
+				}else{
+					for(var i = 0; i < CorrectImages.length; i++){
+						if(CorrectImages[i] != SelectedImagesToCheck[i]){
+							correct = false;
+						}
+					}
+				}
+			break;
+			case GAMETYPE_NEGATIVE:
+				if(SelectedImagesToCheck.length != 1){
+					return false;
+				}
+				
+				var answer = parseInt(SelectedImagesToCheck[0]);
+				
+				if(answer == CorrectAnswer){
+					return true;
+				}else{
+					return false;
+				}
+			break;
+			case GAMETYPE_PUZZLE:
+				var puzzlePieces = $(".puzzlePiece");
+				for(var p = 0; p < puzzlePieces.length; p++){
+					var piece = puzzlePieces[p];
+					var top = $(piece).css("top");
+					var left = $(piece).css("left");
+					var topCorrect = $(piece).attr("topCorrect");
+					var leftCorrect = $(piece).attr("leftCorrect");
+					
+					//alert(top+"; "+left+"; "+topCorrect+"; "+leftCorrect);
+					if(Math.abs(parseInt(top) - parseInt(topCorrect)) > 15 || Math.abs(parseInt(left) - parseInt(leftCorrect)) > 15){
+						correct = false;
+					}else{
+						$(piece).css("top", topCorrect+"px");
+						$(piece).css("left", leftCorrect+"px");
+						/*
+						for(var q = 0; q < puzzleDraggableObjs.length; q++){
+							pDO = puzzleDraggableObjs[q];
+							if(q.root == piece){
+								pDO.destroy();
+							}
+						}*/
+					}
+				}
+			break;
+		}
+		
+		return correct;
+	}
+	
+	var butt;
+
+	function setUI(newUI){
+		$("#ScreenContent").html("");
+		$("#Screen").css("width", windowWidth);
+		$("#Screen").css("height", windowHeight);
+		currentUI = newUI;
+		
+		//SCREEN INSTRUCTIONS
+		switch(newUI){
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+			//case "CHECKANSWER":
+				//Set up screen instructions
+				var InstructionsDiv = document.createElement("div");
+				InstructionsDiv.id = "ScreenInstructions";
+				$("#ScreenContent").append(InstructionsDiv)
+				//$("#ScreenInstructions").css("backgroundColor", "#C9D935");
+				$("#ScreenInstructions").css("position", "absolute");
+				$("#ScreenInstructions").css("top", windowHeight - 0.07 * windowWidth);
+				$("#ScreenInstructions").css("left", 0.00 * windowWidth);
+				$("#ScreenInstructions").css("font-size", 0.035 * windowHeight);
+				$("#ScreenInstructions").css("font-weight", "bold");
+				$("#ScreenInstructions").css("width", (1.00 * windowWidth));
+				$("#ScreenInstructions").css("height", (0.07 * windowWidth));
+				$("#ScreenInstructions").css({"textAlign": "left", "color": colorScheme["InstructionsColorText"], "padding": (0.04 * windowHeight) +"px "+ (0.15 * windowHeight) +"px", "backgroundColor": colorScheme["InstructionsColorBackground"]});
+			break;
+		}
+		
+		//BACKGROUND
+		switch(newUI){
+			case "MAINMENU":
+				//Set background
+				$("#Screen").css("background-color", colorScheme["MainBackground"]);
+				$("#Screen").css("background-size", windowWidth+" "+windowHeight);
+			break;
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+			case "PANELSELECT":
+			case "PUZZLE":
+			case "HIDDENOBJECTS":
+				//Set background
+				$("#Screen").css("background-color", backgroundColor);
+				$("#Screen").css("background-size", windowWidth+" "+windowHeight);
+				
+				//Right hand vertical black edge
+				var RightBlackBarDiv = document.createElement("div");
+				RightBlackBarDiv.id = "RightMenu";
+				$("#ScreenContent").append(RightBlackBarDiv)
+				$("#RightMenu").css("backgroundColor", colorScheme["RightMenuBackground"]);
+				$("#RightMenu").css("position", "absolute");
+				$("#RightMenu").css("top", 0);
+				$("#RightMenu").css("left", windowWidth - 0.07 * windowWidth);
+				$("#RightMenu").css("height", windowHeight);
+				$("#RightMenu").css("width", 0.07 * windowWidth);
+				$("#RightMenu").css("padding", 0.01 * windowHeight);
+				$("#RightMenu").css("box-sizing", "border-box");
+				$("#RightMenu").css("z-index", 20);
+				/*$("#RightMenu").css("font-size", 0.05 * windowHeight);
+				$("#RightMenu").css("box-sizing", "border-box");
+				$("#RightMenu").css("text-align", "center");*/ 
+			break;
+			case "CHECKANSWER":
+				//Set background
+				$("#Screen").css("background-color", colorScheme["DarkBackground"]);
+				$("#Screen").css("background-size", windowWidth+" "+windowHeight);
+			break;
+		}
+		
+		//CUSTOM BACKGROUND
+		var customBackgroundHeight = 0;
+		switch(newUI){
+			case "SELECTFROM":
+				customBackgroundHeight = 0.67;
+			break;
+			case "PANELSELECT":
+				customBackgroundHeight = 0.28;
+			break;
+		}
+		
+		if(customBackgroundHeight > 0){
+			//Right hand vertical black edge
+			var BackgroundDecor = document.createElement("div");
+			BackgroundDecor.id = "BackgroundDecor";
+			$("#ScreenContent").append(BackgroundDecor)
+			$("#BackgroundDecor").css("backgroundColor", colorScheme["PlayDarkerBackground"]);
+			$("#BackgroundDecor").css("position", "absolute");
+			$("#BackgroundDecor").css("top", (1.0 - customBackgroundHeight) * windowHeight);
+			$("#BackgroundDecor").css("left", 0);
+			$("#BackgroundDecor").css("height", customBackgroundHeight * windowHeight);
+			$("#BackgroundDecor").css("width", 0.93 * windowWidth);
+			/*$("#BackgroundDecor").css("font-size", 0.05 * windowHeight);
+			$("#BackgroundDecor").css("box-sizing", "border-box");
+			$("#BackgroundDecor").css("text-align", "center");*/ 
+		}
+		
+		/*
+		//GAME NAME
+		switch(newUI){
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "CHECKANSWER":
+				//Set top left corner, game name
+				
+				var gameNameDiv = document.createElement("div");
+				gameNameDiv.id = "GameName";
+				gameNameDiv.innerHTML = gameName;
+				$("#ScreenContent").append(gameNameDiv)
+				$("#GameName").css("backgroundColor", "#C9D935");
+				$("#GameName").css("position", "absolute");
+				$("#GameName").css("top", 0);
+				$("#GameName").css("left", 0);
+				$("#GameName").css("height", 0.10 * windowHeight);
+				$("#GameName").css("width", 0.20 * windowWidth);
+				$("#GameName").css("border-bottom-right-radius", 0.10 * windowHeight);
+				$("#GameName").css("text-align", "center");
+				
+				$("#GameName").css("padding", 0.025 * windowHeight);
+				$("#GameName").css("font-size", 0.04 * windowHeight);
+				$("#GameName").css("box-sizing", "border-box");
+			break;
+		}
+		*/
+		
+		/*
+		
+		//ENLARGE MODE
+		switch(newUI){
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+			case "PANELSELECT":
+			case "MAINMENU":
+			case "CHECKANSWER":
+			case "PUZZLE":
+				//Set up enlarge mode button
+				var EnlargeModeButtonDiv = document.createElement("div");
+				EnlargeModeButtonDiv.id = "EnlargeMode";
+				EnlargeModeButtonDiv.innerHTML = Mustache.render("<hr style='margin: 5px 0px 5px;' /><img id='EnlargeModeImage' src='"+constants["UI_EnlargeButtonOff"]+"' style='width: "+(0.08*windowHeight)+"px; padding: "+(0.01*windowHeight)+"px'>", gameDictionary);
+				$("#RightMenu").append(EnlargeModeButtonDiv)
+				$("#EnlargeMode").css("color", "#eeeeee");
+				$("#EnlargeMode").css("box-sizing", "border-box");
+				$("#EnlargeMode").css("cursor", "pointer");
+				$("#EnlargeModeImage").addClass("UIButton");
+				if(EnlargeModeOn){
+					$("#EnlargeModeImage").attr("src", ""+constants["UI_EnlargeButtonOn"]);
+				}else{
+					$("#EnlargeModeImage").attr("src", ""+constants["UI_EnlargeButtonOff"]);
+				}
+				$("#EnlargeMode").click( function(){
+					EnlargeModeOn = !EnlargeModeOn;
+					if(EnlargeModeOn){
+						$(".Tile").addClass("SelectableTile");
+						$("#EnlargeModeImage").attr("src", ""+constants["UI_EnlargeButtonOn"]);
+					}else{
+						$(".Tile").removeClass("SelectableTile");
+						$("#EnlargeModeImage").attr("src", ""+constants["UI_EnlargeButtonOff"]);
+					}
+				});
+			break;
+		}
+		
+		*/
+		
+		//CLOSE BUTTON
+		//switch(newUI){
+		//	case "MAINMENU":
+		//	case "VIEWWINDOW":
+		//	case "GAMEWINDOW":
+		//	case "SELECTFROM":
+		//	case "CHECKANSWER":
+		//	case "PANELSELECT":
+		//		//Set up top right Close (X) button
+		//		var CloseButtonDiv = document.createElement("div");
+		//		CloseButtonDiv.id = "CloseGame";
+		//		CloseButtonDiv.innerHTML = "<img src='"+constants["UI_ButtonExit"]+"' style='width: "+(0.10*windowHeight)+"px'>";
+		//		$("#RightMenu").append(CloseButtonDiv);
+		//		$("#CloseGame").css("color", "#eeeeee");
+		//		$("#CloseGame").css("box-sizing", "border-box");
+		//		$("#CloseGame").css("cursor", "pointer");
+		//		$("#CloseGame").click(function(e){
+		//			setUI("MAINMENU");
+		//		});
+		//	break;
+		//}
+		/*
+		*/
+		
+		//CONTINUE GAME BUTTON
+		switch(newUI){
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+			case "PANELSELECT":
+			case "PUZZLE":
+			case "HIDDENOBJECTS":
+				//Set up continue game button
+				var ContinueGameButtonDiv = document.createElement("div");
+				ContinueGameButtonDiv.id = "ContinueGame";
+				ContinueGameButtonDiv.innerHTML = "<img id='ContinueGameImg' src='"+constants["UI_ArrowContinue"]+"' style='height: "+(0.08*windowHeight)+"px; margin-top: "+(0.01*windowHeight)+"px'>";
+				$("#ScreenContent").append(ContinueGameButtonDiv)
+				$("#ContinueGame").css("position", "absolute");
+				$("#ContinueGame").css("top", windowHeight - 0.07 * windowWidth);
+				$("#ContinueGame").css("left", windowWidth - 0.07 * windowWidth);
+				$("#ContinueGame").css("height", 0.07 * windowWidth);
+				$("#ContinueGame").css("width", 0.07 * windowWidth);
+				$("#ContinueGame").css("padding", 0.01 * windowHeight);
+				$("#ContinueGame").css("box-sizing", "border-box");
+				$("#ContinueGame").css("z-index", 30);
+				$("#ContinueGame").css("color", colorScheme["ButtonBGSolid"]);
+				$("#ContinueGame").css("cursor", "pointer");
+				$("#ContinueGame").addClass("UIButton");
+				if(gameType == GAMETYPE_PUZZLE || gameType == GAMETYPE_HIDDENOBJECT){
+					$("#ContinueGame").hide();
+				}
+			break;
+			case "CHECKANSWER": 
+				//Set up continue game button
+				var ContinueGameButtonDiv = document.createElement("div");
+				ContinueGameButtonDiv.id = "ContinueGame";
+				ContinueGameButtonDiv.innerHTML = "<div style='font-size: 25px; margin-top: 5px;'>{{L_CONTINUE}}</div>";
+				$("#ScreenContent").append(ContinueGameButtonDiv)
+				$("#ContinueGame").css("backgroundColor", colorScheme["ButtonBGSolid"]);
+				$("#ContinueGame").css("position", "absolute");
+				$("#ContinueGame").css("top", windowHeight - 0.10 * windowWidth);
+				$("#ContinueGame").css("left", (windowWidth/2) - 0.15 * windowWidth);	//Put in center here, moved to left if progression is good enough to continue
+				$("#ContinueGame").css("height", 0.05 * windowWidth);
+				$("#ContinueGame").css("width", 0.30 * windowWidth);
+				$("#ContinueGame").css("padding", 0.01 * windowHeight);
+				$("#ContinueGame").css("box-sizing", "border-box");
+				$("#ContinueGame").css("z-index", 30);
+				$("#ContinueGame").css("color", colorScheme["ButtonBGSolidText"]);
+				$("#ContinueGame").css("cursor", "pointer");
+			break;
+		}
+		
+		//LEVEL UP
+		switch(newUI){
+			case "CHECKANSWER": 
+				if(gameType == GAMETYPE_SEEN || gameType == GAMETYPE_UNSEEN || gameType == GAMETYPE_HIDDEN || gameType == GAMETYPE_ORDERED){
+					//Set up continue game button
+					var LevelUpButtonDiv = document.createElement("div");
+					LevelUpButtonDiv.id = "LevelUp";
+					LevelUpButtonDiv.innerHTML = "<div style='font-size: 25px; margin-top: 5px;'>{{L_NEXT_LEVEL}}</div>";
+					$("#ScreenContent").append(LevelUpButtonDiv);
+					$("#LevelUp").css("backgroundColor", colorScheme["ButtonBGSolid"]);
+					$("#LevelUp").css("position", "absolute");
+					$("#LevelUp").css("top", windowHeight - 0.10 * windowWidth);
+					$("#LevelUp").css("left", (windowWidth/2) + 0.025 * windowWidth);
+					$("#LevelUp").css("height", 0.05 * windowWidth);
+					$("#LevelUp").css("width", 0.30 * windowWidth);
+					$("#LevelUp").css("padding", 0.01 * windowHeight);
+					$("#LevelUp").css("box-sizing", "border-box");
+					$("#LevelUp").css("z-index", 30);
+					$("#LevelUp").css("color", colorScheme["ButtonBGSolidText"]);
+					$("#LevelUp").css("cursor", "pointer");
+					heightLevelUp = $("#LevelUp").height();
+					$("#LevelUp").hide();
+					
+					if(progression >= progressToContinue){
+						$("#LevelUp").show();
+						$("#LevelUpArrowImg").attr("src", ""+constants["UI_LevelUpArrow"]);
+						$("#LevelUpArrowImg").addClass("UIButton");
+						if(gameType == GAMETYPE_SEEN || gameType == GAMETYPE_UNSEEN || gameType == GAMETYPE_HIDDEN || gameType == GAMETYPE_ORDERED){
+							$("#ContinueGame").css("left", (windowWidth/2) - 0.325 * windowWidth);	//Move continue game button to left.
+						}
+						$("#ContinueGame").css("background-color", colorScheme["DarkBackground"]);
+						$("#ContinueGame").css("border", "2px solid "+colorScheme["ButtonBGSolid"]);
+						$("#ContinueGame").css("color", colorScheme["ButtonBGSolid"]);
+						$("#LevelUp").css("cursor", "pointer");
+						$("#LevelUp").click(function(e){
+							if(progression >= progressToContinue){
+								progression = 0;
+								selectN = Math.min(21, selectN + 1);
+								groupSizeN = Math.min(21, groupSizeN + 1);
+							}
+							ContinueGame();
+							switch(gameType){
+								case GAMETYPE_SEEN:
+								case GAMETYPE_UNSEEN:
+								case GAMETYPE_HIDDEN:
+								case GAMETYPE_ORDERED:
+									setUI("VIEWWINDOW");
+								break;
+								case GAMETYPE_NEGATIVE:
+									setUI("PANELSELECT");
+								break;
+							}
+						});
+					}
+				}
+			break;
+		}
+		
+		//REWIND GAME BUTTON
+		switch(newUI){
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+				//Set up rewind game button
+				var RewindGameButtonDiv = document.createElement("div");
+				RewindGameButtonDiv.id = "RewindGame";
+				RewindGameButtonDiv.innerHTML = "<img id='RewindGameImg' src='"+constants["UI_ArrowBack"]+"' style='height: "+(0.08*windowHeight)+"px; margin-top: "+(0.01*windowHeight)+"px'>";
+				$("#ScreenContent").append(RewindGameButtonDiv)
+				$("#RewindGame").css("position", "absolute");
+				$("#RewindGame").css("top", windowHeight - 0.07 * windowWidth);
+				$("#RewindGame").css("left", 0);
+				$("#RewindGame").css("height", 0.07 * windowWidth);
+				$("#RewindGame").css("width", 0.07 * windowWidth);
+				$("#RewindGame").css("padding", 0.01 * windowHeight);
+				$("#RewindGame").css("box-sizing", "border-box");
+				$("#RewindGame").css("z-index", 30); 
+				$("#RewindGame").css("color", colorScheme["ButtonBGSolidText"]);
+				$("#RewindGame").css("cursor", "pointer");
+				$("#RewindGame").addClass("UIButton");
+			break;
+		}
+		
+		//REMAINING TO SELECT INDICATOR
+		switch(newUI){
+			case "GAMEWINDOW":
+				//Set up screen instructions
+				var ReminingToSelectIndicatorDiv = document.createElement("div");
+				ReminingToSelectIndicatorDiv.id = "ReminingToSelectIndicator";
+				$("#ScreenContent").append(ReminingToSelectIndicatorDiv)
+				//$("#ScreenInstructions").css("backgroundColor", "#C9D935");
+				$("#ReminingToSelectIndicator").css("position", "absolute");
+				$("#ReminingToSelectIndicator").css("top", 0.05 * windowHeight);
+				$("#ReminingToSelectIndicator").css("left", 0.05 * windowWidth);
+				$("#ReminingToSelectIndicator").css("font-size", 0.035 * windowHeight);
+				$("#ReminingToSelectIndicator").css("font-weight", "bold");
+				$("#ReminingToSelectIndicator").css("width", (0.60 * windowWidth));
+				$("#ReminingToSelectIndicator").css({"textAlign": "left", "padding": (0.020 * windowHeight) +"px "+ (0.040 * windowHeight) +"px"});
+				updateRemainingToSelectIndicator();
+			break;
+		}
+		
+		//STARS
+		switch(newUI){
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+			case "CHECKANSWER":
+			case "PANELSELECT":
+			case "PUZZLE":
+			case "HIDDENOBJECTS":
+				
+				var starSize = 0.05;
+				var offsetPerStarY = 0.06;
+				var offsetPerStarX = 0.03;
+				var numberOfStarsPerColumn = 12;
+				var starStartingPosX = 0.05;
+				var starStartingPosY = 0.2;
+				
+				var stars = Math.max(progressToContinue, progression + 1);
+				
+				var starPosX = starStartingPosX + ( Math.ceil(stars / numberOfStarsPerColumn) - 1 ) * (offsetPerStarX / 2);
+				
+				/*var starPosX = 0.05;
+				if( > numberOfStarsPerColumn){
+					starPosX = 0.065;
+				}*/
+				
+				//Stars
+				for(var i = 0; i < stars; i++){
+					starPosY = i % numberOfStarsPerColumn;
+					if(i != 0 && starPosY == 0){
+						starPosX -= offsetPerStarX;  
+					}
+					var Star = document.createElement("img");
+					Star.id = "Star-"+i;
+					$("#ScreenContent").append(Star)
+					if(i < progression){
+						$("#Star-"+i).attr("src", ""+constants["UI_StarFull"]);	
+					}else{
+						$("#Star-"+i).attr("src", ""+constants["UI_Star"]);
+					}
+					$("#Star-"+i).addClass("Star");
+					$("#Star-"+i).css("position", "absolute");
+					$("#Star-"+i).css("top", (windowHeight - starStartingPosY * windowHeight) - (starPosY * offsetPerStarY * windowHeight));
+					$("#Star-"+i).css("left", (windowWidth - starPosX * windowWidth));
+					$("#Star-"+i).css("height", starSize * windowHeight);
+					$("#Star-"+i).css("z-index", 30);
+				}
+			break;
+		}
+		
+		
+		//SPEECH BUBBLE
+		switch(newUI){
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+			case "PANELSELECT":
+			case "PUZZLE":
+			case "HIDDENOBJECTS":
+				
+			break;
+			case "MAINMENU":
+				var correct = CheckAnswer();
+				
+				//Set up character image
+				var CharacterDiv = document.createElement("div");
+				CharacterDiv.id = "Character";
+				CharacterDiv.innerHTML = "<img src='"+constants["UI_Character"]+"' style='width: "+(0.50 * windowWidth)+"px;' id='CheckscreenCharacter'>";
+				$("#ScreenContent").append(CharacterDiv)
+				$("#Character").css("position", "absolute");
+				$("#Character").css("top", (0.6*windowHeight));
+				$("#Character").css("left", (0.35*windowWidth));
+				$("#Character").css("width", (0.50 * windowWidth));
+				$("#Character").css("height", windowHeight - (0.5*windowHeight));
+				$("#Character").css("overflow", "hidden");
+				$("#Character").css("text-align", "center");
+				
+				var SpeechBubbleTextDiv = document.createElement("div");
+				SpeechBubbleTextDiv.id = "SpeechBubbleText";
+				$("#ScreenContent").append(SpeechBubbleTextDiv)
+				$("#SpeechBubbleText").css("position", "absolute");
+				$("#SpeechBubbleText").css("top", (0.1*windowHeight));
+				$("#SpeechBubbleText").css("left", (0.1*windowWidth));
+				$("#SpeechBubbleText").css("width", (0.9 * windowWidth));
+				$("#SpeechBubbleText").css("box-sizing", "border-box");
+				$("#SpeechBubbleText").css("height", $("#SpeechBubble").height());
+				$("#SpeechBubbleText").css("text-align", "left");
+			break;
+			case "CHECKANSWER":
+				var correct = CheckAnswer();
+				
+				//Set up character image
+				var CharacterDiv = document.createElement("div");
+				CharacterDiv.id = "Character";
+				CharacterDiv.innerHTML = "<img src='"+constants["UI_Character"]+"' style='width: "+(0.30 * windowWidth)+"px;' id='CheckscreenCharacter'>";
+				$("#ScreenContent").append(CharacterDiv)
+				$("#Character").css("position", "absolute");
+				$("#Character").css("top", (0.44*windowHeight));
+				$("#Character").css("left", (0.35*windowWidth));
+				$("#Character").css("width", (0.30 * windowWidth));
+				$("#Character").css("height", windowHeight - (0.3*windowHeight)); 
+				$("#Character").css("overflow", "hidden");
+				$("#Character").css("text-align", "center");
+				
+				var SpeechBubbleTextDiv = document.createElement("div");
+				SpeechBubbleTextDiv.id = "SpeechBubbleText";
+				$("#ScreenContent").append(SpeechBubbleTextDiv)
+				$("#SpeechBubbleText").css("position", "absolute");
+				$("#SpeechBubbleText").css("top", (0.02*windowHeight));
+				$("#SpeechBubbleText").css("left", (0.1*windowWidth));
+				$("#SpeechBubbleText").css("width", (0.8 * windowWidth));
+				$("#SpeechBubbleText").css("box-sizing", "border-box");
+				$("#SpeechBubbleText").css("height", $("#SpeechBubble").height());
+				$("#SpeechBubbleText").css("text-align", "center");
+			break;
+		}
+		
+		//SHADOW
+		//Set up enlargement overlay background
+		var ShadowDiv = document.createElement("div");
+		ShadowDiv.id = "ShadowDiv";
+		$("#ScreenContent").append(ShadowDiv)
+		$("#ShadowDiv").css("width", windowWidth+"px");
+		$("#ShadowDiv").css("height", windowHeight+"px");
+		$("#ShadowDiv").css("position", "absolute");
+		$("#ShadowDiv").css("top", "0px");
+		$("#ShadowDiv").css("left", "0px");
+		$("#ShadowDiv").css("box-sizing", "border-box");
+		$("#ShadowDiv").css("background-color", "#252525");
+		$("#ShadowDiv").css("opacity", "0.9");
+		$("#ShadowDiv").css("z-index", "15");
+		$("#ShadowDiv").hide();
+		
+		//ENLARGEMENT OVERLAY
+		switch(newUI){
+			case "VIEWWINDOW":
+			case "GAMEWINDOW":
+			case "SELECTFROM":
+			case "PANELSELECT":
+			case "PUZZLE":
+			case "HIDDENOBJECTS":
+				$("#ShadowDiv").click(function(){
+					$("#ShadowDiv").fadeOut(200);
+					$("#EnlargeModeOverlayTileDiv").fadeOut(200);
+				});
+				
+				//Set up enlargement overlay tile
+				var EnlargeModeOverlayTileDiv = document.createElement("div");
+				EnlargeModeOverlayTileDiv.id = "EnlargeModeOverlayTileDiv";
+				$("#ScreenContent").append(EnlargeModeOverlayTileDiv)
+				$("#EnlargeModeOverlayTileDiv").html("<img id='EnlargeModeOverlayTileImage' style='width: "+(0.8*windowHeight)+"px; height: "+(0.8*windowHeight)+"px; margin-top: "+(0.05*windowHeight)+"px' src=''>");
+				$("#EnlargeModeOverlayTileDiv").css("width", (0.9*windowHeight)+"px");
+				$("#EnlargeModeOverlayTileDiv").css("height", (0.9*windowHeight)+"px");
+				$("#EnlargeModeOverlayTileDiv").css("position", "absolute");
+				$("#EnlargeModeOverlayTileDiv").css("top", (0.05*windowHeight)+"px");
+				$("#EnlargeModeOverlayTileDiv").css("left", (0.35*windowHeight)+"px");
+				$("#EnlargeModeOverlayTileDiv").css("box-sizing", "border-box");
+				$("#EnlargeModeOverlayTileDiv").css("opacity", "1.0");
+				$("#EnlargeModeOverlayTileDiv").css("z-index", "15");
+				$("#EnlargeModeOverlayTileDiv").addClass("Tile");
+				$("#EnlargeModeOverlayTileDiv").addClass("SelectableTile");
+				$("#EnlargeModeOverlayTileDiv").hide();
+				
+				$("#EnlargeModeOverlayTileDiv").click(function(){
+					TileInteract(gameType, EnlargedElementAction, EnlargedElementID);
+					$("#ShadowDiv").fadeOut(200);
+					$("#EnlargeModeOverlayTileDiv").fadeOut(200);
+				});
+			break;
+		}
+		
+		//CUSTOM UI
+		switch(newUI){
+			//CUSTOM UI
+			case "GAMEWINDOW":
+				$("#RewindGame").click(function(e){
+					ContinueGame();
+					switch(gameType){
+						case GAMETYPE_SEEN:
+						case GAMETYPE_UNSEEN:
+							setUI("VIEWWINDOW");
+						break;
+					}
+				});
+			break;
+			//CUSTOM UI
+			case "SELECTFROM":
+				$("#RewindGame").click(function(e){
+					ContinueGame();
+					switch(gameType){
+						case GAMETYPE_HIDDEN:
+						case GAMETYPE_ORDERED:
+							setUI("VIEWWINDOW");
+						break;
+					}
+				});
+			break;
+			//CUSTOM UI
+			case "MAINMENU":
+				$("#SpeechBubbleText").html("<span style='color: "+colorScheme["MainTextColor"]+"; display: inline-block; font-weight: bold;'><span style='font-size: "+(0.09 * windowHeight)+"px; color: "+colorScheme["ButtonBGSolid"]+"'>"+gameName+"</span><br /><img src='"+constants["UI_LINE"]+"' style='width: "+(0.8 * windowWidth)+"px;'><br /><div style='width: "+(0.5 * windowWidth)+"px; margin-top: 30px;'><span style='font-size: "+(0.05 * windowHeight)+"px; color: "+colorScheme["MainTextColor"]+"'>"+gameInstructions+"</span></div><div id='ContinueGame' class='PointerCursor MoreClassesButton' style='margin-top: 40px; display: inline-block;'><div class='Centered' style='width: 250px; height: 50px; background-color: "+colorScheme["ButtonBGSolid"]+"; color: "+colorScheme["ButtonBGSolidText"]+"; display: inline-block; padding-top: 10px; font-size: 25px;'><span>{{L_BEGIN}}</span></div></div></span>");
+				$("#ContinueGame").click(function(e){
+					switch(gameType){
+						case GAMETYPE_SEEN:
+						case GAMETYPE_UNSEEN:
+						case GAMETYPE_HIDDEN:
+						case GAMETYPE_ORDERED:
+							setUI("VIEWWINDOW");
+						break;
+						case GAMETYPE_NEGATIVE:
+							setUI("PANELSELECT");
+						break;
+						case GAMETYPE_PUZZLE:
+							setUI("PUZZLE");
+						break;
+						case GAMETYPE_HIDDENOBJECT:
+							setUI("HIDDENOBJECTS");
+						break;
+					}
+				});
+			break;
+			//CUSTOM UI
+			case "CHECKANSWER":
+				//Set up speech bubble text
+				if(correct){
+					$("#SpeechBubbleText").html("<span style='color: "+colorScheme["TextOnDarkBackground"]+"; font-size: "+(0.10 * windowHeight)+"px; margin: "+(0.10 * windowHeight)+"px "+(0.03 * windowWidth)+"px 0px; display: inline-block; font-weight: bold;'>{{L_CORRECT_LINE_ONE}}</span><br /><span style='color: "+colorScheme["TextOnDarkBackground"]+"; font-size: "+(0.05 * windowHeight)+"px; margin-top: "+(0.02 * windowHeight)+"px; display: inline-block; font-weight: bold;'>{{L_CORRECT_LINE_TWO}}</span>", gameDictionary);
+					
+					//Mark one more star.
+					$("#Star-"+progression).attr("src", ""+constants["UI_StarFull"]);
+					$("#Star-"+progression).css({marginLeft: (-0.0125 * windowHeight), marginTop: (-0.0125 * windowHeight), height: (0.075 * windowHeight), width: (0.075 * windowHeight)});
+					
+					progression += 1;
+					score++;
+					
+					if(progression >= progressToContinue){
+						
+						$("#LevelUp").show();
+						$("#LevelUpArrowImg").attr("src", ""+constants["UI_LevelUpArrow"]);
+						$("#LevelUpArrowImg").addClass("UIButton");
+						if(gameType == GAMETYPE_SEEN || gameType == GAMETYPE_UNSEEN || gameType == GAMETYPE_HIDDEN || gameType == GAMETYPE_ORDERED){
+							$("#ContinueGame").css("left", (windowWidth/2) - 0.325 * windowWidth);	//Move continue game button to left.
+						}
+						$("#ContinueGame").css("background-color", colorScheme["DarkBackground"]);
+						$("#ContinueGame").css("border", "2px solid "+colorScheme["ButtonBGSolid"]);
+						$("#ContinueGame").css("color", colorScheme["ButtonBGSolid"]);
+						var  blinkLevelUpArrow = function(){
+							if(progression >= progressToContinue){
+								if($("#LevelUpArrowImg").css("background-color") == "rgb(37, 37, 37)"){
+									$("#LevelUpArrowImg").css("background-color", "#256E25");
+								}else{
+									$("#LevelUpArrowImg").css("background-color", "#252525");
+								}
+								setTimeout(blinkLevelUpArrow, 500);
+							}else{
+								$("#LevelUpArrowImg").css({"cursor": "auto", "background-color": "#252525"});
+								$("#LevelUpArrowImg").attr("src", ""+constants["UI_LevelUpArrowInactive"]);
+								$("#LevelUp").off('click');
+							}
+						}
+						blinkLevelUpArrow();
+						$("#LevelUp").click(function(e){
+							if(progression >= progressToContinue){
+								progression = 0;
+								selectN = Math.min(21, selectN + 1);
+								groupSizeN = Math.min(21, groupSizeN + 1);
+							}
+							ContinueGame();
+							setUI("VIEWWINDOW");
+						});
+					}
+				}else{
+					if(starLossOnFail > 0){
+						progression = Math.max(0, progression - starLossOnFail);
+						$("#Star-"+progression).attr("src", ""+constants["UI_Star"]);
+					}
+					
+					$("#CheckscreenCharacter").attr("src", ""+constants["UI_CharacterUnhappy"]);
+					
+					
+					$("#SpeechBubbleText").html("<span style='color: "+colorScheme["TextOnDarkBackground"]+"; font-size: "+(0.06 * windowHeight)+"px; margin-top: "+(0.10 * windowHeight)+"px; display: inline-block; font-weight: bold;'>{{L_INCORRECT_LINE_ONE}}<br />{{L_INCORRECT_LINE_TWO}}</span>", gameDictionary);
+				}
+				$("#ContinueGame").click(function(e){
+					switch(gameType){
+						case GAMETYPE_SEEN:
+						case GAMETYPE_UNSEEN:
+						case GAMETYPE_HIDDEN:
+						case GAMETYPE_ORDERED:
+							if(correct){
+								//Only continue the game if the answer is correct.
+								ContinueGame();
+							}
+						break;
+						case GAMETYPE_NEGATIVE:
+						case GAMETYPE_PUZZLE:
+						case GAMETYPE_HIDDENOBJECT:
+							ContinueGame();
+						break;
+					}
+					switch(gameType){
+						case GAMETYPE_SEEN:
+						case GAMETYPE_UNSEEN:
+						case GAMETYPE_HIDDEN:
+						case GAMETYPE_ORDERED:
+							setUI("VIEWWINDOW");
+						break;
+						case GAMETYPE_NEGATIVE:
+							setUI("PANELSELECT");
+						break;
+						case GAMETYPE_PUZZLE:
+							setUI("PUZZLE");
+						break;
+						case GAMETYPE_HIDDENOBJECT:
+							setUI("HIDDENOBJECTS");
+						break;
+					}
+				});
+			break;
+			//CUSTOM UI
+			case "PANELSELECT":
+				//Set up left large panel
+				var Scene = SCENE_BATHROOM;
+				
+				
+				//X and Y offset for the pattern and cutout from the sheet on the left
+				var drawOffsetX = 0;
+				var drawOffsetY = 0;
+				
+				var PanelDisplayDiv = document.createElement("div");
+				PanelDisplayDiv.id = "PanelDisplayDiv";
+				$("#ScreenContent").append(PanelDisplayDiv)
+				canvasWidth = (0.7*windowHeight);
+				canvasHeight = (0.7*windowHeight);
+				$("#PanelDisplayDiv").html("<canvas id='PanelSelectCanvas' width='"+(canvasWidth)+"px' height='"+(canvasHeight)+"px'></canvas>");
+				switch(Scene){
+					case SCENE_NONE:
+						$("#PanelDisplayDiv").css("width", (0.7*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("height", (0.7*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("position", "absolute");
+						$("#PanelDisplayDiv").css("top", (0.15*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("left", (0.05*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("box-sizing", "border-box");
+						$("#PanelDisplayDiv").css("border-radius", "20px");
+						$("#PanelDisplayDiv").css("border", "solid 5px #252525");
+						//$("#PanelDisplayDiv").css("background-color", "#ffcc00");
+						$("#PanelDisplayDiv").css("overflow", "hidden");
+					break;
+					case SCENE_BATHROOM:
+						$("#PanelDisplayDiv").css("width", (0.7*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("height", (0.7*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("position", "absolute");
+						$("#PanelDisplayDiv").css("top", (0.15*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("left", (0.05*windowHeight)+"px");
+						$("#PanelDisplayDiv").css("box-sizing", "border-box");
+						//$("#PanelDisplayDiv").css("background-color", "#ffcc00");
+						$("#PanelDisplayDiv").css("overflow", "hidden");
+						drawOffsetX = -0.10 * canvasWidth;
+						drawOffsetY = -0.05 * canvasHeight;
+					break;
+				}
+				
+				$("#PanelDisplayDiv").click(function(){
+					if(EnlargeModeOn){
+						TileInteract(gameType, "ENLARGECANVASPART", $(this).attr("id"), drawOffsetX, drawOffsetY);
+					}
+				});
+				
+				//Set up Right tile container panel
+				var PanelSelectDiv = document.createElement("div");
+				PanelSelectDiv.id = "PanelSelectDiv";
+				$("#ScreenContent").append(PanelSelectDiv)
+				$("#PanelSelectDiv").html("");
+				$("#PanelSelectDiv").css("width", (0.86*windowHeight)+"px");
+				$("#PanelSelectDiv").css("height", (0.86*windowHeight)+"px");
+				$("#PanelSelectDiv").css("position", "absolute");
+				$("#PanelSelectDiv").css("top", (0.07*windowHeight)+"px");
+				$("#PanelSelectDiv").css("left", (0.80*windowHeight)+"px");
+				$("#PanelSelectDiv").css("box-sizing", "border-box");
+				$("#PanelSelectDiv").css("border-radius", "20px");
+				//$("#PanelSelectDiv").css("background-color", "#ffcc00");
+				
+				var cutouts = [];
+				var patternMaskCombinations = [];
+				//var cutoutImages = ["games/img/svg/metlica01.svg", "games/img/svg/metlica02.svg", "games/img/svg/metlica03.svg", "games/img/svg/metlica04.svg", "games/img/svg/metlica05.svg", "games/img/svg/maska_karo.svg"];
+				//cutoutImages = shuffleArray(cutoutImages);
+				//var patternImages = ["games/img/svg/vzorec.svg", "games/img/svg/vzorec.svg", "games/img/svg/vzorec.svg", "games/img/svg/vzorec.svg", "games/img/svg/vzorec.svg", "games/img/svg/vzorec.svg"];
+				//var patternImages = ["games/img/svg/vzorec.svg", "games/img/svg/posoda.svg", "games/img/svg/vzorec.svg", "games/img/svg/posoda.svg", "games/img/svg/vzorec.svg", "games/img/svg/vzorec.svg"];
+				//patternImages = shuffleArray(patternImages);
+				
+				cutoutImages = [];
+				patternImages = [];
+				for(var i = 0; i < selectN; i++){
+					var attempt = 0;
+					while(attempt < 1001){
+						var maskITmp = Math.floor((Math.random()*1000) % masks.length);
+						var patternITmp = Math.floor((Math.random()*1000) % files.length);
+						attempt++;
+						if(patternMaskCombinations.indexOf(maskITmp+"-"+patternITmp) == -1){
+							break;
+						}
+						if(attempt == 1000){
+							alert("There are not enough pattern-mask combinations. Game may be unplayable.");
+							break;
+						}
+					}
+					
+					patternMaskCombinations.push(maskITmp+"-"+patternITmp);
+					
+					cutoutImages[i] = masks[maskITmp];
+					patternImages[i] = files[patternITmp];
+				}
+				
+				butt = patternMaskCombinations;
+				
+				var patternImageObjs = [];
+				var maskImageObjs = [];
+				var patternI = 0;
+				var cutoutI = 0;
+				
+				var CanvasBackground = "#000088";
+				
+				//Canvas
+				var c = document.getElementById('PanelSelectCanvas');
+				var ctx = c.getContext('2d');
+				ctx.fillStyle = CanvasBackground;
+				
+				var H = c.height;
+				var W = c.width;
+				
+				
+				ctx.fillRect(0, 0, W, H);
+				var imgP = new Image;
+				imgP.onload = function(){
+				
+					//Top row
+					ctx.drawImage(imgP, 0 + drawOffsetX, 0 + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H)); 
+					ctx.drawImage(imgP, Math.floor(0.3333*W) + drawOffsetX, 0 + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H));
+					ctx.drawImage(imgP, Math.floor(0.6666*W) + drawOffsetX, 0 + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H));
+					
+					//Middle row
+					ctx.drawImage(imgP, 0 + drawOffsetX, Math.ceil(0.3333*H) + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H)); 
+					ctx.drawImage(imgP, Math.floor(0.3333*W) + drawOffsetX, Math.ceil(0.3333*H) + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H));
+					ctx.drawImage(imgP, Math.floor(0.6666*W) + drawOffsetX, Math.ceil(0.3333*H) + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H));
+					
+					//Bottom row
+					ctx.drawImage(imgP, 0 + drawOffsetX, Math.ceil(0.6666*H) + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H)); 
+					ctx.drawImage(imgP, Math.floor(0.3333*W) + drawOffsetX, Math.ceil(0.6666*H) + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H));
+					ctx.drawImage(imgP, Math.floor(0.6666*W) + drawOffsetX, Math.ceil(0.6666*H) + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H));
+							
+					var imgHoleImg = maskImageObjs[CorrectAnswer];
+					ctx.globalCompositeOperation = 'destination-out';
+					ctx.drawImage(imgHoleImg, Math.floor(0.3333*W) + drawOffsetX, Math.ceil(0.3333*H) + drawOffsetY, Math.ceil(0.3333*W), Math.ceil(0.3333*H));
+					
+					switch(Scene){
+						case SCENE_NONE:
+							
+						break;
+						case SCENE_BATHROOM:
+							var sceneMaskImg = new Image();
+							sceneMaskImg.onload = function(){
+								ctx.globalCompositeOperation = 'destination-in';
+								ctx.drawImage(sceneMaskImg, 0, 0, W, H);
+								var sceneBGImg = new Image();
+								sceneBGImg.onload = function(){
+									ctx.globalCompositeOperation = 'destination-over';
+									ctx.drawImage(sceneBGImg, 0, 0, W, H);
+									
+									var sceneFGImg = new Image();
+									sceneFGImg.onload = function(){
+										ctx.globalCompositeOperation = 'source-over';
+										ctx.drawImage(sceneFGImg, 0, 0, W, H);
+									};
+									sceneFGImg.src = "files/manjkajoci del/scena/kopalnica/barvno/kopalnica_fg.svg";
+									
+								};
+								sceneBGImg.src = "files/manjkajoci del/scena/kopalnica/barvno/kopalnica_bg.svg";
+							};
+							sceneMaskImg.src = "files/manjkajoci del/scena/kopalnica/barvno/kopalnica_maska.svg";
+						break;
+					};
+				};
+					
+				var generateCutout = function(){
+					//Canvas mask
+					var cH = c.height;
+					var cW = c.width;
+					var mH = (Math.ceil(0.3333*cH));
+					var mW = (Math.ceil(0.3333*cW));
+					
+					var TileDiv = document.createElement("div");
+					var tileID = "Tile-RightSelection-"+cutoutI;
+					TileDiv.id = tileID;
+					$("#PanelSelectDiv").append(TileDiv)
+					$("#"+tileID).append(PanelMaskCanvas);
+					$("#"+tileID).css("display", "inline-block");
+					$("#"+tileID).css("position", "relative");
+					$("#"+tileID).css("margin", "5px");
+					$("#"+tileID).css("height", "163px");
+					$("#"+tileID).addClass("Tile");
+					$("#"+tileID).addClass("UnselectedTile");
+					$("#"+tileID).attr("imgnum", cutoutI);
+					
+					$("#"+tileID).click(function(){
+						if(EnlargeModeOn){
+							TileInteract(gameType, "ENLARGECANVAS", $(this).attr("id"));
+						}else{
+							TileInteract(gameType, "EXCLUSIVESELECT", $(this).attr("id"));
+						}
+					});
+					
+					var MaskID = "PanelMaskCanvas"+cutoutI;
+					var PanelMaskCanvas = document.createElement("canvas");
+					PanelMaskCanvas.id = MaskID;
+					$("#"+tileID).append(PanelMaskCanvas)
+					$("#"+MaskID).attr("width", mW+"px");
+					$("#"+MaskID).attr("height", mH+"px");
+					$("#"+MaskID).html("");
+					var cM = PanelMaskCanvas;
+					var ctxM = cM.getContext('2d');
+					var imgMask = new Image;
+					imgMask.onload = function(){
+						maskImageObjs.push(imgMask);
+						var imgPattern = patternImageObjs[cutoutI];
+						
+						ctxM.fillStyle = CanvasBackground;
+						ctxM.fillRect(0, 0, mW, mH);
+						ctxM.drawImage(imgPattern, 0, 0, mW, mH);
+						ctxM.globalCompositeOperation = 'destination-in';
+						ctxM.drawImage(imgMask, 0, 0, mW, mH);
+						
+						cutoutI++;
+						if(cutoutI < patternImageObjs.length){
+							generateCutout();
+						}else{
+							$(".Tile").attr("TileClickAction", "EXCLUSIVESELECT");
+							
+							//Create dark spot in sheet
+							CorrectAnswer = Math.floor((Math.random() * 1000)) % maskImageObjs.length;
+							
+							imgP.src = ""+patternImages[CorrectAnswer];
+						}
+					}
+					imgMask.src = ""+cutoutImages[cutoutI];
+				};
+				var generatePatterns = function(){
+					//Patterns
+					var imgPattern = new Image;
+					imgPattern.onload = function(){
+						patternImageObjs.push(imgPattern);
+						patternI++;
+						if(patternI < patternImages.length){
+							generatePatterns();
+						}else{
+							generateCutout();
+						}
+					}
+					imgPattern.src = ""+patternImages[patternI];
+				}
+				generatePatterns();
+				
+			break;
+			//CUSTOM UI
+			case "PUZZLE":
+				var puzzleSizeCoefficient = 0.90;
+			
+				$("#ContinueGame").click(function(e){
+					ContinueGame();
+					switch(gameType){
+						case GAMETYPE_PUZZLE:
+							setUI("CHECKANSWER");
+						break;
+					}
+				});
+				
+				puzzleDraggableObjs = [];
+				
+				//Set up puzzle tile
+				var PuzzleTileDiv = document.createElement("div");
+				PuzzleTileDiv.id = "PuzzleTileDiv";
+				$("#ScreenContent").append(PuzzleTileDiv)
+				$("#PuzzleTileDiv").html("");
+				$("#PuzzleTileDiv").css("width", (puzzleSizeCoefficient*windowHeight)+"px");
+				$("#PuzzleTileDiv").css("height", (puzzleSizeCoefficient*windowHeight)+"px");
+				$("#PuzzleTileDiv").css("position", "absolute");
+				$("#PuzzleTileDiv").css("top", (0.05*windowHeight)+"px");
+				$("#PuzzleTileDiv").css("left", (0.40*windowWidth)+"px");
+				//$("#PuzzleTileDiv").css("box-sizing", "border-box");
+				//$("#PuzzleTileDiv").css("border-radius", "20px");
+				$("#PuzzleTileDiv").css("background-color", colorScheme["PuzzleBackground"]);
+				
+				if(puzzleNum == -1){
+					//if puzzleNum is -1 it means a random image is to be selected, else the image was selected ahead of time.
+					puzzleNum = Math.round((Math.random() * 1000)) % files.length;
+				}
+				
+				var masterImage = files[puzzleNum];
+				var MasterImageImg = document.createElement("img");
+				var MasterImageID = "PuzzlePieceMasterImage";
+				
+				var onMasterImageLoad = function(){
+				
+					if(puzzleMaskNum == -1){
+						puzzleMaskNum = Math.round((Math.random() * 1000)) % puzzleList.length;
+					}
+					puzzles = puzzleList[puzzleMaskNum];
+					
+					for(var i = 0; i < puzzles.length; i++){
+						puzzleMask = puzzles[i];
+						//alert(puzzleMask); 
+						var PuzzlePieceCanvas = document.createElement("canvas");
+						var img = document.getElementById(MasterImageID);
+						var pieceCanvasID = "PuzzlePieceCanvas"+i;
+						PuzzlePieceCanvas.id = pieceCanvasID;
+						$("#PuzzleTileDiv").append(PuzzlePieceCanvas);
+						
+						$("#"+pieceCanvasID).attr("width", MasterImageImg.width);
+						$("#"+pieceCanvasID).attr("height", MasterImageImg.height);
+						$("#"+pieceCanvasID).addClass("puzzlePiece");
+						var posX = (-0.4 + (Math.random() * 0.2)) * windowWidth;
+						var posY = 0.1 * windowHeight + (Math.random() * 0.5 * windowHeight);
+						$("#"+pieceCanvasID).css({"position": "absolute", "left": posX+"px", "top": posY+"px"});
+						//$("#"+pieceCanvasID).css({"position": "absolute", "left": (i*400)+"px", "top": 600+"px"});
+						var puzzleCtx = PuzzlePieceCanvas.getContext("2d");
+						
+						var imgPuzzleMask = new Image();
+						//$("#ScreenContent").append(imgPuzzleMask)
+						imgPuzzleMask.setAttribute("pieceNumber", i);
+						imgPuzzleMask.setAttribute("width", MasterImageImg.width);
+						imgPuzzleMask.setAttribute("height", MasterImageImg.height);
+						imgPuzzleMask.onload = function(){
+							var imgPuzzleMask2 = $(this)[0];
+							var index = $(this).attr("pieceNumber");
+							var puzzleCavnas = $("#PuzzlePieceCanvas"+index)[0];
+							//alert(imgPuzzleMask2.width);
+							$(puzzleCavnas).attr("width", MasterImageImg.width);
+							$(puzzleCavnas).attr("height", MasterImageImg.height);
+							var puzzleContext = puzzleCavnas.getContext("2d");
+							var img = MasterImageImg;
+							puzzleContext.drawImage(img, 0, 0, parseInt(MasterImageImg.width), parseInt(MasterImageImg.height)); 
+							puzzleContext.globalCompositeOperation = 'destination-in';
+							puzzleContext.drawImage(imgPuzzleMask2, 0, 0, parseInt(MasterImageImg.width), parseInt(MasterImageImg.height)); 
+							var imgData = puzzleContext.getImageData(0, 0, parseInt(MasterImageImg.width), parseInt(MasterImageImg.height));
+							var finalImgData = imgData.data;
+							
+							var minX = MasterImageImg.width;
+							var minY = MasterImageImg.height;
+							var maxX = 0;
+							var maxY = 0;
+							
+
+							for(var uY = 0; uY < MasterImageImg.height; uY++) {
+								for(var uX = 0; uX < MasterImageImg.width; uX++) {
+									var index2 = (uY * MasterImageImg.width + uX) * 4;
+									var alpha = finalImgData[index2 + 3];
+									if(alpha > 0){
+										minX = Math.min(minX, uX);
+										minY = Math.min(minY, uY);
+										maxX = Math.max(maxX, uX);
+										maxY = Math.max(maxY, uY);
+									}
+								}
+							}
+							$(puzzleCavnas).attr("minX", minX);
+							$(puzzleCavnas).attr("minY", minY);
+							$(puzzleCavnas).attr("maxX", maxX);
+							$(puzzleCavnas).attr("maxY", maxY);
+							//alert(minX+"; "+minY+"; "+maxX+"; "+maxY);
+							
+							var puzzleCanvasCopyTmp = document.createElement("canvas");
+							puzzleCanvasCopyTmp.width = puzzleCavnas.width;
+							puzzleCanvasCopyTmp.height = puzzleCavnas.height;
+							var puzzleCanvasCopyTmpContext = puzzleCanvasCopyTmp.getContext("2d");
+							puzzleCanvasCopyTmpContext.globalCompositeOperation = 'copy';
+							puzzleCanvasCopyTmpContext.drawImage(puzzleCavnas, 0, 0);
+							
+							
+							$(puzzleCavnas).attr("width", (maxX-minX)+"px");
+							$(puzzleCavnas).attr("height", (maxY-minY)+"px");
+							$(puzzleCavnas).attr("topCorrect", minY);
+							$(puzzleCavnas).attr("leftCorrect", minX);
+							var posTop = $(puzzleCavnas).attr("top");
+							var posLeft = $(puzzleCavnas).attr("left");
+							posTop -= (maxY-minY) / 2.0;
+							posLeft -= (maxX-minX) / 2.0;
+							$(puzzleCavnas).attr("top", posTop);
+							$(puzzleCavnas).attr("left", posLeft);
+							puzzleContext.globalCompositeOperation = 'copy';
+							puzzleContext.drawImage(puzzleCanvasCopyTmp, -minX, -minY, parseInt(MasterImageImg.width), parseInt(MasterImageImg.height)); 
+							//puzzleContext.globalCompositeOperation = 'destination-in';
+							//puzzleContext.drawImage(imgPuzzleMask2, minX, minY, 10000, 10000, 0, 0, 10000, 10000); 
+							
+							$(puzzleCavnas).draggable({
+								stop: function() {
+									if(CheckAnswer()){$("#ContinueGame").show();};
+								}
+							}); 
+							
+							//var imgInTile = document.getElementById("Image"+tileID);
+							puzzleDraggableObjs.push(new webkit_draggable(puzzleCavnas, {onEnd: function(){if(CheckAnswer()){alert("Super!"); $("#ContinueGame").show(); }}}));
+						}
+						imgPuzzleMask.src = ""+puzzleMask;
+					}
+				}
+				
+				MasterImageImg.id = MasterImageID;
+				//$("#PuzzleTileDiv").append(MasterImageImg); 
+				$(MasterImageImg).attr("width", (puzzleSizeCoefficient*windowHeight)+"px");
+				$(MasterImageImg).attr("height", (puzzleSizeCoefficient*windowHeight)+"px");
+				$(MasterImageImg).load(onMasterImageLoad);
+				$(MasterImageImg).attr("src", ""+masterImage);
+			break;
+			//Custom UI
+			case "HIDDENOBJECTS":
+				var rndNum = Math.floor(Math.random() * (layer1.length - 1));
+				
+				//Layer 1: zid
+				var Layer_1 = document.createElement("img");
+				Layer_1.id = "Layer_1";
+				$("#ScreenContent").append(Layer_1)
+				$("#Layer_1").css({"width": (1.0*windowWidth)+"px", "height": (1.0*windowHeight)+"px", "position": "absolute", "top": "0px", "left": "0px", "background-color": "#EDEBDD"});
+				
+				//Layer 2: zunaj
+				var Layer_2 = document.createElement("img");
+				Layer_2.id = "Layer_2";
+				$("#ScreenContent").append(Layer_2)
+				$("#Layer_2").css({"width": (1.0*windowWidth)+"px", "height": (1.0*windowHeight)+"px", "position": "absolute", "top": "0px", "left": "0px"});
+				$("#Layer_2").attr("src", ""+layer2[rndNum]);
+				
+				//Layer 3: zavesa
+				var Layer_3 = document.createElement("img");
+				Layer_3.id = "Layer_3";
+				$("#ScreenContent").append(Layer_3)
+				$("#Layer_3").css({"width": (1.0*windowWidth)+"px", "height": (1.0*windowHeight)+"px", "position": "absolute", "top": "0px", "left": "0px"});
+				$("#Layer_3").attr("src", ""+layer3[rndNum]);
+				
+				//Layer 4: pohistvo
+				var Layer_4 = document.createElement("img");
+				Layer_4.id = "Layer_4";
+				$("#ScreenContent").append(Layer_4)
+				$("#Layer_4").css({"width": (1.0*windowWidth)+"px", "height": (1.0*windowHeight)+"px", "position": "absolute", "top": "0px", "left": "0px"});
+				$("#Layer_4").attr("src", ""+layer4[rndNum]);
+				
+				//pivots
+				
+				var Layer_pivots = document.createElement("object");
+				Layer_pivots.id = "Layer_pivots";
+				$(Layer_pivots).css({"width": (1.0*windowWidth)+"px", "height": (1.0*windowHeight)+"px", "position": "absolute", "top": "0px", "left": "0px", "opacity": "0.01"});
+				$(Layer_pivots).attr("width", Math.round(1.0*windowWidth)+"px");
+				$(Layer_pivots).attr("height", Math.round(1.0*windowHeight)+"px");
+				$(Layer_pivots).attr("type", "image/svg+xml");
+				var processPivots = function(){
+					var imgNum = 0;
+					var pivotDoc = Layer_pivots.contentDocument;
+					var W = (pivotDoc.firstElementChild || pivotDoc.firstChild || pivotDoc.children[0]).width.baseVal.value;
+					var H = (pivotDoc.firstElementChild || pivotDoc.firstChild || pivotDoc.children[0]).height.baseVal.value;
+					
+					var processElement = function(){
+						var elDoc = this.contentDocument;
+						var elW = (elDoc.firstElementChild || elDoc.firstChild || elDoc.children[0]).width.baseVal.value; //Height of svg
+						var elH = (elDoc.firstElementChild || elDoc.firstChild || elDoc.children[0]).height.baseVal.value; //Height of svg
+						var pvt = elDoc.getElementById("pivot");
+						if(pvt.tagName == "g"){
+							pvt = pvt.getElementsByTagName("circle")[0];
+						}
+						var wdth = parseFloat(this.getAttribute("wdth"));
+						var hght = parseFloat(this.getAttribute("hght"));
+						var y = parseFloat(this.getAttribute("posY"));
+						var x = parseFloat(this.getAttribute("posX"));
+						var dx = ((pvt.cx.baseVal.value) / elW) * wdth;
+						var dy = ((pvt.cy.baseVal.value) / elH) * hght;
+						$(this).css({"position": "absolute", "top": (y-dy)+"px", "left": (x-dx)+"px"});
+						//$(this).children().css({"fill": "#ffffff", "stroke": "#000000"});
+						
+						if(this.hasAttribute("answerTileID")){
+							var answerTileID = this.getAttribute("answerTileID");
+							//alert("a"+answerTileID);
+							var atW = $("#"+answerTileID).width();
+							var atH = $("#"+answerTileID).height();
+							//alert("a"+atW+"; "+atH);
+							var imgH = parseInt($(this).css("height"));
+							var imgW = parseInt($(this).css("width"));
+							var imgX = parseInt($(this).css("left"));
+							var imgY = parseInt($(this).css("top"));
+							//alert("H: "+imgH+"; "+"W: "+imgW+"; "+"X: "+imgX+"; "+"Y: "+imgY+"; ");
+							$("#"+answerTileID).css({"top": (Math.round(imgY + imgH/2 - atH/2))+"px", "left": (Math.round(imgX + imgW/2 - atW/2))+"px"});
+							$("#"+answerTileID).click(function(){
+								var AnswerNumber = parseInt(this.getAttribute("AnswerNumber"));
+								butt = $("#img"+(AnswerNumber +	 1));
+								//Objects apparently can't be animated themselves, they can be animated if placed in a div tho. Strange.
+								$("#img"+(AnswerNumber + 1)).css({"opacity": 0});
+								//alert("#Tile-FindTiles-"+AnswerNumber+"-0");
+								$("#Tile-FindTiles-"+AnswerNumber+"-0").attr("found", "1");
+								var thisPos = $(this).position();
+								var thisHeight = $(this).height();
+								var thisWidth = $(this).width();
+								var answerPos = $("#Tile-FindTiles-"+AnswerNumber+"-0").position();
+								var answerHeight = $("#Tile-FindTiles-"+AnswerNumber+"-0").height();
+								var answerWidth = $("#Tile-FindTiles-"+AnswerNumber+"-0").width();
+								
+								thisPos.top += thisHeight / 2 - (0.075 * windowWidth);
+								thisPos.left += thisWidth / 2 - (0.075 * windowWidth);
+								
+								for(var i = 0; i < 4; i++){
+									var adjustedStarPos = {top: thisPos.top, left: thisPos.left};
+									adjustedStarPos.top += ((Math.random() % 0.15) * windowWidth);
+									adjustedStarPos.left += ((Math.random() % 0.15) * windowWidth);
+									CreateStar(i, adjustedStarPos, 0.05, answerPos, answerHeight, answerWidth, "Tile-FindTiles-"+AnswerNumber+"-0");
+								}
+								
+								//$("#Star-2").animate({top: (40), left: (820)});
+								
+								var allFound = true;
+								for( var index = 0; index < 3; index++ ){
+									if($("#Tile-FindTiles-"+index+"-0").attr("found") != "1"){
+										allFound = false;
+									}
+								}
+								if(allFound){
+									$("#ContinueGame").show();
+								}
+							});
+						}
+					}
+					
+					//If randomField is set to true, it will put the elements in elList into random fields and leave the rest blank.
+					//The function will fail if randomFields is set and elList is longer than the available spaces. This setting
+					//is meant to be used to put in correct answers. 
+					var processArea = function(area, elList, randomField, assignClass, answerTile){
+						area.style.fill = "#ff0000";
+						if(area.tagName == "circle"){
+							if(randomField && elList.length > 1){
+								alert("Error: elList length larger than available slots.");
+								return;
+							}
+							for(var iter = 0; iter < answers.length; iter++){
+								if(answers[iter].areaID == area.id && answers[iter].posInArea == 0){
+									return;
+								}
+							}
+							var x = ((area.cx.baseVal.value) / W) * windowWidth;
+							var y = ((area.cy.baseVal.value) / H) * windowHeight;
+							var num = -1;
+							var pass = false;
+							var safety = 1000;
+							if (randomField){
+								num = Math.floor(Math.random() * (elList.length - 1));
+							}else{
+								while(!pass){
+									pass = true;
+									num = Math.floor(Math.random() * (elList.length - 1));
+									for(var iter = 0; iter < answers.length; iter++){
+										var imgfile = elList[num].substring(elList[num].lastIndexOf('/')+1);
+										if(answers[iter].shortName == imgfile){
+											pass = false;;
+										}
+									}
+									safety--;
+									if(safety <= 0){
+										alert("Infinite loop error 3");
+										return;
+									}
+								}
+							}
+							var IMG = document.createElement("object");
+							imgNum++;
+							IMG.id = "img"+imgNum;
+							var url = elList[num];
+							var imgfile = url.substring(url.lastIndexOf('/')+1);
+							var s = ImgScale[imgfile];
+							if(typeof s == "undefined"){
+								s = ImgScale["other"];
+							}
+							var wdth = Math.round(s*windowWidth); //Width of object
+							var hght = Math.round(s*windowHeight); //Height of object
+							if(assignClass){
+								$(IMG).addClass(assignClass);
+								for(var iter = 0; iter < answers.length; iter++){
+									if(answers[iter].fileLoc == url){
+										answers[iter].posInArea = 0;
+										answers[iter].areaID = area.id;
+									}
+								}
+							}
+							$(IMG).attr("width", wdth+"px");
+							$(IMG).attr("height", hght+"px");
+							$(IMG).attr("type", "image/svg+xml");
+							$(IMG).css({"width": wdth+"px", "height": hght+"px"});
+							IMG.setAttribute("wdth", wdth);
+							IMG.setAttribute("hght", hght);
+							IMG.setAttribute("posX", x);
+							IMG.setAttribute("posY", y);
+							if(answerTile){
+								IMG.setAttribute("answerTileID", answerTile.id);
+								//alert(answerTile.getAttribute("AnswerNumber"));
+								IMG.setAttribute("AnswerNumber", answerTile.AnswerNumber);
+							}
+							IMG.onload = processElement;
+							$(IMG).attr("data", ""+elList[num]);
+							$("#ScreenContent").append(IMG);
+						}else if(area.tagName == "g"){
+						
+							var pX = area;
+							console.log(area);
+						
+							var cList = $(area).children("circle");
+							var putInFields = [];
+							if(randomField){
+								//Check that there are enough slots available for the list of elements.
+								if(randomField && elList.length > cList.length){
+									alert("Error: elList length larger than available slots. ("+(elList.length)+" > "+(cList.length)+")");
+									return;
+								}
+								//Select which fields the elements will be put in.
+								for(var iterator = 0; iterator < elList.length; iterator++){
+									var rnd = Math.round(Math.random() * (cList.length - 1));
+									if(putInFields.indexOf(rnd) <= -1){
+										putInFields.push(rnd);
+									}
+								}
+							}
+							
+							//Assign elements to slots.
+							var num = -1;
+							for(var cIndex = 0; cIndex < cList.length; cIndex++){
+								if(randomField && (putInFields.indexOf(cIndex) == -1)){
+									continue;
+								}
+								
+								//Check if this place is already occupied by one of the correct answers.
+								var canAdd = true;
+								for(var iter = 0; iter < answers.length; iter++){
+									if(answers[iter].areaID == area.id && answers[iter].posInArea == cIndex){
+										canAdd = false;
+									}
+								}
+								if(!canAdd){
+									continue;
+								}
+								
+								
+								var c = cList[cIndex];
+								var x = ((c.cx.baseVal.value) / W) * windowWidth;
+								var y = ((c.cy.baseVal.value) / H) * windowHeight;
+								if(randomField){
+									num++;
+								}else{
+									var pass = false;
+									var safety = 1000;
+									while(!pass){
+										pass = true;
+										num = Math.floor(Math.random() * (elList.length - 1));
+										for(var iter = 0; iter < answers.length; iter++){
+											var imgfile = elList[num].substring(elList[num].lastIndexOf('/')+1);
+											if(answers[iter].shortName == imgfile){
+												pass = false;;
+											}
+										}
+										safety--;
+										if(safety <= 0){
+											alert("Infinite loop error 4");
+											return;
+										}
+									}
+								}
+								var IMG = document.createElement("object");
+								imgNum++;
+								IMG.id = "img"+imgNum;
+								
+								/*
+								[
+									{file: "balon.svg", "height": 0.2, "width": 0.2};
+								]*/
+									
+								var url = elList[num];
+								var imgfile = url.substring(url.lastIndexOf('/')+1);
+								var s = ImgScale[imgfile];
+								if(typeof s == "undefined"){
+									s = ImgScale["other"];
+								}
+								var wdth = Math.round(s*windowWidth); //Width of object
+								var hght = Math.round(s*windowHeight); //Height of object
+								if(assignClass){
+									$(IMG).addClass(assignClass);
+									for(var iter = 0; iter < answers.length; iter++){
+										if(answers[iter].fileLoc == url){
+											answers[iter].posInArea = cIndex;
+											answers[iter].areaID = area.id;
+										}
+									}
+								}
+								$(IMG).attr("width", wdth+"px");
+								$(IMG).attr("height", hght+"px");
+								$(IMG).attr("type", "image/svg+xml");
+								$(IMG).css({"width": wdth+"px", "height": hght+"px"});
+								IMG.setAttribute("wdth", wdth);
+								IMG.setAttribute("hght", hght);
+								IMG.setAttribute("posX", x);
+								IMG.setAttribute("posY", y);
+								if(answerTile){
+									IMG.setAttribute("answerTileID", answerTile.id); 
+								}
+								IMG.onload = processElement;
+								$(IMG).attr("data", ""+elList[num]);
+								$("#ScreenContent").append(IMG);
+							}
+						} 
+					}
+					
+					//Create full list of elements which we will use to choose the ones the player is meant to find.
+					var allElements = [];
+					var areaPivot = [];
+					for(var num = 0; num < 100; num++){
+						areaPivot[num] = pivotDoc.getElementById("AREA"+num);
+						if(typeof areaPivot[num] != "undefined" && typeof elementi[num] != "undefined"){
+							for(var eIndex = 0; eIndex < elementi[num].length; eIndex++){
+								var elem = elementi[num][eIndex];
+								var imgfile = elem.substring(elem.lastIndexOf('/')+1);
+								allElements.push({"shortName": imgfile, "listNum": num, "fileLoc": elem});
+							}
+						}
+					}
+					
+					answers = [{"shortName": "a", "listNum": 1}, {"shortName": "a", "listNum": 1}, {"shortName": "a", "listNum": 1}];
+					//Choose correct answers
+					var limit = 10000;
+					while((answers[0].shortName == answers[1].shortName) || (answers[1].shortName == answers[2].shortName) || (answers[0].shortName == answers[2].shortName) || (answers[0].listNum == answers[1].listNum) || (answers[1].listNum == answers[2].listNum) || (answers[0].listNum == answers[2].listNum)){
+						answers[0] = allElements[Math.round(Math.random() * (allElements.length - 1))];
+						answers[1] = allElements[Math.round(Math.random() * (allElements.length - 1))];
+						answers[2] = allElements[Math.round(Math.random() * (allElements.length - 1))];
+						limit--;
+						if(limit <= 0){
+							alert("Error: Infinite loop");
+							return;
+						}
+					}
+					
+					tilesToFind = [];
+					tilesToFind.push(answers[0].fileLoc);
+					tilesToFind.push(answers[1].fileLoc);
+					tilesToFind.push(answers[2].fileLoc);
+					
+					//Tiles on the right
+					DisplayTiles("FindTiles", tilesToFind, [1, 2, 3], [1.3, 1.3], [0.155, -0.13], 0, "", "#ffffff", "");
+					
+					for(var cnt = 0; cnt < answers.length; cnt++){
+						var answer = answers[cnt];
+						var listNum = answer.listNum;
+						var answerArea = pivotDoc.getElementById("AREA"+listNum);
+						
+						//Click overlay.
+						var answerTile = document.createElement("div");
+						answerTile.id = "answerTile"+cnt;
+						$("#ScreenContent").append(answerTile);
+						//$("#"+answerTileID).cas({"width": Math.round(wdth / 3)+"px", "height": Math.round(hght / 3)+"px"});
+						$(answerTile).css({"background-color": "#ffcc00", "width": Math.round(0.05*windowWidth)+"px", "height": Math.round(0.05*windowWidth)+"px", "z-index": 300, "position": "absolute", "opacity": 0.0});
+						$(answerTile).attr({"AnswerNumber": cnt})
+						
+						processArea(answerArea, [ answer.fileLoc ], true, "CorrectAnswer", answerTile);
+					}
+					
+					
+					//Put stuff on shelves and other pivots
+					areaPivot = [];
+					for(var num = 0; num < 100; num++){
+						areaPivot[num] = pivotDoc.getElementById("AREA"+num);
+						if(typeof areaPivot[num] != "undefined" && typeof elementi[num] != "undefined"){
+							processArea(areaPivot[num], elementi[num]);
+						}
+					}
+				};
+				
+				Layer_pivots.onload = processPivots;
+				//$(Layer_pivots).css({"display": "none"});	//Stops working in chrome.
+				//setTimeout(processPivots, 5000);
+				$(Layer_pivots).attr("data", ""+pivot[rndNum]);
+				$("#ScreenContent").append(Layer_pivots);
+				
+				//layer 5 so elementi
+				
+				//todotodo
+				
+				//Layer 6: pohistvo foreground
+				var Layer_6 = document.createElement("img");
+				Layer_6.id = "Layer_6";
+				$("#ScreenContent").append(Layer_6)
+				$("#Layer_6").css({"width": (1.0*windowWidth)+"px", "height": (1.0*windowHeight)+"px", "position": "absolute", "top": "0px", "left": "0px", "z-index": 10});
+				$("#Layer_6").attr("src", ""+layer6[rndNum]);
+				
+				///todotodo
+				$("#ContinueGame").click(function(e){
+					switch(gameType){
+						case GAMETYPE_HIDDENOBJECT:
+							setUI("CHECKANSWER");
+						break;
+					}
+				});
+			break;
+		}
+		
+		//Gameplay elements
+		switch(newUI){
+			//Gameplay elements
+			case "VIEWWINDOW":
+				$("#ContinueGame").click(function(e){
+					switch(gameType){
+						case GAMETYPE_SEEN:
+						case GAMETYPE_UNSEEN:
+							setUI("GAMEWINDOW");
+						break;
+						case GAMETYPE_HIDDEN:
+						case GAMETYPE_ORDERED:
+							setUI("SELECTFROM");
+						break;
+					}
+				});
+				
+				$("#ScreenInstructions").html("{{L_INSTRUCTIONS_VIEW}}");
+				
+				DisplayTiles("viewTiles", ImageSelect, [5, 10, 21], [0.93, 1.0], [0.00, 0.01], 0, "", "#ffffff", "");
+				
+			break;
+			//Gameplay elements
+			case "GAMEWINDOW":
+				$("#ContinueGame").click(function(e){
+					SelectedImagesToCheck = [];
+					var x = $(".SelectedTile").each(function(){
+						SelectedImagesToCheck.push($(this).attr("ImageNumber"));
+					});
+					switch(gameType){
+						case GAMETYPE_SEEN:
+						case GAMETYPE_UNSEEN:
+							setUI("CHECKANSWER");
+						break;
+					}
+				});
+				
+				switch(gameType){
+					case GAMETYPE_SEEN:
+						$("#ScreenInstructions").html("{{L_INSTRUCTIONS_SELECT_SEEN}}", gameDictionary);
+					break;
+					case GAMETYPE_UNSEEN:
+						$("#ScreenInstructions").html("{{L_INSTRUCTIONS_SELECT_UNSEEN}}", gameDictionary);
+					break;
+				}
+				
+				DisplayTiles("PickTiles", ImageGroup, [5, 10, 21], [0.93, 1.0], [0.00, 0.01], 0, "", "#ffffff", "");
+				$(".Tile").css("cursor", "pointer");
+				$(".Tile").attr("TileClickAction", "SELECT");
+				$(".Tile").click(function(e){
+					if(!EnlargeModeOn){
+						TileInteract(gameType,  $(this).attr("TileClickAction"), $(this).attr("id"));
+					}
+				});
+				
+			break;
+			//Gameplay elements
+			case "SELECTFROM":
+				//Top row
+				DisplayTiles("OrderedTiles", ImageSelectReduced, [10],[0.93, 0.9], [0.00, 0.035], ImageSelect.length, "", "#eeeeee", "OrderedTiles");
+				//Bottom row
+				switch(gameType){
+					case GAMETYPE_HIDDEN:
+						DisplayTiles("UnorderedTiles", ImageGroup, [5, 10, 21], [0.93, 0.9], [0.00, 0.24], 0, "", "", "UnorderedTiles");
+					break;
+					case GAMETYPE_ORDERED:
+						DisplayTiles("UnorderedTiles", ImageGroup, [5, 10, 21], [0.93, 0.9], [0.00, 0.24], 0, "", "", "UnorderedTiles");
+					break;
+				}
+				
+				/*
+				if (dragEvent == "DRAGSTART"){
+					$(".OrderedTiles").draggable();
+					$(".UnorderedTiles").draggable();
+					$( ".OrderedTiles, .UnorderedTiles" ).droppable({
+						drop: function( event, ui ) {
+							$(this)
+								.addClass( "ui-state-highlight" )
+								.find( "p" )
+								.html( "Dropped!" );
+						}
+					});
+				}*/
+				
+				$(".UnorderedTiles").css("cursor", "pointer");
+				
+				switch(gameType){
+					case GAMETYPE_HIDDEN:
+						$(".UnorderedTiles").attr("TileClickAction", "SELECT");
+					break;
+					case GAMETYPE_ORDERED:
+						$(".UnorderedTiles").attr("TileClickAction", "PUTINORDERED");
+						$(".OrderedTiles").attr("TileClickAction", "PUTINUNORDERED");
+					break;
+				}
+				$(".UnorderedTiles").click(function(e){
+					if(!EnlargeModeOn){
+						TileInteract(gameType,  $(this).attr("TileClickAction"), $(this).attr("id"));
+					}
+				});
+				$(".OrderedTiles").click(function(e){
+					if(!EnlargeModeOn){
+						TileInteract(gameType,  $(this).attr("TileClickAction"), $(this).attr("id"));
+					}
+				});
+				
+				$("#ContinueGame").click(function(e){
+					switch(gameType){
+						case GAMETYPE_HIDDEN:
+							SelectedImagesToCheck = [];
+							var x = $(".SelectedTile").each(function(){
+								SelectedImagesToCheck.push($(this).attr("ImageNumber"));
+							});
+							setUI("CHECKANSWER");
+						break;
+						case GAMETYPE_ORDERED:
+							SelectedImagesToCheck = [];
+							for(var i = 0; i < selectN; i++){
+								var tile = document.getElementById("Tile-OrderedTiles-0-"+i);
+								if(tile){
+									var imgLst = tile.children;
+									if(imgLst && imgLst[0]){
+										var img = imgLst[0];
+										SelectedImagesToCheck.push(img.getAttribute("ImageNumber"));
+									}
+								}
+							}
+							setUI("CHECKANSWER");
+						break;
+					}
+				});
+			break;
+			//Gameplay elements
+			case "PANELSELECT":
+				var draggableImage = document.createElement("img");
+				draggableImage.id = "DraggablePanelCanvas";
+				$("#ScreenContent").append(draggableImage)
+				$("#DraggablePanelCanvas").css("position", "absolute");
+				$("#DraggablePanelCanvas").css("top", 0.70 * windowHeight);
+				$("#DraggablePanelCanvas").css("left", 0.32 * windowWidth);
+				$("#DraggablePanelCanvas").draggable();
+				
+				$("#ContinueGame").click(function(e){
+					switch(gameType){
+						case GAMETYPE_NEGATIVE:
+							SelectedImagesToCheck = [];
+							var x = $(".SelectedTile").each(function(){
+								var imageNum = $(this).attr("imgnum");
+								SelectedImagesToCheck.push(imageNum);
+							});
+							setUI("CHECKANSWER");
+						break;
+					}
+				});
+			break;
+		}
+		
+		if(EnlargeModeOn){
+			$(".Tile").addClass("SelectableTile");
+		}else{
+			$(".Tile").removeClass("SelectableTile");
+		}
+		
+		/*
+		$(".Tile").click(function(e){
+			var isOpen = $(this).attr("open");
+			if(isOpen){
+				widthPercentage = parseFloat($(this).attr("paramHeight"));
+				heightPercentage = parseFloat($(this).attr("paramHeight"));
+				$(this).animate({ width: (widthPercentage * windowHeight), height: (heightPercentage * windowHeight), top: (0.05 * windowHeight), left: (0.05 * windowHeight) }, 100);
+				$(this).children(".TileImage").animate({ width: (widthPercentage * windowHeight), height: (heightPercentage * windowHeight), top: (0.05 * windowHeight), left: (0.05 * windowHeight) }, 100);
+				$(this).removeAttr("open");
+			}else{
+				$(this).animate({ width: (0.9 * windowHeight), height: (0.9 * windowHeight), top: (0.05 * windowHeight), left: (0.05 * windowHeight) }, 100);
+				$(this).children(".TileImage").animate({ width: (0.9 * windowHeight), height: (0.9 * windowHeight), top: (0.05 * windowHeight), left: (0.05 * windowHeight) }, 100);
+				$(this).attr("open", "whatever");
+			}
+		});
+		*/
+	}
+
+	function initGame(){
+		$("#Screen").css("width", windowWidth);
+		$("#Screen").css("height", windowHeight);
+		
+		init();
+		NewGame();
+		setUI("MAINMENU");
+	};
+	
+	
+	function closeGame(){
+		if(score > 0){
+			GameSaveScore(score, "");
+		}
+	}
+	
+	function EnterFullScreen(){
+		windowWidth = screen.width;
+		windowHeight = screen.height;
+		setUI(currentUI);
+	}
+	
+	function ExitFullScreen(){
+		
+	}
+</script>

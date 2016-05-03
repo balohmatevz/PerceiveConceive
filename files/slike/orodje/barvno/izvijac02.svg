@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color">
+	<g id="rdeča7bela">
+	</g>
+	<g>
+		
+			<polygon fill="#A6A8AB" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			231.896,336.075 231.896,199.687 220.573,199.687 220.573,336.075 215.25,336.075 218.704,381.583 234.84,381.583 
+			238.296,336.075 		"/>
+		
+			<path fill="#B17F49" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M253.626,243.792c-5.729-2.938-11.969-10.649-11.969-26.719c0-16.432,4.524-30.054,10.443-32.575l-0.12-74.736
+			c0,0,2.818-37.797-17.842-37.8h-4.979h-4.771h-4.978c-20.663,0.002-17.842,37.8-17.842,37.8l-0.122,74.736
+			c5.919,2.521,10.443,16.143,10.443,32.575c0,16.07-6.241,23.781-11.97,26.719l-1.54,12.868h26.008h4.771h26.008L253.626,243.792z"
+			/>
+	</g>
+</g>
+<g id="cb" display="none">
+	<g id="rdeča7bela_copy" display="inline">
+	</g>
+	
+		<polygon display="inline" fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+		231.896,256.659 229.158,256.659 224.386,256.659 220.573,256.659 220.573,336.075 215.25,336.075 218.704,381.583 234.84,381.583 
+		238.296,336.075 231.896,336.075 	"/>
+	<g display="inline">
+		<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M253.626,243.792c-5.729-2.938-11.969-10.649-11.969-26.719c0-16.432,4.524-30.054,10.443-32.575l-0.12-74.736
+			c0,0,2.818-37.797-17.842-37.8h-4.979h-4.771h-4.978c-20.663,0.002-17.842,37.8-17.842,37.8l-0.122,74.736
+			c5.919,2.521,10.443,16.143,10.443,32.575c0,16.07-6.241,23.781-11.97,26.719l-1.54,12.868h26.008h4.771h26.008L253.626,243.792z"
+			/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="223.594" cy="379.139" r="14.133"/>
+</g>
+</svg>

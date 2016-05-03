@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.544px" height="453.543px" viewBox="0 0 453.544 453.543" enable-background="new 0 0 453.544 453.543"
+	 xml:space="preserve">
+<g id="kvadrat">
+</g>
+<g id="bg" display="none">
+	<rect x="-7466.03" y="-8398.64" display="inline" width="15266.867" height="13678.951"/>
+</g>
+<g id="barvno" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	<g display="inline">
+		
+			<polygon fill="#84D7CE" stroke="#000000" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			293.191,328.979 334.24,202.645 226.772,124.564 119.306,202.645 160.354,328.979 		"/>
+		
+			<line fill="#84D7CE" stroke="#000000" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="291.782" y1="327.979" x2="123.306" y2="202.539"/>
+	</g>
+	
+		<rect x="-7976.315" y="-8818.648" display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" width="16736" height="13952"/>
+</g>
+<g id="barvno_copy_2">
+	<g id="rdeča7bela_copy_4">
+	</g>
+	<g>
+		
+			<polygon fill="#0000FF" stroke="#FFFF00" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			293.191,328.979 334.24,202.645 226.772,124.564 119.306,202.645 160.354,328.979 		"/>
+		
+			<line fill="#0000FF" stroke="#FFFF00" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="291.782" y1="327.979" x2="123.306" y2="202.539"/>
+	</g>
+	<rect x="-7976.315" y="-8818.648" fill="none" stroke="#000000" stroke-miterlimit="10" width="16736" height="13952"/>
+</g>
+<g id="sivinsko" display="none">
+	<g id="rdeča7bela_copy_3" display="inline">
+	</g>
+	<g display="inline">
+		<g>
+			<polygon fill="#BDBDBD" points="293.191,328.979 334.24,202.645 226.772,124.564 119.306,202.645 160.354,328.979 			"/>
+			<path d="M293.191,338.979H160.354c-4.332,0-8.172-2.79-9.511-6.91l-41.049-126.334c-1.339-4.12,0.128-8.634,3.633-11.18
+				l107.467-78.08c3.506-2.547,8.25-2.547,11.756,0l107.468,78.08c3.505,2.546,4.972,7.06,3.633,11.18l-41.049,126.334
+				C301.363,336.188,297.523,338.979,293.191,338.979z M167.62,318.979h118.306l36.559-112.515l-95.712-69.539l-95.711,69.539
+				L167.62,318.979z"/>
+		</g>
+		<g>
+			<line fill="#BDBDBD" x1="291.782" y1="327.979" x2="123.306" y2="202.539"/>
+			<path d="M291.774,337.979c-2.076,0-4.171-0.645-5.964-1.98L117.334,210.56c-4.43-3.298-5.348-9.563-2.049-13.992
+				c3.296-4.432,9.563-5.35,13.992-2.049l168.477,125.439c4.43,3.298,5.348,9.563,2.049,13.992
+				C297.841,336.587,294.826,337.979,291.774,337.979z"/>
+		</g>
+	</g>
+	<path display="inline" d="M8760.185,5133.852h-16737v-13953h16737V5133.852z M-7976.315,5132.852h16736l-0.5-13951h-16735.5
+		l0.5,13951H-7976.315z"/>
+</g>
+<g id="linijsko" display="none">
+	<g id="rdeča7bela_copy" display="inline">
+	</g>
+	<g display="inline">
+		
+			<polygon fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			293.191,328.979 334.24,202.645 226.772,124.564 119.306,202.645 160.354,328.979 		"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="291.782" y1="327.979" x2="123.306" y2="202.539"/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="217.519" cy="326.227" r="14.133"/>
+</g>
+</svg>

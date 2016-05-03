@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+</g>
+<g id="color" display="none">
+	<g display="inline">
+		
+			<rect x="140.041" y="131.082" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="35.099" height="41.057"/>
+		
+			<rect x="117.059" y="170.912" fill="#C8C8C8" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="144.454" height="97.955"/>
+		<g>
+			
+				<polyline fill="#29235C" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+				356.636,252.174 383.208,237.023 70.336,254.023 104.587,298.939 			"/>
+		</g>
+		
+			<circle fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="149.113" cy="206.582" r="14.4"/>
+		
+			<circle fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="190.442" cy="206.582" r="14.4"/>
+		
+			<circle fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="231.771" cy="206.582" r="14.4"/>
+		
+			<path fill="#BD1622" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M90.909,280.174l32.113,42.287h197.5c0,0,44.77-74.959,62.685-85.438L90.909,280.174z"/>
+	</g>
+	<g id="rdeča7bela" display="inline">
+	</g>
+</g>
+<g id="cb">
+	<g>
+		
+			<polyline fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			175.14,170.912 175.14,131.082 140.041,131.082 140.041,170.912 		"/>
+		
+			<polyline fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			175.14,170.912 261.513,170.912 261.513,243.636 		"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="175.14" y1="170.912" x2="140.041" y2="170.912"/>
+		
+			<polyline fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			117.059,251.484 117.059,170.912 140.041,170.912 		"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="383.208" y1="237.023" x2="261.513" y2="243.636"/>
+		
+			<polyline fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			117.059,251.484 70.336,254.023 104.587,298.939 		"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="117.059" y1="251.484" x2="261.513" y2="243.636"/>
+		
+			<circle fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="149.113" cy="206.582" r="14.4"/>
+		
+			<circle fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="190.442" cy="206.582" r="14.4"/>
+		
+			<circle fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="231.771" cy="206.582" r="14.4"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="167.5" y1="268.867" x2="261.513" y2="254.988"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="261.513" y1="254.988" x2="383.208" y2="237.023"/>
+		<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M167.5,268.867l-76.591,11.307l32.113,42.287h197.5c0,0,44.77-74.959,62.685-85.438"/>
+	</g>
+	<g id="rdeča7bela_copy">
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="218.831" cy="320.648" r="14.133"/>
+</g>
+</svg>

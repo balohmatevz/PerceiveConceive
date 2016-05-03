@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.545px" height="453.542px" viewBox="0 0 453.545 453.542" enable-background="new 0 0 453.545 453.542"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+	
+		<rect x="-452.725" y="452.446" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect y="453.543" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.545" height="453.543"/>
+	
+		<rect x="-452.725" y="-451.394" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect y="-451.394" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.545" height="453.543"/>
+</g>
+<g id="Layer_1" display="none">
+</g>
+<g id="Layer_2">
+	<g id="rdeča7bela">
+	</g>
+	<g>
+		<g>
+			<g>
+				
+					<path fill="#FFFFFF" stroke="#010101" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+					M339.193,193.686c-7.076-6.419-16.892-9.956-27.642-9.956c-3.296,0-6.43,0.4-9.858,1.256l-6.051,1.513l0.042-6.236
+					c0.019-2.85,0.031-5.826,0.031-8.935c0-9.532-9.304-17.646-26.904-23.465c-15.634-5.166-36.335-6.012-58.289-6.012
+					c-21.946,0-42.648,0.846-58.293,6.012c-17.6,5.816-26.902,13.931-26.902,23.465c0,34.749,1.19,62.313,6.997,83.893
+					c5.532,20.526,15.22,36.249,32.396,52.574c10.264,9.762,26.1,14.921,45.798,14.921c19.697,0,35.536-5.159,45.801-14.923
+					c13.104-12.452,21.952-25.15,28.688-41.169l0.072-0.163c1.109-2.399,3.412-3.363,5.05-3.88c3.352-1.056,7.688-1.19,11.092-1.19
+					c1.471,0,2.984,0.031,4.472,0.062l0.868,0.017c1.55,0.04,3.341,0.083,4.993,0.083c10.561,0,20.521-4.498,28.047-12.667
+					c7.088-7.682,11.153-17.967,11.153-28.217C350.754,210.024,346.649,200.442,339.193,193.686z M311.069,238.358
+					c-0.437,0.046-0.932,0.068-1.503,0.068h-0.094c-1.534,0-3.4-0.122-5.377-0.251c-2.336-0.152-4.982-0.325-7.574-0.325
+					c-1.75,0-3.352,0.081-4.823,0.246c1.007-7.477,2.305-17.168,2.726-22.198c3.509-5.7,9.694-8.947,17.129-8.947
+					c10.006,0,15.98,5.128,15.98,13.717C327.533,229.659,320.301,237.429,311.069,238.358z"/>
+			</g>
+		</g>
+		
+			<ellipse fill="#FFFFFF" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" cx="210.512" cy="164.283" rx="85.034" ry="23.647"/>
+		<g>
+			
+				<path fill="#F8B133" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+				M266.049,179.349c-10.369-5.831-30.36-10.546-55.838-10.546c-25.796,0-45.977,4.833-56.233,10.762
+				c11.638,6.153,32.596,8.274,55.83,8.274C233.316,187.839,254.497,185.623,266.049,179.349z"/>
+		</g>
+	</g>
+</g>
+<g id="pivot" display="none">
+	<circle display="inline" fill="#EC008C" cx="238.04" cy="314.859" r="7.857"/>
+</g>
+</svg>

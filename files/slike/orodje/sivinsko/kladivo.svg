@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.543px" viewBox="0 0 453.543 453.543" enable-background="new 0 0 453.543 453.543"
+	 xml:space="preserve">
+<g id="kvadrat">
+</g>
+<g id="bg" display="none">
+	<rect x="-1343.195" y="-1765.567" display="inline" width="15266.867" height="13678.951"/>
+</g>
+<g id="color" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	<g display="inline">
+		
+			<rect x="198.096" y="106.583" fill="#AB5C2E" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="42.488" height="271.971"/>
+		
+			<polygon fill="#A6A8AB" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			260.503,134.91 143.04,134.91 143.04,74.99 260.503,74.99 310.455,99.461 310.503,117.671 		"/>
+	</g>
+	
+		<rect x="-1853.48" y="-2185.576" display="inline" fill="none" stroke="#000000" stroke-miterlimit="10" width="16736" height="13952"/>
+</g>
+<g id="cb_1_">
+	<g id="rdeča7bela_copy_3">
+	</g>
+	<g>
+		<g>
+			<rect x="198.096" y="106.583" fill="#6F6F6F" width="42.488" height="271.971"/>
+			<path d="M240.584,382.554h-42.488c-2.209,0-4-1.791-4-4V106.583c0-2.209,1.791-4,4-4h42.488c2.209,0,4,1.791,4,4v271.971
+				C244.584,380.763,242.794,382.554,240.584,382.554z M202.096,374.554h34.488V110.583h-34.488V374.554z"/>
+		</g>
+		<g>
+			<polygon fill="#A8A8A8" points="260.503,134.91 143.04,134.91 143.04,74.99 260.503,74.99 310.455,99.461 310.503,117.671 			"/>
+			<path d="M260.503,138.91H143.04c-2.209,0-4-1.791-4-4V74.99c0-2.209,1.791-4,4-4h117.464c0.61,0,1.212,0.139,1.76,0.408
+				l49.952,24.472c1.368,0.67,2.236,2.058,2.24,3.581l0.048,18.211c0.004,1.71-1.079,3.234-2.696,3.792l-50,17.238
+				C261.388,138.836,260.947,138.91,260.503,138.91z M147.04,130.91h112.793l46.663-16.087l-0.034-12.863L259.576,78.99H147.04
+				V130.91z"/>
+		</g>
+	</g>
+	<path d="M14883.02,11766.924h-16737v-13953h16737V11766.924z M-1853.48,11765.924h16736l-0.5-13951h-16735.5l0.5,13951H-1853.48z"
+		/>
+</g>
+<g id="cb" display="none">
+	<g id="rdeča7bela_copy" display="inline">
+	</g>
+	
+		<rect x="198.096" y="134.909" display="inline" fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" width="42.488" height="243.644"/>
+	<g display="inline">
+		
+			<polygon fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			260.503,134.91 143.04,134.91 143.04,74.99 260.503,74.99 310.455,99.461 310.503,117.671 		"/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="215.026" cy="371.904" r="14.133"/>
+</g>
+</svg>

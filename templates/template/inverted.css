@@ -1,0 +1,134 @@
+.ContentHeader{
+	color: #00ffff; 
+}
+
+.ContentHeaderDark{
+	color: #0000ff;
+}
+
+.FormButtonContent{
+	background-color: #0000ff;
+}
+
+.FormButtonContent:hover{
+	background-color: #ff00ff;
+}
+
+.FormButtonContent{
+	background-color: #0000ff;
+}
+
+.InstanceTile{
+	background-color: #0000ff;
+	color: white;
+}
+
+.InstanceTile:hover{
+	background-color: #ff00ff;
+	color: white;
+}
+
+#cookie-bar .cb-enable{
+	background-color: #0000ff;
+}
+
+#cookie-bar .cb-enable:hover{
+	background-color: #ff00ff;
+}
+
+.PageHeaderTitle{
+	color: #0000ff;
+}
+
+.NavigationItemSelected{
+	color: #00ffff;
+}
+
+.NavigationItemSelected:hover{
+	color: #ff00ff;
+}
+
+.NavigationItemSelected:active{
+	color: #00ffff;
+}
+
+.NavigationItemSelected:visited{
+	color: #00ffff;
+}
+
+.NavigationItemUnselected{
+	color: #000000;
+}
+
+.NavigationItemUnselected:hover{
+	color: #ff00ff;
+}
+
+.NavigationItemUnselected:active{
+	color: #000000;
+}
+
+.NavigationItemUnselected:visited{
+	color: #000000;
+}
+
+.NavigationItemDisabled{
+	color: #888888;
+}
+
+.NavigationItemDisabled:hover{
+	color: #888888;
+}
+
+.NavigationItemDisabled:active{
+	color: #888888;
+}
+
+.NavigationItemDisabled:visited{
+	color: #888888;
+}
+
+.NavigationContainer{
+	background-color: #0000ff; 
+	color: #ffffff;
+	border: 1px solid #ffffff; 
+}
+
+.FormContainer{
+	background-color: #000000; 
+	border: 1px solid #ffffff; 
+}
+
+select, input[type='text'], input[type='password']{
+	background-color: #00ffff;
+	color: #000000;
+}
+
+.navbar-default{
+	border-bottom: solid 1px #ffffff; 
+	color: #ffffff;
+	background-color: #000000;
+}
+
+.navbar .container .navbar-brand, .navbar-default .navbar-nav li a{
+	color: #ffffff;
+}
+
+.navbar .container .navbar-brand:hover, .navbar-default .navbar-nav li a:hover{
+	color: #ff00ff;
+}
+
+body{
+	background-color: #000000;
+	color: #ffffff;
+}
+
+.FormListEntry{
+	color: #000000;
+	background-color: #00ffff;
+}
+
+.dropdown-menu{
+	background-color: #000000;
+	border: solid 1px #ffffff;
+}

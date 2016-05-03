@@ -1,0 +1,198 @@
+	<div class='container OverlayContainer'>
+		<div class="row">
+			<div class='col-lg-12 FormContainer'>
+				<div class="row">
+					<div class='col-lg-12'>
+						<div class='FormEntryTitle'>
+							{{SELECTIMAGE_CHOOSE_FILE}}
+							<img src="{{TEMPLATE_DIR}}/images/close.svg" onclick="chosenFile = ''; closeOverlay();" style='float: right; cursor: pointer;'>
+						</div>
+						<input type='text' id="inputSearch" placeholder='{{SELECTIMAGE_SEARCH}}...' class='FormEntryInputText'>
+						<br/>
+					</div>
+					<div class='col-lg-3' id='ImgClassList' style='height: 400px; overflow-y: auto; overflow-x: hidden; border-right: solid 1px #cccccc;'>
+						<b>{{SELECTIMAGE_LOADING}}</b><br/>
+					</div>
+					<div class='col-lg-9' style='height: 400px; overflow-y: auto; overflow-x: hidden;'>
+						<div class="row" id="ImageList">
+							{{SELECTIMAGE_LOADING}}
+						</div>
+					</div>
+					<div class='col-lg-12' style='padding-top: 10px;'>
+						<div class="FormButton">
+							<div class="FormButtonContent" onclick="chosenFile = ''; closeOverlay();">
+								<span>{{SELECTIMAGE_BUTTON_CLOSE}}</span>
+							</div>
+						</div>
+						<div class="FormButton" id='DeleteButtonContainer' style='display: none;'>
+							<div class="FormButtonContent" onclick="chosenFile = 'DELETE'; closeOverlay();">
+								<span>{{SELECTIMAGE_BUTTON_DELETE}}</span>
+							</div>
+						</div>
+						<div class="FormButton" id='SELECTButtonContainer' style='float: right;'>
+							<div class="FormButtonContent" onclick="closeOverlay();">
+								<span>{{SELECTIMAGE_BUTTON_SELECT}}</span>
+							</div>
+						</div>
+					</div> 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type='text/javascript'>
+		UserCheck();
+	
+		$("#inputSearch").keypress(function(e) {
+			if(e.which == 13) {
+				doSearch();
+			}
+		});
+	
+
+		if($("#"+editingImage).attr("removableImage") == "1"){
+			$("#DeleteButtonContainer").show();
+		}
+					
+		chosenFile = "";
+		function buildTree(parts, treeNode) {
+			 if(parts.length === 0)
+			 {
+				  return; 
+			 }
+
+			 for(var i = 0 ; i < treeNode.length; i++)
+			 {
+				  if(parts[0] == treeNode[i].text)
+				  {
+					  buildTree(parts.splice(1, parts.length), treeNode[i].children);
+					  return;
+				  }
+			 }
+
+			 var newNode = {'text': parts[0] ,'children':[]};
+			 treeNode.push(newNode);
+			 buildTree(parts.splice(1,parts.length),newNode.children);
+		}	
+		
+		
+		
+	
+		function doSearch(){
+			searchString = $("#inputSearch").val().toLowerCase();
+			if(searchString == ""){
+				showInDir(currentPath);
+				//$(".ImageListing").show();
+			}else{
+				$(".ImageListing").hide();
+				$(".ImageListing").each(function(i, el){
+					var elSearchVal = $(el).attr("SearchContent").toLowerCase();
+					if(elSearchVal.indexOf(searchString) >= 0){
+						$(el).show();
+					}else{
+						//if($(el).is(":visible")){
+						//	$(el).hide();
+						//}
+					}
+				});
+			}
+		}
+		
+		function strStartsWith(str, prefix) {
+			return str.indexOf(prefix) === 0;
+		}
+		
+		function showInDir(dir){
+			dir = "files/"+dir;
+			$(".ImageListing").each(function(index, element){
+				var thisDir = $(element).attr("DirSearch");
+				if(strStartsWith(thisDir, dir)){
+					var dirWithoutGivenPath = thisDir.replace(dir, "");
+					if(dirWithoutGivenPath.indexOf("/") === -1){
+						$(element).show();
+					}else{
+						$(element).hide();
+					}
+				}else{
+					$(element).hide();
+				}
+			});
+		}
+		
+		if(searchString != ""){
+			$("#inputSearch").val(searchString);
+			doSearch();
+		}
+		
+		var validationParamsFileList = {
+			apiURL: "api/FileGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				availableFileList = []
+				fileListRetrieved = true;
+				var num = 0;
+				for(var index = 0; index < response.files.length; index++){
+					var fileURL = response.files[index]["location"];
+					var fileName = response.files[index]["name"];
+					availableFileList.push({"fileID": num, "name": fileName, "location": fileURL, "searchString": fileURL});
+					num++;
+				}
+				
+				FillTree();
+			}
+		};
+		
+		function FillTree(){
+			$("#ImageList").html("");
+			for(var i = 0; i < availableFileList.length; i++){
+				var file = availableFileList[i];
+				
+				var loc = file["location"];
+				if(file){
+					if(loc){
+						if(loc.indexOf("/") > 0){
+							var folderList = loc.split('/');
+							//console.log(folderList.splice(1, folderList.length - 2));
+							buildTree(folderList.splice(1, folderList.length - 2), FileStructure); 
+						}else if(loc != ""){
+							buildTree([loc], FileStructure); 
+						}
+					}
+					
+					var html = "";
+					html +=	"	<div class='col-lg-3 col-md-3 col-sm-3 col-xs-height col-full-height FolderExplorerFileContainer ImageListing' DirSearch='"+file["location"]+"' SearchContent='"+file["searchString"]+"' style='display: none;'>";
+					html +=	"		<div class='FolderExplorerFile' onclick='$(\".FolderExplorerFileSelected\").removeClass(\"FolderExplorerFileSelected\"); $(this).addClass(\"FolderExplorerFileSelected\"); chosenFile = \""+file["location"]+"\";'>";
+					html +=	"			<div class='FolderExplorerFileImageContainer'>";
+					html +=	"				<img src='"+file["location"]+"'class='FolderExplorerFileImage' />";
+					html +=	"			</div>";
+					html +=	"			<div class='FolderExplorerFileTextContainer'>";
+					html +=	"				<span class='FolderExplorerFileText'>"+file["name"]+"</span>"; 
+					html +=	"			</div>";
+					html +=	"		</div>";
+					html +=	"	</div>";
+					$("#ImageList").append(html);
+				}
+			}
+			
+			$("#ImgClassList").html("");
+			$("#ImgClassList").on("changed.jstree", function (e, data) {
+				var path = data.instance.get_path(data.node,'/');
+				console.log('Selected: ' + path); 
+				currentPath = path+"/";
+				showInDir(currentPath);
+			}).jstree({"core": {"data": FileStructure}});
+			
+			doSearch();
+		}
+		
+		var butt4;
+		var butt5;
+		
+		if(!fileListRetrieved){
+			ajaxRequest("", validationParamsFileList);
+		}else{
+			FillTree();
+		}
+	</script>

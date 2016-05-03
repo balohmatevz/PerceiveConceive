@@ -1,0 +1,109 @@
+	<div class='col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-10 col-sm-offset-1' style='margin-top: 100px; padding: 0px 10px 10px;'>
+		<div id='LoginLogin' style='max-width: 400px; background-color: #ffffff; margin-left: auto; margin-right: auto;'>
+			<div class="row HeaderRow">
+				<div class="col-lg-offset-10 col-lg-2" style='text-align: right;'>
+					<form>
+						<div  onclick='closeOverlay();' style='display: inline-block; cursor: pointer; height: 40px; width: 40px; font-size: 25px; text-align: center; margin-top: 10px;'>
+							<img src='{{TEMPLATE_DIR}}/images/close.svg'>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<div style='text-align: center; margin-top: 15px;'>
+						<img src='{{TEMPLATE_DIR}}/images/logo.svg' style='height: 160px;'>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<form class="form-horizontal" id='LogInForm' style='margin-top: 50px; max-width: 300px; margin-left: auto; margin-right: auto;'>
+						<div class="col-sm-12">
+							<input type="text" class="form-control InputField LogInFormInputField" id="LogInUsername" name='LogInUsername' placeholder="{{LOGIN_USER_NAME}}" required>
+						</div>
+						<div class="col-sm-12" style='margin-top: 7px;'>
+							<input type="password" class="form-control InputField LogInFormInputField" id="LogInPassword" name='LogInPassword' placeholder="{{LOGIN_PASSWORD}}" required>
+						</div>
+						<div class="col-sm-12" style='margin-top: 7px;'>
+							<input type="button" class="btn btn-success InputButton MoreClassesButton" id="LogInSubmit" value="{{LOGIN_LOGIN}}" style='padding: 10px; width: 100%; background-color: #32BCAD; border: 0px;'>
+						</div>
+						<div class="col-sm-12" style='text-align: center; height: 70px; padding-top: 23px;'>
+							<a href='#' class='AAILink' onclick='fetchContent("AAI"); return false;'>{{LOGIN_AAI}}</a> 
+						</div>
+					</form> 
+				</div>
+			</div>
+		</div>
+		<div id='LoginRegister' style='max-width: 400px; background-color: #ffffff; margin-left: auto; margin-right: auto; display: none;'>
+			<div class="row HeaderRow" style='background-color: #203341'>
+				<div class="col-lg-2" style='text-align: left;'>
+					<form>
+						<div  onclick='$("#LoginRegister").fadeOut(200, function(){$("#LoginLogin").fadeIn();});' style='display: inline-block; cursor: pointer; height: 40px; width: 40px; font-size: 25px; text-align: center;  margin-top: 15px;'>
+							<img src='{{TEMPLATE_DIR}}/images/back_white.svg'>
+						</div>
+					</form>
+				</div>
+				<div class="col-lg-offset-8 col-lg-2" style='text-align: right;'>
+					<form>
+						<div  onclick='closeOverlay();' style='display: inline-block; cursor: pointer; height: 40px; width: 40px; font-size: 25px; text-align: center; margin-top: 15px; margin-left: -4px;'>
+							<img src='{{TEMPLATE_DIR}}/images/close_white.svg'>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="row HeaderRow" style='background-color: #203341;'>
+				<div class="col-lg-12 col-md-12 col-sm-12" style='height: 190px;'>
+					<div style='color: white;  max-width: 300px; margin-left: auto; margin-right: auto; padding: 26px 12px; font-size: 20px;'>
+						{{LOGIN_REGISTRATION_HELLO}}<br />
+						{{LOGIN_REGISTRATION_DONTKNOW}}<br />
+						{{LOGIN_REGISTRATION_WHO}}
+					</div>
+					<div style='text-align: center; margin-top: 20px; height: 120px; margin-top: -60px; margin-left: 20px;'>
+						<img src='{{TEMPLATE_DIR}}/images/logoshadow.svg' style='height: 160px;'>
+					</div>
+				</div>
+			</div>
+			<div class="row HeaderRow">
+				<div class="col-lg-12 col-md-12 col-sm-12">
+					<form class="form-horizontal" id='RegisterForm' style='margin-top: 60px; max-width: 300px; margin-left: auto; margin-right: auto;'>
+						<input type='hidden' id='createUserUsername' name='createUserUsername' value=''>
+						<input type='hidden' id='createUserPassword' name='createUserPassword' value=''>
+						<div class="col-sm-12">
+							<input type="text" class="form-control InputField createUserInputField" id="createUserName" name='createUserName' placeholder="{{LOGIN_REGISTARTION_NAME}}" required>
+						</div>
+						<div class="col-sm-12" style='margin-top: 7px;'>
+							<input type="text" class="form-control InputField createUserInputField" id="createUserSurname" name='createUserSurname' placeholder="{{LOGIN_REGISTARION_LASTNAME}}" required>
+						</div>
+						<div class="col-sm-12" style='margin-top: 7px; padding-bottom: 30px;'>
+							<input type="button" class="btn btn-success InputButton MoreClassesButton" id="createUserSubmit" value="{{LOGIN_REGISTARTION_REGISTER}}" style='padding: 10px; width: 100%; background-color: #32BCAD; border: 0px;'> 
+						</div>
+					</form> 
+				</div>
+			</div>
+		</div> 
+	</div>
+	
+	<script type='text/javascript'>
+		$("#LogInSubmit").click(function(){
+			LogIn();
+		})
+		
+		$("#createUserSubmit").click(function(){
+			RegisterUser();
+		})
+	
+		$('.LogInFormInputField').keypress(function(e){
+			if(e.which == 13){	//Enter key pressed
+				$('#LogInSubmit').click();
+			}
+		});
+	
+		$('.createUserInputField').keypress(function(e){
+			if(e.which == 13){	//Enter key pressed
+				$('#createUserSubmit').click();
+			}
+		});
+		
+		setTimeout(function(){$("#LogInUsername").focus();}, 100);
+	</script>

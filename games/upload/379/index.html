@@ -1,0 +1,1741 @@
+﻿<script type="text/javascript">
+
+	var variables;
+	var constants = {};
+
+	function initGame(){
+		variables = {"variables": InstanceProperties["variables"]};
+		constants = InstanceProperties["constants"];
+		$("#tipkovnica").attr("data", constants["tipkovnica_curves.svg"]);
+		$("#l_roka").attr("data", constants["L_roka.svg"]);
+		$("#d_roka").attr("data", constants["D_roka.svg"]);
+		
+		$("#zvocnik_off").attr("src", constants["zvocnik_off.svg"]);
+		$("#zvocnik_on").attr("src", constants["zvocnik_on.svg"]);
+		
+		$("#O1").attr("data", constants["pocasi.svg"]);
+		$("#O2").attr("data", constants["hitro.svg"]);
+		$("#O3").attr("data", constants["pocasi.svg"]);
+		$("#O4").attr("data", constants["hitro.svg"]);
+		
+		$("#navodila1").attr("src", constants["tipkanje_uvod_curves-01.svg"]);
+		$("#navodila2").attr("src", constants["tipkanje_uvod_curves-02.svg"]);
+		$("#navodila3").attr("src", constants["tipkanje_uvod_curves-03.svg"]);
+		$("#navodila4").attr("src", constants["tipkanje_uvod_curves-04.svg"]);
+		$("#navodila5").attr("src", constants["tipkanje_uvod_curves-05.svg"]);
+		$("#navodila6").attr("src", constants["tipkanje_uvod_curves-06.svg"]);
+		$("#navodila7").attr("src", constants["tipkanje_uvod_curves-07.svg"]);
+		$("#navodila8").attr("src", constants["tipkanje_uvod_curves-08.svg"]);
+		$("#navodila9").attr("src", constants["tipkanje_uvod_curves-09.svg"]);
+		$("#navodila10").attr("src", constants["tipkanje_uvod_curves-10.svg"]);
+		$("#navodila11").attr("src", constants["tipkanje_uvod_curves-11.svg"]);
+		$("#navodila12").attr("src", constants["tipkanje_uvod_curves-12.svg"]);
+		$("#navodila13").attr("src", constants["tipkanje_uvod_curves-13.svg"]);
+		
+		initVariables();
+		setTimeout(function(){ init_fingers(); }, 1000);
+		initColors();
+		InitSounds();
+		setTimeout(function(){ setText(); }, 2000);
+	}
+	
+	var lastSVG = "PRESLEDNICA";
+	
+	var d_prazna_roka;
+	var d_palec;
+	var d_kazalec;
+	var d_sredinec;
+	var d_prstanec;
+	var d_mezinec;
+	var l_prazna_roka;
+	var l_palec;
+	var l_kazalec;
+	var l_sredinec;
+	var l_prstanec;
+	var l_mezinec;
+	var last_d_svg;
+	var last_l_svg;
+
+
+	var markerColor;
+	var fontColor;
+	var fontSize;
+	var cFontColor;
+	var mFontColor;
+	var cBackColor;
+	var mBackColor;
+	var background;
+	var nacin;
+	var lineLengthWhole;
+
+	var lineLength;
+	var startPoint = 0;
+	var ll;
+	var total_index = 0;
+
+	var originalTextArray;
+	var textArray; //prikazan text
+	var originalText; //ves text
+	var tempTextArray;
+	var index = 0;
+	var index2 = 0;
+	var array_counter = 0;
+
+	var correctNum = 0;
+	var mistakeNum = 0;
+	var tempCorrectNum = 0;
+	var tempMistakeNum = 0;
+	var temp10 = 0;
+	var elapsedTime = 0;
+	var firstType = 1;
+	var totalLength = 0;
+	var selectedMode;
+	var isPaused = false;
+	var theEnd = false;
+	var gumb_pomoc = false;
+	var tipke_zvok = true;
+	var efekti_zvok = true;
+
+	var stats_counter = 30;
+	var hitrost_napake = [];
+	var hitrost = [];
+	var napake = [];
+	var myHash = {};
+
+	//Zvokciiiiiiiii :D
+	var zvok_a;
+	var zvok_b;
+	var zvok_c;
+	var zvok_cc;
+	var zvok_d;
+	var zvok_e;
+	var zvok_f;
+	var zvok_g;
+	var zvok_h;
+	var zvok_i;
+	var zvok_j;
+	var zvok_k;
+	var zvok_l;
+	var zvok_m;
+	var zvok_n;
+	var zvok_o;
+	var zvok_p;
+	var zvok_r;
+	var zvok_s;
+	var zvok_ss;
+	var zvok_t;
+	var zvok_u;
+	var zvok_v;
+	var zvok_z;
+	var zvok_zz;
+	var zvok_levo;
+	var zvok_desno;
+	var zvok_vejica;
+	var zvok_podpicje;
+	var zvok_pika;
+	var zvok_dvopicje;
+	var zvok_podcrtaj;
+	var zvok_pomisljaj;
+	var zvok_1;
+	var zvok_2;
+	var zvok_3;
+	var zvok_4;
+	var zvok_5;
+	var zvok_6;
+	var zvok_7;
+	var zvok_8;
+	var zvok_9;
+	var zvok_0;
+	var zvok_klicaj;
+	var zvok_navednice;
+	var zvok_lojtra;
+	var zvok_dolar;
+	var zvok_procent;
+	var zvok_in;
+	var zvok_posevnica;
+	var zvok_oklepaj;
+	var zvok_zaklepaj;
+	var zvok_jeenako;
+	var zvok_vprasaj;
+	var zvok_apostrof;
+	var zvok_plus;
+	var zvok_zvezdica;
+	var zvok_preslednica;
+	var zvok_napaka;
+	var zvok_zakljucek;
+
+	function InitSounds(){
+	//zvokci
+		zvok_a = new Audio(constants["a.mp3"]);
+		zvok_b = new Audio(constants["b.mp3"]);
+		zvok_c = new Audio(constants["c.mp3"]);
+		zvok_cc = new Audio(constants["ch.mp3"]);
+		zvok_d = new Audio(constants["d.mp3"]);
+		zvok_e = new Audio(constants["e.mp3"]);
+		zvok_f = new Audio(constants["f.mp3"]);
+		zvok_g = new Audio(constants["g.mp3"]);
+		zvok_h = new Audio(constants["h.mp3"]);
+		zvok_i = new Audio(constants["i.mp3"]);
+		zvok_j = new Audio(constants["j.mp3"]);
+		zvok_k = new Audio(constants["k.mp3"]);
+		zvok_l = new Audio(constants["l.mp3"]);
+		zvok_m = new Audio(constants["m.mp3"]);
+		zvok_n = new Audio(constants["n.mp3"]);
+		zvok_o = new Audio(constants["o.mp3"]);
+		zvok_p = new Audio(constants["p.mp3"]);
+		zvok_r = new Audio(constants["r.mp3"]);
+		zvok_s = new Audio(constants["s.mp3"]);
+		zvok_ss = new Audio(constants["sh.mp3"]);
+		zvok_t = new Audio(constants["t.mp3"]);
+		zvok_u = new Audio(constants["u.mp3"]);
+		zvok_v = new Audio(constants["v.mp3"]);
+		zvok_z = new Audio(constants["z.mp3"]);
+		zvok_zz = new Audio(constants["zh.mp3"]);
+		zvok_levo = new Audio(constants["_manjse.mp3"]);
+		zvok_desno = new Audio(constants["_vecje.mp3"]);
+		zvok_vejica = new Audio(constants["_vejica.mp3"]);
+		zvok_podpicje = new Audio(constants["_podpicje.mp3"]);
+		zvok_pika = new Audio(constants["_pika.mp3"]);
+		zvok_dvopicje = new Audio(constants["_dvopicje.mp3"]);
+		zvok_podcrtaj = new Audio(constants["_podcrtaj.mp3"]);
+		zvok_pomisljaj = new Audio(constants["_pomisljaj.mp3"]);
+		zvok_1 = new Audio(constants["1.mp3"]);
+		zvok_2 = new Audio(constants["2.mp3"]);
+		zvok_3 = new Audio(constants["3.mp3"]);
+		zvok_4 = new Audio(constants["4.mp3"]);
+		zvok_5 = new Audio(constants["5.mp3"]);
+		zvok_6 = new Audio(constants["6.mp3"]);
+		zvok_7 = new Audio(constants["7.mp3"]);
+		zvok_8 = new Audio(constants["8.mp3"]);
+		zvok_9 = new Audio(constants["9.mp3"]);
+		zvok_0 = new Audio(constants["0.mp3"]);
+		zvok_klicaj = new Audio(constants["_klicaj.mp3"]);
+		zvok_navednice = new Audio(constants["_navednica.mp3"]);
+		zvok_lojtra = new Audio(constants["_lojtra.mp3"]);
+		zvok_dolar = new Audio(constants["_dolar.mp3"]);
+		zvok_procent = new Audio(constants["_procent.mp3"]);
+		zvok_in = new Audio(constants["_in.mp3"]);
+		zvok_posevnica = new Audio(constants["_posevnica.mp3"]);
+		zvok_oklepaj = new Audio(constants["_oklepaj.mp3"]);
+		zvok_zaklepaj = new Audio(constants["_zaklepaj.mp3"]);
+		zvok_jeenako = new Audio(constants["_enacaj.mp3"]);
+		zvok_vprasaj = new Audio(constants["_vprasaj.mp3"]);
+		zvok_apostrof = new Audio(constants["_apostrof.mp3"]);
+		zvok_plus = new Audio(constants["_plus.mp3"]);
+		zvok_zvezdica = new Audio(constants["_zvezdica.mp3"]);
+		zvok_preslednica = new Audio(constants["_preslednica.mp3"]);
+		zvok_napaka = new Audio(constants["__napaka.wav"]);
+		zvok_zakljucek = new Audio(constants["__konec.wav"]);
+	}
+
+	function restart(){
+	
+		startPoint = 0;
+		total_index = 0;
+		index = 0;
+		index2 = 0;
+		array_counter = 0;
+
+		correctNum = 0;
+		mistakeNum = 0;
+		tempCorrectNum = 0;
+		tempMistakeNum = 0;
+		temp10 = 0;
+		elapsedTime = 0;
+		firstType = 1;
+		totalLength = 0;
+		isPaused = false;
+		theEnd = false;
+
+		stats_counter = 30;
+		hitrost_napake = [];
+		hitrost = [];
+		napake = [];
+
+		createText();
+		setText();
+		
+		changeHelp(textArray[0]);
+		
+		$('#timer').text("00:00");
+		
+		$('#light').scrollTop(0);
+		$('#light').css('display', 'none');
+		$('#fade').css('display', 'none');
+		
+	}
+
+	function initVariables(){
+		var v = variables["variables"];
+		selectedMode = v["displayType"].value;
+		textArray = v["text"].value;
+		fontColor = v["fontColor"].value;
+		fontSize = v["fontSize"].value;
+		cFontColor = v["cFontColor"].value;
+		mFontColor = v["mFontColor"].value;
+		cBackColor = v["cBackColor"].value;
+		mBackColor = v["mBackColor"].value;
+		background = v["backgroundColor"].value;
+		lineLength = v["lineLength"].value;
+		markerColor = v["markColor"].value;
+		nacin = v["nacin"].value;
+		lineLengthWhole = v["lineLengthWhole"].value;
+		
+		originalTextArray = textArray;
+		
+		myHash['L4'] = ['q', 'a', 'y', '1', '!'];
+		myHash['L3'] = ['w', 's', 'x', '2', '"'];
+		myHash['L2'] = ['e', 'd', 'c', '3', '#'];
+		myHash['L1'] = ['r', 'f', 'v', 't', 'g', 'b', '4', '$', '5', '%'];
+		
+		myHash['D1'] = ['z', 'h', 'n', 'u', 'j', 'm', '6', '&', '7', '/'];
+		myHash['D2'] = ['i', 'k', ',', '8', '('];
+		myHash['D3'] = ['o', 'l', '.', '9', ')'];
+		myHash['D4'] = ['p', 'š', 'đ', 'č', 'ć', 'ž', '0', '=', '?', "'", '+', '*'];
+		
+		createText();
+	}
+
+	function initColors(){
+		$('#wrap').css("background", "#" + background);
+		$('#wrap2').css("background", "#" + background);
+		$('#textarea1').css('font-size', parseInt(fontSize));
+		$('#textarea1').css("color", "#" + fontColor);
+		$('#timer').css("color", "#" + fontColor);
+	}
+
+	function setText(){
+	
+		originalText = textArray.split("");
+		changeHelp(originalText[0]);
+
+		if(selectedMode == 1){
+			textArray = originalText.slice();
+			tempTextArray = originalText.slice();
+			tempTextArray[0] = ("<span style='border: solid 2px #"+markerColor+"'>"+tempTextArray[0]+"</span>");
+		}
+		else if(selectedMode == 2) {
+			ll = get_number_of_words(0);
+			temp = textArray.split(" ");
+			tempTextArray = [];
+			for(i = 0; i < ll; i++){
+				tempTextArray.push(temp[i]);
+				tempTextArray.push(' ');
+			}
+			tempTextArray = tempTextArray.join('');
+			tempTextArray = tempTextArray.split('');
+			tempTextArray[0] = ("<span style='border: solid 2px #"+markerColor+"'>"+tempTextArray[0]+"</span>");
+		}
+		else if(selectedMode == 3){
+			tempTextArray = originalText.slice(0, lineLengthWhole);
+			tempTextArray[0] = ("<span style='border: solid 2px #"+markerColor+"'>"+tempTextArray[0]+"</span>");
+		}
+		else if(selectedMode == 4) {
+			tempTextArray = textArray.split(" ");
+			tempTextArray = tempTextArray[0];
+			tempTextArray = tempTextArray.split("");
+			tempTextArray[0] = ("<span style='border: solid 2px #"+markerColor+"'>"+tempTextArray[0]+"</span>");
+			tempTextArray.push('&nbsp');
+		}
+		else if(selectedMode == 5) {
+			textArray = [];
+			textArray[0] = originalText[0];
+			for(i = 1; i < originalText.length; i++){
+				if(originalText[i] != " "){
+					textArray.push('&nbsp');
+					textArray.push(originalText[i]);
+				}
+			}
+			
+			tempTextArray = [];
+			tempTextArray.push(textArray[0]);
+			tempTextArray.push(textArray[1]);
+			
+		}
+		
+		//$('#textarea1').html(tempTextArray.join(""))
+		//alert(originalText.join(""));
+		$('#textarea1').html(tempTextArray.join(""));
+	}
+
+	// random text generator
+	function createText(){
+		array_of_words = originalTextArray.split(" ");
+		textString = '';
+		for(i = 0; i < lineLength; i++){
+			random_number = Math.floor((Math.random() * array_of_words.length)); 
+			if(i == 0) textString += array_of_words[random_number];
+			else textString += " " + array_of_words[random_number];
+		}
+		textArray = textString;
+	}
+
+	// se rabi za stetje casa
+	function setTime(){
+		++elapsedTime;
+		time1 = elapsedTime / 10;
+		
+		if(time1 % 1 == 0) {
+			minute = ('0' + ((time1/60) | 0)).slice(-2) ;
+			sekunde = ('0' + ((time1 % 60)).toFixed()).slice(-2);
+			$('#timer').text(minute + ":" + sekunde);
+		}
+		
+		if(elapsedTime/10 >= stats_counter) handle_time();
+	}
+
+	function handle_time(){
+		point = { x: (stats_counter - 15), y: (temp10/5) };
+		hitrost.push(point);
+		if(nacin == 1) point = { x: (stats_counter - 15), y: (temp10 - tempMistakeNum * 10)/5 };
+		else point = { x: (stats_counter - 15), y: (temp10 - tempMistakeNum * 5)/5 };
+		hitrost_napake.push(point);
+		var t = 1;
+		if(temp10 != 0) t = temp10;
+		point = { x: (stats_counter-15), y: ((tempMistakeNum / t)*100) };
+		napake.push(point);
+			
+		temp10 = 0;
+		tempMistakeNum = 0;
+		tempCorrectNum = 0;
+		stats_counter += 30;
+	}
+
+	// izracun statistike
+	function sendStats(){
+		
+		$('#light').css('display', 'block');
+		$('#fade').css('display', 'block');
+		
+		$('#light').tabindex = -1;
+		$('#light').focus();
+		
+		$('#light').scrollTop(0);
+		
+		numChars = originalText.length;
+		numCharsnoSpace = originalText.join("");
+		numCharsnoSpace = numCharsnoSpace.replace(/\s/g, "").length;
+		if(selectedMode == 5) {
+			numChars = mistakeNum + correctNum;
+			numCharsnoSpace = numChars;
+		}
+		firstType = 1;
+		clearInterval(step);
+		
+		// procent napake
+		percent = (100 * mistakeNum) / numChars;
+		percent = percent.toFixed(2);
+		// porabljen cas v sekundah
+		elapsedTime = elapsedTime / 10;
+		// st znakov na minuto
+		minNum = ((numChars/5) * 60) / elapsedTime;
+		minNum = Math.round(minNum);
+		elapsedTime.toFixed(2);
+		
+		if(efekti_zvok) zvok_zakljucek.play();
+		
+		if(mistakeNum == 0) upostevanje_napak = minNum;
+		else {
+			if(nacin == 1) {
+				upostevanje_napak = (((numChars - mistakeNum * 10)/5) * 60)/ elapsedTime;
+			}
+			else {
+				upostevanje_napak =  (((numChars - mistakeNum * 5)/5) * 60)/ elapsedTime;
+			}
+			upostevanje_napak = Math.round(upostevanje_napak);
+		}
+		
+		var st_zvezdic = 0;
+			
+		//osnovna
+		if(nacin == 0){
+			if(upostevanje_napak < 10){
+				st_zvezdic = 1;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+			}
+			else if (upostevanje_napak < 15){
+				st_zvezdic = 2;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+			}
+			else if (upostevanje_napak < 20){
+				st_zvezdic = 3;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+			}
+			else if (upostevanje_napak < 25){
+				st_zvezdic = 4;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+			}
+			else {
+				st_zvezdic = 5;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_polna.svg']);
+			}
+		}
+		//zahtevna
+		else{
+			if(upostevanje_napak < 20){
+				st_zvezdic = 1;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+				}
+			else if (upostevanje_napak < 30){
+				st_zvezdic = 2;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+			}
+			else if (upostevanje_napak < 40){
+				st_zvezdic = 3;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_prazna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+			}
+			else if (upostevanje_napak < 50){
+				st_zvezdic = 4;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_prazna.svg']);
+			}
+			else {
+				st_zvezdic = 5;
+				$('#zvezda1').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda2').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda3').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda4').attr('data',constants['zvezda_polna.svg']);
+				$('#zvezda5').attr('data',constants['zvezda_polna.svg']);
+			}
+		}
+			
+		minute = elapsedTime/60;
+		sekunde = elapsedTime % 60;
+		
+		if(mistakeNum == 0) upostevanje_napak = minNum;
+		else {
+			if(nacin == 1) {
+				upostevanje_napak = (((numChars - mistakeNum * 10)/5) * 60)/ elapsedTime;
+			}
+			else {
+				upostevanje_napak =  (((numChars - mistakeNum * 5)/5) * 60)/ elapsedTime;
+			}
+			upostevanje_napak = Math.round(upostevanje_napak);
+		}
+			
+		$('#dva').text('Število natipkanih znakov: '+ (numChars).toFixed());
+		$('#dvadva').text(' (brez presledkov: '+(numCharsnoSpace).toFixed()+')');
+		$('#h_znaki').text('Hitrost: '+ ((numChars * 60) / elapsedTime).toFixed() + ' znakov/minuto');
+		$('#tri').text('Čas: '+(minute | 0)+' min '+sekunde.toFixed()+' s');
+		$('#stiri').text(minNum);
+		$('#pet').text(upostevanje_napak);
+		$('#sest').text((100 - percent).toFixed() +' %');
+		
+		$("#slider1").slider({
+			disabled: true,
+			value: 100,
+			max: 100,
+		});
+			
+		$("#slider2").slider({
+			disabled: true,
+			value: 88,
+			max: 100,
+		});
+	
+		$("#slider3").slider({
+			disabled: true,
+			value: 0,
+			max: 100,
+		});
+		
+		$("#slider1").slider("option", "value", minNum);
+		$("#slider2").slider("option", "value", upostevanje_napak);
+		$("#slider3").slider("option", "value", (100 - percent).toFixed());
+		
+		drawGraph();
+		
+		GameSaveScore(st_zvezdic, "hitrost:"+minNum+"|hitrostNapake:"+upostevanje_napak+"|procent:"+(100 - percent).toFixed());
+	}
+	
+	function EnterFullScreen(){}
+
+	function ExitFullScreen(){} 
+	
+	function init_fingers(){
+		var a = document.getElementById("d_roka");
+		var svg = a.contentDocument;
+		d_prazna_roka = svg.getElementById("D_prazna_roka");
+		d_palec = svg.getElementById("D_x5F_palec");
+		d_kazalec = svg.getElementById("D_x5F_kazalec");
+		d_sredinec = svg.getElementById("D_x5F_sredinec");
+		d_prstanec = svg.getElementById("D_x5F_prstanec");
+		d_mezinec = svg.getElementById("D_x5F_mezinec");
+		last_d_svg = svg.getElementById("D_x5F_mezinec");
+		d_palec.parentNode.removeChild(d_palec);
+		d_kazalec.parentNode.removeChild(d_kazalec);
+		d_sredinec.parentNode.removeChild(d_sredinec);
+		d_prstanec.parentNode.removeChild(d_prstanec);
+		d_mezinec.parentNode.removeChild(d_mezinec);
+		
+		var a = document.getElementById("l_roka");
+		var svg = a.contentDocument;
+		l_prazna_roka = svg.getElementById("L_prazna_roka");
+		l_palec = svg.getElementById("L_x5F_palec");
+		l_kazalec = svg.getElementById("L_x5F_kazalec");
+		l_sredinec = svg.getElementById("L_x5F_sredinec");
+		l_prstanec = svg.getElementById("L_x5F_prstanec");
+		l_mezinec = svg.getElementById("L_x5F_mezinec");
+		last_l_svg = svg.getElementById("L_x5F_mezinec");
+		l_palec.parentNode.removeChild(l_palec);
+		l_kazalec.parentNode.removeChild(l_kazalec);
+		l_sredinec.parentNode.removeChild(l_sredinec);
+		l_prstanec.parentNode.removeChild(l_prstanec);
+		l_mezinec.parentNode.removeChild(l_mezinec);
+		
+	}
+
+	// zamenja sliko z roko in tipko
+	function changeHelp(letter) {
+
+		letter = letter.toLowerCase();
+
+		var a = document.getElementById("tipkovnica");
+		var svgDoc = a.contentDocument;
+		var bela = svgDoc.getElementById("PRESLEDNICA");
+		var crna = svgDoc.getElementById("PRESLEDNICA_PB");
+		
+		if(l_prazna_roka.parentNode.contains(last_l_svg)) l_prazna_roka.parentNode.removeChild(last_l_svg);
+		if(d_prazna_roka.parentNode.contains(last_d_svg)) d_prazna_roka.parentNode.removeChild(last_d_svg);
+		
+		//da belo nazaj na vrh
+		prejsnja_tipka = svgDoc.getElementById(lastSVG);
+		prejsnja_tipka.parentNode.appendChild(prejsnja_tipka);
+		
+		if(letter == " "){
+			d_prazna_roka.parentNode.appendChild(d_palec);
+			l_prazna_roka.parentNode.appendChild(l_palec);
+			last_l_svg = l_palec;
+			last_d_svg = d_palec;
+			lastSVG = "PRESLEDNICA";
+			if(tipke_zvok) zvok_preslednica.play();
+		}
+		else if (letter == "a") { if(tipke_zvok) zvok_a.play(); lastSVG = "A";}
+		else if (letter == "b") { if(tipke_zvok)zvok_b.play(); lastSVG = "B";}
+		else if (letter == "c") { if(tipke_zvok)zvok_c.play(); lastSVG = "C";}
+		else if (letter == "č") { if(tipke_zvok) zvok_cc.play(); lastSVG = "Č";}
+		else if (letter == "d") { if(tipke_zvok) zvok_d.play(); lastSVG = "D";}
+		else if (letter == "e") { if(tipke_zvok) zvok_e.play(); lastSVG = "E";}
+		else if (letter == "f") { if(tipke_zvok) zvok_f.play(); lastSVG = "F";}
+		else if (letter == "g") { if(tipke_zvok) zvok_g.play(); lastSVG = "G";}
+		else if (letter == "h") { if(tipke_zvok) zvok_h.play(); lastSVG = "H";}
+		else if (letter == "i") { if(tipke_zvok) zvok_i.play(); lastSVG = "I";}
+		else if (letter == "j") { if(tipke_zvok) zvok_j.play(); lastSVG = "J";}
+		else if (letter == "k") { if(tipke_zvok) zvok_k.play(); lastSVG = "K";}
+		else if (letter == "l") { if(tipke_zvok) zvok_l.play(); lastSVG = "L";}
+		else if (letter == "m") { if(tipke_zvok) zvok_m.play(); lastSVG = "M";}
+		else if (letter == "n") { if(tipke_zvok) zvok_n.play(); lastSVG = "N";}
+		else if (letter == "o") { if(tipke_zvok) zvok_o.play(); lastSVG = "O";}
+		else if (letter == "p") { if(tipke_zvok) zvok_p.play(); lastSVG = "P";}
+		else if (letter == "q") { if(tipke_zvok) lastSVG = "Q";}
+		else if (letter == "r") { if(tipke_zvok) zvok_r.play(); lastSVG = "R";}
+		else if (letter == "s") { if(tipke_zvok) zvok_s.play(); lastSVG = "S";}
+		else if (letter == "š") { if(tipke_zvok) zvok_ss.play(); lastSVG = "Š";}
+		else if (letter == "t") { if(tipke_zvok) zvok_t.play(); lastSVG = "T";}
+		else if (letter == "u") { if(tipke_zvok) zvok_u.play(); lastSVG = "U";}
+		else if (letter == "v") { if(tipke_zvok) zvok_v.play(); lastSVG = "V";}
+		else if (letter == "w") { if(tipke_zvok) lastSVG = "W";}
+		else if (letter == "y") { if(tipke_zvok) lastSVG = "Y";}
+		else if (letter == "z") { if(tipke_zvok) zvok_z.play(); lastSVG = "Z";}
+		else if (letter == "ž") { if(tipke_zvok) zvok_zz.play(); lastSVG = "Ž";}
+		else if (letter == "0") { if(tipke_zvok) zvok_0.play(); lastSVG = "_x30__x3D_";}
+		else if (letter == "1") { if(tipke_zvok) zvok_1.play(); lastSVG = "_x31__x21_";}
+		else if (letter == "2") { if(tipke_zvok) zvok_2.play(); lastSVG = "_x32__x22_";}
+		else if (letter == "3") { if(tipke_zvok) zvok_3.play(); lastSVG = "_x33__x23_";}
+		else if (letter == "4") { if(tipke_zvok) zvok_4.play(); lastSVG = "_x34__x24_";}
+		else if (letter == "5") { if(tipke_zvok) zvok_5.play(); lastSVG = "_x35__x25_";}
+		else if (letter == "6") { if(tipke_zvok) zvok_6.play(); lastSVG = "_x36__x26_";}
+		else if (letter == "7") { if(tipke_zvok) zvok_7.play(); lastSVG = "_x37__x2F_";}
+		else if (letter == "8") { if(tipke_zvok) zvok_8.play(); lastSVG = "_x38__x28_";}
+		else if (letter == "9") { if(tipke_zvok) zvok_9.play(); lastSVG = "_x39__x29_";}
+		else if (letter == "=") { if(tipke_zvok) zvok_jeenako.play(); lastSVG = "_x30__x3D_";}
+		else if (letter == "!") { if(tipke_zvok) zvok_klicaj.play(); lastSVG = "_x31__x21_";}
+		else if (letter == '"') { if(tipke_zvok) zvok_navednice.play(); lastSVG = "_x32__x22_";}
+		else if (letter == "#") { if(tipke_zvok) zvok_lojtra.play(); lastSVG = "_x33__x23_";}
+		else if (letter == "$") { if(tipke_zvok) zvok_dolar.play(); lastSVG = "_x34__x24_";}
+		else if (letter == "%") { if(tipke_zvok) zvok_procent.play(); lastSVG = "_x35__x25_";}
+		else if (letter == "&") { if(tipke_zvok) zvok_in.play(); lastSVG = "_x36__x26_";}
+		else if (letter == "/") { if(tipke_zvok) zvok_posevnica.play(); lastSVG = "_x37__x2F_";}
+		else if (letter == "(") { if(tipke_zvok) zvok_oklepaj.play(); lastSVG = "_x38__x28_";}
+		else if (letter == ")") { if(tipke_zvok) zvok_zaklepaj.play(); lastSVG = "_x39__x29_";}
+		else if (letter == ";") { if(tipke_zvok) zvok_podpicje.play(); lastSVG = "_x2C_";}
+		else if (letter == ",") { if(tipke_zvok) zvok_vejica.play(); lastSVG = "_x2C_";}
+		else if (letter == "-") { if(tipke_zvok) zvok_pomisljaj.play(); lastSVG = "_x2D_";}
+		else if (letter == "_") { if(tipke_zvok) zvok_podcrtaj.play(); lastSVG = "_x2D_";}
+		else if (letter == ".") { if(tipke_zvok) zvok_pika.play(); lastSVG = "_x2E_";}
+		else if (letter == ":") { if(tipke_zvok) zvok_dvopicje.play(); lastSVG = "_x2E_";}
+		else if (letter == ">") { if(tipke_zvok) zvok_desno.play(); lastSVG = "_x3E__x3C_";}
+		else if (letter == "<") { if(tipke_zvok) zvok_levo.play(); lastSVG = "_x3E__x3C_";}
+		else if (letter == "+") { if(tipke_zvok) zvok_plus.play(); lastSVG = "_x2B__x2A_";}
+		else if (letter == "*") { if(tipke_zvok) zvok_zvezdica.play(); lastSVG = "_x2B__x2A_";}
+		else if (letter == "'") { if(tipke_zvok) zvok_apostrof.play(); lastSVG = "_x27__x3F_";}
+		else if (letter == "?") { if(tipke_zvok) zvok_vprasaj.play(); lastSVG = "_x27__x3F_";}
+
+		crna = svgDoc.getElementById(lastSVG + "_PB");
+		prejsnja_tipka.parentNode.appendChild(crna);
+		
+		for(var key in myHash){
+			letter_array = myHash[key];
+			letter_counter = 0;
+			for(letter_counter = 0; letter_counter < letter_array.length; letter_counter ++){
+				if(letter_array[letter_counter] == letter){
+					if(key == "L4"){
+						l_prazna_roka.parentNode.appendChild(l_mezinec);
+						last_l_svg = l_mezinec;
+					}
+					else if(key == "L3"){
+						l_prazna_roka.parentNode.appendChild(l_prstanec);
+						last_l_svg = l_prstanec;
+					}
+					else if(key == "L2"){
+						l_prazna_roka.parentNode.appendChild(l_sredinec);
+						last_l_svg = l_sredinec;
+					}
+					else if(key == "L1"){
+						l_prazna_roka.parentNode.appendChild(l_kazalec);
+						last_l_svg = l_kazalec;
+					}
+					else if(key == "D1"){
+						d_prazna_roka.parentNode.appendChild(d_kazalec);
+						last_d_svg = d_kazalec;
+					}
+					else if(key == "D2"){
+						d_prazna_roka.parentNode.appendChild(d_sredinec);
+						last_d_svg = d_sredinec;
+					}
+					else if(key == "D3"){
+						d_prazna_roka.parentNode.appendChild(d_prstanec);
+						last_d_svg = d_prstanec;
+					}
+					else if(key == "D4"){
+						d_prazna_roka.parentNode.appendChild(d_mezinec);
+						last_d_svg = d_mezinec;
+					}
+				};
+			}
+		}
+	}
+
+	function drawGraph(){
+		var chart1 = new CanvasJS.Chart('chartContainer1', {
+			animationEnabled: true,
+			data: [{
+				type: "spline", //change it to line, area, bar, pie, etc
+				dataPoints: hitrost_napake
+			}],
+		  axisX: {
+			interval: 15,
+			labelFontSize: 14
+		  },
+			 axisY: {
+			labelFontSize: 14
+		  }
+		});
+		chart1.render();
+		
+		var chart2 = new CanvasJS.Chart('chartContainer2', {
+			data: [{
+				type: "spline", //change it to line, area, bar, pie, etc
+				dataPoints: hitrost 
+			}],
+		  axisX: {
+			interval: 15,
+			labelFontSize: 14
+		  },
+		   axisY: {
+			labelFontSize: 14
+		  }
+		});	
+		chart2.render();
+		
+		var chart3 = new CanvasJS.Chart('chartContainer3', {
+			data: [{
+				type: "spline", //change it to line, area, bar, pie, etc
+				dataPoints: napake 
+			}],
+		  axisX: {
+			interval: 15,
+			labelFontSize: 14
+		  },
+		   axisY: {
+			labelFontSize: 14
+			}
+		});
+		chart3.render();
+	}
+	
+	function replayHelp(letter) {
+		
+		if(letter == " "){if(tipke_zvok) zvok_preslednica.play();}
+		else if (letter == "a") { if(tipke_zvok) zvok_a.play(); }
+		else if (letter == "b") { if(tipke_zvok)zvok_b.play(); }
+		else if (letter == "c") { if(tipke_zvok)zvok_c.play(); }
+		else if (letter == "č") { if(tipke_zvok) zvok_cc.play(); }
+		else if (letter == "d") { if(tipke_zvok) zvok_d.play(); }
+		else if (letter == "e") { if(tipke_zvok) zvok_e.play();}
+		else if (letter == "f") { if(tipke_zvok) zvok_f.play(); }
+		else if (letter == "g") { if(tipke_zvok) zvok_g.play(); }
+		else if (letter == "h") { if(tipke_zvok) zvok_h.play(); }
+		else if (letter == "i") { if(tipke_zvok) zvok_i.play(); }
+		else if (letter == "j") { if(tipke_zvok) zvok_j.play(); }
+		else if (letter == "k") { if(tipke_zvok) zvok_k.play(); }
+		else if (letter == "l") { if(tipke_zvok) zvok_l.play(); }
+		else if (letter == "m") { if(tipke_zvok) zvok_m.play(); }
+		else if (letter == "n") { if(tipke_zvok) zvok_n.play(); }
+		else if (letter == "o") { if(tipke_zvok) zvok_o.play(); }
+		else if (letter == "p") { if(tipke_zvok) zvok_p.play(); }
+		else if (letter == "r") { if(tipke_zvok) zvok_r.play(); }
+		else if (letter == "s") { if(tipke_zvok) zvok_s.play(); }
+		else if (letter == "š") { if(tipke_zvok) zvok_ss.play(); }
+		else if (letter == "t") { if(tipke_zvok) zvok_t.play(); }
+		else if (letter == "u") { if(tipke_zvok) zvok_u.play();}
+		else if (letter == "v") { if(tipke_zvok) zvok_v.play();}
+		else if (letter == "z") { if(tipke_zvok) zvok_z.play();}
+		else if (letter == "ž") { if(tipke_zvok) zvok_zz.play();}
+		else if (letter == "0") { if(tipke_zvok) zvok_0.play();}
+		else if (letter == "1") { if(tipke_zvok) zvok_1.play();}
+		else if (letter == "2") { if(tipke_zvok) zvok_2.play();}
+		else if (letter == "3") { if(tipke_zvok) zvok_3.play();}
+		else if (letter == "4") { if(tipke_zvok) zvok_4.play();}
+		else if (letter == "5") { if(tipke_zvok) zvok_5.play();}
+		else if (letter == "6") { if(tipke_zvok) zvok_6.play();}
+		else if (letter == "7") { if(tipke_zvok) zvok_7.play();}
+		else if (letter == "8") { if(tipke_zvok) zvok_8.play();}
+		else if (letter == "9") { if(tipke_zvok) zvok_9.play();}
+		else if (letter == "=") { if(tipke_zvok) zvok_jeenako.play();}
+		else if (letter == "!") { if(tipke_zvok) zvok_klicaj.play();}
+		else if (letter == '"') { if(tipke_zvok) zvok_navednice.play();}
+		else if (letter == "#") { if(tipke_zvok) zvok_lojtra.play();}
+		else if (letter == "$") { if(tipke_zvok) zvok_dolar.play();}
+		else if (letter == "%") { if(tipke_zvok) zvok_procent.play();}
+		else if (letter == "&") { if(tipke_zvok) zvok_in.play();}
+		else if (letter == "/") { if(tipke_zvok) zvok_posevnica.play();}
+		else if (letter == "(") { if(tipke_zvok) zvok_oklepaj.play();}
+		else if (letter == ")") { if(tipke_zvok) zvok_zaklepaj.play();}
+		else if (letter == ";") { if(tipke_zvok) zvok_podpicje.play();}
+		else if (letter == ",") { if(tipke_zvok) zvok_vejica.play();}
+		else if (letter == "-") { if(tipke_zvok) zvok_pomisljaj.play();}
+		else if (letter == "_") { if(tipke_zvok) zvok_podcrtaj.play();}
+		else if (letter == ".") { if(tipke_zvok) zvok_pika.play();}
+		else if (letter == ":") { if(tipke_zvok) zvok_dvopicje.play();}
+		else if (letter == ">") { if(tipke_zvok) zvok_desno.play();}
+		else if (letter == "<") { if(tipke_zvok) zvok_levo.play();}
+		else if (letter == "+") { if(tipke_zvok) zvok_plus.play();}
+		else if (letter == "*") { if(tipke_zvok) zvok_zvezdica.play(); }
+		else if (letter == "'") { if(tipke_zvok) zvok_apostrof.play(); }
+		else if (letter == "?") { if(tipke_zvok) zvok_vprasaj.play();}
+	}
+
+
+	// TYPE MODES ------------------------------------------------------------------------------------------
+
+
+	//1 - prikaz vsega teksta naenkrat
+	function allText(e){
+		if (index < originalText.length) {
+			span_id = "span"+index;
+			if(firstType == 1) {
+				step = setInterval(function() {if(!isPaused) {
+							setTime();
+						}}, 100);
+				firstType = 0;
+				textArray[0] = ("<span id="+span_id+" role='status' style='border: solid 2px "+markerColor+"'>"+textArray[0]+"</span>");
+			}
+			
+			var code = String.fromCharCode(e.which);
+			if (code == originalText[index]) {
+				textArray[index] = ("<span id=" + index + " style='background-color:#" + cBackColor + "; border:0px; color:#" + cFontColor + "'>"+originalText[index]+"</span>");
+				index++;
+				correctNum++;
+				tempCorrectNum++;
+			}
+			else {
+				if(efekti_zvok) zvok_napaka.play();
+				textArray[index] = ("<span style='color:#" + mFontColor + "; background-color:#" + mBackColor + "'>"+originalText[index]+"</span>");
+				index++;
+				mistakeNum++;
+				tempMistakeNum++;
+			}
+			temp10++;
+		}
+		if(index == originalText.length){
+			isPaused = true;
+			theEnd = true;
+			sendStats();
+		}
+		else {
+			changeHelp(textArray[index]);
+			textArray[index] = ("<span id="+span_id+" role='status' style='border: solid 2px #"+markerColor+"'>"+textArray[index]+"</span>");
+			$('#textarea1').html(textArray.join(""));
+			$('#'+span_id).attr('tabindex', -1);
+			$('#'+span_id).focus();
+		}
+	}
+
+	//2 - vrstica teksta
+	function lineText(e){
+		span_id = "span"+index;
+		if(firstType == 1) {
+			step = setInterval(function() {if(!isPaused) {
+				setTime();
+			}}, 100);
+			firstType = 0;
+			tempTextArray[0] = ("<span id="+span_id+" role='status' style='border: solid 2px "+markerColor+"'>"+tempTextArray[0]+"</span>");
+		}
+			
+		var code = String.fromCharCode(e.which);
+		if (code == originalText[index]) {
+			tempTextArray[index2] = ("<span id=" + index + " style='background-color:#" + cBackColor + "; border:0px; color:#" + cFontColor + "'>"+originalText[index]+"</span>");
+			index++;
+			index2++;
+			correctNum++;
+			tempCorrectNum++;
+		}
+		else {
+			if(efekti_zvok) zvok_napaka.play();
+			tempTextArray[index2] = ("<span style='color:#" + mFontColor + "; background-color:#" + mBackColor + "'>"+originalText[index]+"</span>");
+			index++;
+			index2++;
+			mistakeNum++;
+			tempMistakeNum++;
+		}
+		temp10++;
+		
+		if(index2 >= tempTextArray.length){
+			index2 = 0;
+			ll2 = get_number_of_words(ll);
+			temp = textArray.split(" ");
+			
+			tempTextArray = [];
+			for(i = ll; i < ll + ll2; i++){
+				tempTextArray.push(temp[i]);
+				tempTextArray.push(" ");
+			}
+			ll += ll2;
+			tempTextArray = tempTextArray.join('');
+			tempTextArray = tempTextArray.split('');
+		}
+		
+		if(!tempTextArray[index2] || ll == 0){
+			mistakeNum--;
+			sendStats();
+			isPaused = true;
+			theEnd = true;
+		}
+		else {
+			changeHelp(tempTextArray[index2]);
+			if(tempTextArray[index2] == " ") tempTextArray[index2] = ("<span id="+span_id+" role='status' style='border: solid 2px #"+markerColor+"'>&nbsp</span>");
+			else tempTextArray[index2] = ("<span id="+span_id+" role='status' style='border: solid 2px #"+markerColor+"'>"+tempTextArray[index2]+"</span>");
+			$('#textarea1').html(tempTextArray.join(""));
+			$('#'+span_id).attr('tabindex', -1);
+			$('#'+span_id).focus();
+		}
+	}
+
+	function get_number_of_words(start_index){
+		temp = textArray.split(" ");
+		i_counter = 0;
+		total_index = 0;
+		for(i = start_index; i <= temp.length; i++) {
+			if(temp[i]){
+				if(total_index + temp[i].length < lineLengthWhole){
+					total_index += temp[i].length;
+					i_counter++;
+				}
+			}
+		}
+		return i_counter;
+	}
+
+	// 3 - s scrollanjem
+
+	function scrollText(e){
+
+		if (index < originalText.length) {
+			span_id = "span"+index;
+			if(firstType == 1) {
+				step = setInterval(function() {if(!isPaused) {
+							setTime();
+						}}, 100);
+				firstType = 0;
+			}
+			
+			textArray = originalText.slice(index + 1, index + lineLengthWhole + 1);
+			
+			var code = String.fromCharCode(e.which);
+			if (code == originalText[index]) {
+				if(originalText[index] == " ") textArray.unshift("<span id=" + index + " style='background-color:#" + cBackColor + "; border:0px; color:#" + cFontColor + "'> &nbsp; </span>");
+				else textArray.unshift("<span id=" + index + " style='background-color:#" + cBackColor + "; border:0px; color:#" + cFontColor + "'>"+originalText[index]+"</span>");
+				index++;
+				correctNum++;
+				tempCorrectNum++;
+			}
+			else {
+				if(efekti_zvok) zvok_napaka.play();
+				if(originalText[index] == " ") textArray.unshift("<span style='color:#" + mFontColor + "; background-color:#" + mBackColor + "'> &nbsp; </span>");
+				else textArray.unshift("<span style='color:#" + mFontColor + "; background-color:#" + mBackColor + "'>"+originalText[index]+"</span>");
+				index++;
+				mistakeNum++;
+				tempMistakeNum++;
+				//audio.play();
+			}
+			temp10++;
+		}
+		if(index == originalText.length){
+			isPaused = true;
+			theEnd = true;
+			sendStats();
+		}
+		
+		changeHelp(textArray[1]);
+		textArray[1] = ("<span id="+span_id+" role='status' style='border: solid 2px #"+markerColor+"'>"+textArray[1]+"</span>");
+		$('#textarea1').html(textArray.join(""));
+		$('#'+span_id).attr('tabindex', -1);
+		$('#'+span_id).focus();
+	}
+
+	// 4 - ena beseda
+	function oneWord(e){
+		span_id = "span"+index;
+		if(firstType == 1) {
+			step = setInterval(function() {if(!isPaused) {
+				setTime();
+			}}, 100);
+			firstType = 0;
+			tempTextArray[0] = ("<span id="+span_id+" role='status' style='border: solid 2px "+markerColor+"'>"+tempTextArray[0]+"</span>");
+		}
+			
+		var code = String.fromCharCode(e.which);
+		if (code == originalText[index]) {
+			tempTextArray[index2] = ("<span id=" + index + " style='background-color:#" + cBackColor + "; border:0px; color:#" + cFontColor + "'>"+originalText[index]+"</span>");
+			index++;
+			index2++;
+			correctNum++;
+			tempCorrectNum++;
+		}
+		else {
+			if(efekti_zvok) zvok_napaka.play();
+			tempTextArray[index2] = ("<span style='color:#" + mFontColor + "; background-color:#" + mBackColor + "'>"+originalText[index]+"</span>");
+			index++;
+			index2++;
+			mistakeNum++;
+			tempMistakeNum++;
+		}
+		temp10++;
+		
+		if(originalText[index - 1] == " "){
+			index2 = 0;
+			array_counter ++;
+			tempTextArray = textArray.split(" ");
+			
+			if(tempTextArray.length <= array_counter + 1) {
+				isPaused = true;
+				theEnd = true;
+				sendStats();
+			}
+			else{
+				tempTextArray = tempTextArray[array_counter];
+				tempTextArray = tempTextArray.split("");
+				tempTextArray.push('&nbsp');
+			}	
+		}
+
+		changeHelp(tempTextArray[index2]);
+		tempTextArray[index2] = ("<span id="+span_id+" role='status' style='border: solid 2px #"+markerColor+"'>"+tempTextArray[index2]+"</span>");
+		$('#textarea1').html(tempTextArray.join(""));
+		$('#'+span_id).attr('tabindex', -1);
+		$('#'+span_id).focus();
+	}
+
+	// 5 - ena crka
+
+	function oneLetter(e) {
+		span_id = "span"+index;
+		if(firstType == 1) {
+			step = setInterval(function() {if(!isPaused) {
+				setTime();
+			}}, 100);
+			firstType = 0;
+		}
+			
+		var code = String.fromCharCode(e.which);
+		if(textArray[index] != " "){
+			if (code == textArray[index]) {
+				tempTextArray[index2] = ("<span id=" + index + " style='background-color:#" + cBackColor + "; border:0px; color:#" + cFontColor + "'>"+textArray[index]+"</span>");
+				index++;
+				index2++;
+				correctNum++;
+				tempCorrectNum++;
+			}
+			else {
+				if(efekti_zvok && index2%2 == 0) zvok_napaka.play();
+				tempTextArray[index2] = ("<span style='color:#" + mFontColor + "; background-color:#" + mBackColor + "'>"+textArray[index]+"</span>");
+				index++;
+				index2++;
+				if(index2%2 != 0){
+					mistakeNum++;
+					tempMistakeNum++;
+				}
+			}
+		}
+		else {
+			index++;
+			index2++;
+		}
+		
+		temp10++;
+		
+		if(index2 == 2){
+			
+			index2 = 0;
+			
+			if(index >= textArray.length - 1) {
+				isPaused = true;
+				theEnd = true;
+				sendStats();
+			}
+			
+			tempTextArray = [];
+			tempTextArray.push(textArray[index]);
+			tempTextArray.push(textArray[index + 1]);
+			
+		}
+
+		changeHelp(tempTextArray[index2]);
+		$('#textarea1').html(tempTextArray.join(""));
+		$('#'+span_id).attr('tabindex', -1);
+		$('#'+span_id).focus();
+	}
+	
+	function closeGame() {
+		restart();
+		$(document).off("keypress");
+		$(document).off("keydown");
+	}
+
+
+	// HANDLER ------------------------------------------------------------------------------------
+	$(document).off("keypress");
+	$(document).off("keydown");
+	
+	$(document).keydown(function(e) {
+	
+	/*if(e.keyCode == 8){
+		e.preventDefault();
+	}*/
+	if(e.keyCode == 13){
+		if(theEnd) restart();
+	}
+	else if(e.keyCode == 17){
+		if(selectedMode == 5) replayHelp(textArray[index]);
+		else replayHelp(originalText[index]);
+	}
+	else if(e.keyCode == 123){
+		e.preventDefault();
+		isPaused = !isPaused;
+		
+		if(isPaused){
+			$('#pauza').css('display', 'block');
+			$('#fade').css('display', 'block');
+		}
+		else{
+			$('#pauza').css('display', 'none');
+			$('#fade').css('display', 'none');
+		}
+	}
+	else if(e.keyCode == 122){
+		e.preventDefault();
+		efekti_zvok = !efekti_zvok;
+	}
+	else if(e.keyCode == 20){
+		e.preventDefault();
+	}
+	else if(e.keyCode == 121) {
+		e.preventDefault();
+		tipke_zvok = !tipke_zvok;
+		
+		if($('#zvocnik_on').is(":visible")){
+			$('#zvocnik_on').hide();
+			$('#zvocnik_off').show();
+		}
+		else {
+			$('#zvocnik_off').hide();
+			$('#zvocnik_on').show();
+		}
+	}
+	else if(e.keyCode == 120) {
+		e.preventDefault();
+		isPaused = !isPaused;
+		gumb_pomoc = !gumb_pomoc;
+		if(gumb_pomoc) $('#navodila').show();
+		else $('#navodila').hide();
+	}
+	else if(e.keyCode == 37 && gumb_pomoc == true){
+		if( ! $('.current').hasClass('first')) {
+			$('.current').removeClass('current').hide()
+				.prev().show().addClass('current');
+			}
+		if ($('.current').hasClass('first')) {
+			$('#gumb_levo').attr('disabled', true);
+		}
+		$('#gumb_desno').attr('disabled', null);
+	}
+	else if(e.keyCode == 39 && gumb_pomoc == true){
+		if( ! $('.current').hasClass('last')) {
+			$('.current').removeClass('current').hide()
+				.next().show().addClass('current');
+		}
+		if ($('.current').hasClass('last')) {
+			$('#gumb_desno').attr('disabled', true);
+		}
+		$('#gumb_levo').attr('disabled', null);
+	}
+});
+
+$(document).keypress(function(e) {
+
+	/*if(e.keyCode == 8){
+		e.preventDefault();
+	}*/
+	if(e.keyCode == 13){
+		e.preventDefault();
+	}
+	else if(e.keyCode == 17){
+		e.preventDefault();
+	}
+    else if(textArray && originalText) {
+		if(!isPaused){
+			e.preventDefault(); //onemogoca skrolanje na spaceu
+			if(selectedMode == 1) allText(e);
+			else if (selectedMode == 2) lineText(e);
+			else if (selectedMode == 3) scrollText(e);
+			else if (selectedMode == 4) oneWord(e);
+			else if (selectedMode == 5) oneLetter(e);
+		}
+    }
+});
+</script> 
+<style type='text/css'>
+	.black_overlay{
+		display: none;
+		position: absolute;
+		top: 0%;
+		left: 0%;
+		width: 100%;
+		height: 100%;
+		background-color: black;
+		z-index:1001;
+		-moz-opacity: 0.8;
+		opacity:.80;
+		filter: alpha(opacity=80);
+	}
+
+	body, html{
+		height:100%;
+		margin:0;
+		padding:0;
+	}
+
+	#footer {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		width: 100%;
+	}
+
+	#pomoc_button {
+		float: bottom;
+		background: #e3e3e3;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0px;
+		font-family: Arial;
+		border:none; 
+		color: #000000;
+		font-size: 20px;
+		padding: 10px 10px 10px 10px;
+		text-decoration: none;
+		width: 200px;
+	}
+
+	#pomoc_button:hover {
+	  background: #c4c4c4;
+	  text-decoration: none;
+	}
+
+	#light_header {
+		display: block;
+		width:100%; 
+		background-color: #41C4B0;
+		height: 50%;
+		max-height: 250px;
+		font-size: 25px;
+		text-align: center;
+	}
+
+	#zvezdice {
+		width:100%; 
+		height: 15%;
+	}
+
+	#light_charts1 {
+		display: inline-block;
+		width:100%; 
+		background-color: #41C4B0;
+		height: 85%;
+		max-height: 380px;
+		font-size: 25px;
+	}
+
+	.slider{
+		height: 30%;
+	}
+
+	.number_result {
+		font-size: 40px;
+	}
+
+	.number_foot {
+		font-size: 15px;
+	}
+
+	.labels{
+		display: block;
+		font-size: 20px;
+		font-weight: bold;
+		margin-left: 5%;
+		padding-top: 10px;
+	}
+
+	.labels_mini{
+		font-size: 15px;
+		color: #444444;
+		margin-left: 10px;
+	}
+
+	.charts{
+		display: inline-block;
+		vertical-align:top;
+		background-color: #FFFFFF;
+		width:25%; 
+		margin-left: 5%;
+		margin-top: 5%;
+		padding-left: 0%;
+		padding-top: 0%;
+		height: 260px;
+		/* max-height: 250px; */
+		text-align: center;
+	}
+
+	.slider{
+	}
+
+	#slider1{
+		display: inline-block;
+		width: 50%;
+	}
+
+	#slider2{
+		display: inline-block;
+		width: 50%;
+	}
+
+	#slider3{
+		display: inline-block;
+		width: 50%;
+	}
+
+
+	.charts_blue {
+		width:100%; 
+		background-color: #eeeeee;
+		height: 90px;
+		font-size: 20px;
+		text-align: center;
+		color: #000000;
+	}
+		
+	.white_content {
+		display: none;
+		position: absolute;
+		left: 7%;
+		top: 7%;
+		width: 85%;
+		height: 85%;
+		background-color: white;
+		z-index:1002;
+		overflow: auto;
+		font-family: arial;
+		font-size: 25px;
+	}
+
+	.pavza{
+		text-align: center;
+		display: none;
+		position: absolute;
+		left: 30%;
+		top: 30%;
+		width: 40%;
+		height: 40%;
+		background-color: #41C4B0;
+		z-index:1002;
+		overflow: auto;
+		font-family: arial;
+	}
+
+	.ui-slider {
+		background: #AAAAAA;
+		height: 5px;
+		width: 100%;
+		margin-bottom: 20px;
+	}
+
+	.slider3{
+		background: linear-gradient(to right, #ff0000 0%, #ff0000 25%, #ff8000 25%, #ff8000 50%, #ffff00 50%, #ffff00 75%, #80ff00 75%, #80ff00 100%);;
+	}
+
+	#buttons{
+		float: right;
+		display: block;
+		margin-right: 6%;
+		margin-bottom: 30px;
+	}
+
+	.btn1 {
+	  -webkit-border-radius: 0;
+	  -moz-border-radius: 0;
+	  border-radius: 0px;
+	  font-family: Arial;
+	  color: #41C4B0;
+	  font-size: 20px;
+	  background: #ffffff;
+	  padding: 10px 15px 10px 15px;
+	  border: solid #41C4B0 1px;
+	  text-decoration: none;
+	}
+
+	.btn1:hover {
+	  background: #eeeeee;
+	  text-decoration: none;
+	}
+
+	.btn1:focus {
+	  background: #eeeeee;
+	  text-decoration: none;
+	}
+
+	.btn2 {
+	  -webkit-border-radius: 0;
+	  -moz-border-radius: 0;
+	  border-radius: 0px;
+	  border: none;
+	  font-family: Arial;
+	  color: #ffffff;
+	  font-size: 20px;
+	  background: #41C4B0;
+	  padding: 10px 15px 10px 15px;
+	  text-decoration: none;
+	}
+
+	.btn2:hover {
+	  background: #3AB09E;
+	  text-decoration: none;
+	}
+
+	.btn2:focus {
+	  background: #3AB09E;
+	  text-decoration: none;
+	}
+	
+	*:focus {
+		outline: 0;
+	}
+
+	.ui-slider .ui-slider-handle {
+		width:5px; 
+		height:20px; 
+		background: #000000; 
+		overflow: hidden; 
+		position: absolute;
+		top: -8px;
+		margin-left: 0px;
+		border-style:none; 
+	}
+
+	.ui-state-disabled {
+	   opacity:1;
+	}
+
+
+</style>
+<body role="application">
+<div id='Screen' style='height: 500px;'> 
+	<div id="navodila" style="display: none">
+		<div id="ozadje" style="position: absolute;top: 0%;left: 0%;width: 100%;height: 100%;background-color: black;z-index:1001;-moz-opacity: 0.8;opacity:.80;filter: alpha(opacity=80);"></div>
+		<div style="position: absolute; z-index:1001; top: 12%; left: 12%; width:75%; height: 75%">
+			<div style="display: inline-block; position: relative">
+				<div id="stran1" class="first current">
+						<img id="navodila1" style="width:100%; height:100%" src="blank.svg" alt="Dobrodošli v programu za učenje slepega desetprstnega tipkanja. Mogoče se sliši zamotano, ampak ni. Bodite vztrajni in redni z vajo, kmalu boste tipkarski mojster."></img>
+					</div>
+					<div id="stran2" style="display: none">
+						<img id="navodila2" style="width:100%; height:100%" src="blank.svg" alt="Sedite pokončno. Stol naj vam le delno podpira hrbet. Roka naj bo v komolcu naslonjena na mizo pod pravim kotom. Na računalniški ekran gledamo pod rahlim kotom navzdol."></img>
+					</div>
+					<div id="stran3" style="display: none">
+						<img id="navodila3" style="width:100%; height:100%" src="blank.svg" alt="Dlani naj se sproščeno naslanjajo na tipkovnico. Prsti leve dlani v osnovnem položaju ležijo na tipkah: A (mezinec) S (prstanec) D (sredinec) F (kazalec). Prsti desne dlani v osnovnem položaju ležijo na tipkah: J (kazalec) K (sredinec) L (prstanec) Č (mezinec). Palca sta na preslednici."></img>
+					</div>
+					<div id="stran4" style="display: none">
+						<img id="navodila4" style="width:100%; height:100%" src="blank.svg" alt="Osnovni položaj prstov"></img>
+					</div>
+					<div id="stran5" style="display: none">
+						<img id="navodila5" style="width:100%; height:100%" src="blank.svg" alt="Položaj palcev"></img>
+					</div>
+					<div id="stran6" style="display: none">
+						<img id="navodila6" style="width:100%; height:100%" src="blank.svg" alt="Položaj kazalcev"></img>
+					</div>
+					<div id="stran7" style="display: none">
+						<img id="navodila7" style="width:100%; height:100%" src="blank.svg" alt="Položaj sredincev"></img>
+					</div>
+					<div id="stran8" style="display: none">
+						<img id="navodila8" style="width:100%; height:100%" src="blank.svg" alt="Položaj prstancev"></img>
+					</div>
+					<div id="stran9" style="display: none">
+						<img id="navodila9" style="width:100%; height:100%" src="blank.svg" alt="Položaj mezincev"></img>
+					</div>
+					<div id="stran10" style="display: none">
+						<img id="navodila10" style="width:100%; height:100%" src="blank.svg" alt="Veliko začetnico pišemo tako, da mezinec pritisne tipko »shift«. Če je črka na tipki, ki jo pritisnemo s prstom leve roke, uporabimo desni »shift«, sicer pa ravno obratno."></img>
+					</div>
+					<div id="stran11" style="display: none">
+						<img id="navodila11" style="width:100%; height:100%" src="blank.svg" alt="Velika začetnica"></img>
+					</div>
+					<div id="stran12" style="display: none">
+						<img id="navodila12" style="width:100%; height:100%" src="blank.svg" alt="Začnite z vajami za posamezne črke. Posamezno vajo večkrat ponovite in se vračajte na tiste vaje, pri katerih se največkrat zmotite. Ko usvojite črke, se lotite še številk in znakov."></img>
+					</div>
+					<div id="stran13" class="last" style="display: none">
+						<img id="navodila13" style="width:100%; height:100%" src="blank.svg" alt="Razdelite si tipkanje čez vse dni v tednu. Bolje je vaditi vsak dan 10 minut kot pa le en dan v tednu uro in pol."></img>
+					</div>
+				<button id="zapri" onclick="skrij_navodila()" style="background: transparent;border: none !important;font-size:0;position: absolute; height: 50px; width: 50px; right: 2%; top: 2%"></button>
+				<button id="gumb_levo" disabled="disabled" style="background: transparent;border: none !important;font-size:0;position: absolute; height: 50px; width: 50px; left: 2%; bottom: 2%"></button>
+				<button id="gumb_desno" style="background: transparent;border: none !important;font-size:0;position: absolute; height: 50px; width: 50px; right: 2%; bottom: 2%"></button>
+			</div>
+		</div>
+	</div>
+    <div id="light" class="white_content">
+		<div id="light_header">
+			<div id="zvezdice">
+				<br><br>
+				<object id="zvezda1" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+				<object id="zvezda2" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+				<object id="zvezda3" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+				<object id="zvezda4" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+				<object id="zvezda5" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+				<br><br>
+				<label class="number_result" style="color: #FFFFFF">Dobro ti gre. Si lahko še hitrejši?</label>
+			</div>
+		</div>
+		<div id="light_charts1">
+			<div class="charts" style="margin-left: 2%">
+				<div class="charts_blue">
+					<br>
+					<label>Hitrost tipkanja</label>
+				</div>
+				<br>
+				<div style="height: 50%; margin 0; line-height: 20px;">
+					<label id="stiri" class="number_result"></label><br>
+					<label class="number_foot">besed/minuto</label>
+					<div class="slider">
+						<object id="O1" style="width: 15%" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+						<div id="slider1" style="vertical-align: middle"></div>
+						<object id="O2" style="width: 20%; display: inline-block" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+					</div>
+				</div>
+			</div>
+			<div class="charts">
+				<div class="charts_blue">
+					<br>
+					<label>Hitrost tipkanja z upoštevanjem napak</label><br>
+				</div>
+				<br>
+				<div style="height: 50%; margin 0; line-height: 20px;">
+					<label id='pet' class="number_result"> 88 </label><br>
+					<label class="number_foot">besed/minuto</label>
+					<div class="slider">
+						<object id="O3" style="width: 15%" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+						<div id="slider2" style="vertical-align: middle"></div>
+						<object id="O4" style="width: 20%;" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+					</div>
+				</div>
+			</div>
+			<div class="charts">
+				<div class="charts_blue">
+					<br>
+					<label>Pravilnost</label>
+				</div>
+				<br>
+				<div style="height: 50%; margin 0; line-height: 20px;">
+					<label id="sest" class="number_result">88</label>
+					<br><br><br>
+					<div class="slider">
+						<br>
+						<div id="slider3" class="slider3"></div>
+						<br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br><br>
+		<div id="buttons">
+				<button onclick="restart()" class="btn2">PONOVI VAJO</button>
+		</div>
+		<label class="labels" style="text-align: left"><span id="dva"></span> <span id="dvadva" class="labels_mini"></span></label>
+		<label id="h_znaki" class="labels" style="text-align: left"></label>
+		<label id="tri" class="labels" style="text-align: left"></label>
+		<br><br><br>
+		<div id="grafi" style="text-align: left">
+			<div id="graf1" style="position: relative;">
+				<label class="labels">Hitrost tipkanja z upoštevanjem napak <span class="labels_mini">(število besed/30s)</span></label>
+				<div id="chartContainer1" style="width: 90%; height: 170px; margin-left: 5%"></div>
+				<br>
+			</div>
+			<div id="graf2" style="position: relative;">
+				<label class="labels">Hitrost tipkanja <span class="labels_mini">(število besed/30s)</span></label>
+				<div id="chartContainer2" style="width: 90%; height: 170px; margin-left: 5%"></div>
+				<br>
+			</div>
+			<div id="graf3" style="position: relative;">
+				<div style="display: inline; text-align: left"> 
+					<label class="labels">Odstotek napak <span class="labels_mini">(odstotek napak/30s)</span></label>
+				</div>
+				<div id="chartContainer3" style="width: 90%; height: 170px; margin-left: 5%"></div>
+				<br>
+			</div>
+		</div>
+	</div>	
+	
+	<div id="pauza" class="pavza">
+		<br><br><br>
+		<label style="font-size: 60px; color: white">PAVZA</label><br><br>
+		<label style="font-size: 30px; color: white">Za nadaljevanje pritisni F12</label>
+	</div>	
+
+    <div id="fade" class="black_overlay"></div>
+	
+	<div style="position: relative; z-index: 100;">
+		<label id="timer" style="float: left; margin-top: 20px; margin-left: 20px; top: 100px; font-size:25px">00:00</label>
+		<img id="zvocnik_on" class="visible" style="width:100px; height:100px; top: 100px; float: right" src="blank.svg"></img>
+		<img id="zvocnik_off" style="display: none; width:100px; height:100px; top: 100px; float: right" src="blank.svg"></img>
+		<button style="position: absolute; width:100px; height:100px; right: 0 ;background: transparent;border: none !important;font-size:0;" onclick="soundOn()"></button>
+	</div>
+		
+	<div id="wrap2" style="position: absolute; left: 0; right: 0; width:100%; height: 100%; z-index: 0;">
+		<div id="wrap" style="width:100%; height: 50%; margin: auto; text-align: center; overflow-y:auto">
+			<!--<br/><br/><br/><br/>-->
+			<div class="container" id="textarea1" style="margin: auto; margin-top: 4%; font-family: arial; font-size:25px; text-align: center; width: 80%"></div>
+			<br/><br/><br/><br/>
+		</div>
+	</div>
+	
+	<div id="footer" style="z-index: 2;">
+		<div style="text-align:center; margin:auto; width:100%">
+			<button id="pomoc_button" style="margin-bottom: 20px">Skrij pomoč</button>
+		</div>
+		<div id="pomoc" style="width:100%; height: 50%; background-color: #14A48A; position: relative; display: inline-block none; vertical-align:bottom; text-align: center">
+			<object id="l_roka" style="width: 15%; margin-right: 5%; position:relative; margin-bottom:0;" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+			<object id="tipkovnica" style="width: 45%; margin-bottom: 2%; margin-top: 2%;" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+			<object id="d_roka" style="width: 15%; margin-left: 5%; margin-bottom:0; position:relative; bottom:0; right:0;" type="image/svg+xml" data="blank.svg">Tvoj brskalnik ne podpira SVG slik</object>
+		</div>
+	</div>
+	
+	<script>
+		$('#gumb_desno').click(function() {
+			if( ! $('.current').hasClass('last')) {
+				$('.current').removeClass('current').hide()
+					.next().show().addClass('current');
+			}
+			if ($('.current').hasClass('last')) {
+				$('#gumb_desno').attr('disabled', true);
+			}
+			$('#gumb_levo').attr('disabled', null);
+		});
+
+		$('#gumb_levo').click(function() {
+			if( ! $('.current').hasClass('first')) {
+				$('.current').removeClass('current').hide()
+					.prev().show().addClass('current');
+			}
+			if ($('.current').hasClass('first')) {
+				$('#gumb_levo').attr('disabled', true);
+			}
+			$('#gumb_desno').attr('disabled', null);
+		});
+	
+		$("#pomoc_button").click(function(){
+			$("#pomoc").toggle();
+			if($("#tipkovnica").is(":visible")){
+				$("#wrap").css('height', '80%');
+				$("#pomoc_button").html("Skrij pomoč");
+			} 
+			else {
+				$("#wrap").css('height', '50%');
+				$("#pomoc_button").html("Pomoč");
+			}
+		});
+		
+		function soundOn(){
+			tipke_zvok = !tipke_zvok;
+			
+			if($('#zvocnik_on').is(":visible")){
+				$('#zvocnik_on').hide();
+				$('#zvocnik_off').show();
+			}
+			else {
+				$('#zvocnik_off').hide();
+				$('#zvocnik_on').show();
+			}
+		}
+		
+		function skrij_navodila(){
+			isPaused = !isPaused;
+			gumb_pomoc = !gumb_pomoc;
+			if(gumb_pomoc) $('#navodila').show();
+			else $('#navodila').hide();
+		}
+		
+	</script>
+</div>
+</body>
+</html>

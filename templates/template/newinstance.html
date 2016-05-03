@@ -1,0 +1,789 @@
+	<div class='FirstContentContainer'>
+		<form id='InstanceCreateForm' method='POST' action='api/InstanceCreate.php' class='FormTag'>
+			<input type='hidden' id='FormGameID' name='GameID' value='-1'>
+			<input type='hidden' name='InstancePresetUsed' id='FormInstancePresetUsed' value='UNKNOWN'>
+			
+			<div class="row">
+				<div class="col-lg-12 PageHearderContainer">
+					<h3 class='ContentHeader ContentHeaderDark'>{{NEWINSTANCE_NEW_ACTIVITY_TITLE}}</h3>
+					<img src='{{TEMPLATE_DIR}}/images/line.svg' class='PageHeaderLineImg'>
+				</div>
+			</div>
+			<div class="row">
+				<div class='col-lg-12 NavigationContainer'>
+					{{NEWINSTANCE_STEPS}}:
+					<a id='PartButton1' class='NavigationItemSelected' href='#' onclick='ShowPart1(); return false;'>{{NEWINSTANCE_STEP_TEMPLATE}}</a>
+					
+					<img src='{{TEMPLATE_DIR}}/images/arrow_right.svg' class='NavigationArrowImg'> 
+					
+					<a id='PartButton2' class='NavigationItemUnselected NavigationItemDisabled' href='#' onclick='ShowPart2(); return false;'>{{NEWINSTANCE_STEP_DATA}}</a>
+					
+					<img src='{{TEMPLATE_DIR}}/images/arrow_right.svg' class='NavigationArrowImg'> 
+					
+					<a id='PartButton3' class='NavigationItemUnselected NavigationItemDisabled' href='#' onclick='ShowPart3(); return false;'>{{NEWINSTANCE_STEP_SETTINGS}}</a>
+				</div>
+			</div>
+			
+			<div class="row" id='NewInstancePart1'>
+				<div class='col-lg-12 FormContainer'>
+					<div class='SubpageHeader'>{{NEWINSTANCE_TEMPLATE}}</div>
+					
+					<div class='SubpageInstructions'>{{NEWINSTANCE_TEMPLATE_DESCRIPTION}}</div>
+				
+					<div class='col-lg-3 col-md-3 col-sm-3 col-xs-height col-full-height Cell'>
+						<div id='BaseTile1' class='NewInstanceBaseTile' onclick='Select11(); return false;'>
+							<div class='GameTileHeader' style='margin-top: 105px;'>{{NEWINSTANCE_TEMPLATE_ACTIVITY}}</div>
+							<p>
+						</div>
+					</div>
+					<div class='col-lg-3 col-md-3 col-sm-3 col-xs-height col-full-height Cell'>
+						<div id='BaseTile2' class='NewInstanceBaseTile' onclick='Select12(); return false;'>
+							<div class='GameTileHeader' style='margin-top: 105px;'>{{NEWINSTANCE_TEMPLATE_GAME}}</div>
+							<p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" id='NewInstancePart1-1' style='display: none;'>
+				<div class='col-lg-12 FormContainer' style='padding-top: 0px;'>
+					<div class="row">
+						<div class='col-lg-12'>
+							<div class='FormEntryTitle'>{{NEWINSTANCE_TEMPLATE_ACTIVITY_SELECT}}</div>
+							<!--<input type='text' placeholder='Išči...' class='FormEntryInputText'><br/>-->
+						</div>
+						<div class='col-lg-3' id='ActClassList' style='height: 400px; overflow-y: auto; overflow-x: hidden; border-right: solid 1px #cccccc;'>
+							<b>Razred 1</b><br/>
+							<b>Razred 2</b><br/>
+							<b>Razred 3</b><br/>
+							<b>Razred 4</b><br/>
+							<b>Razred 5</b><br/>
+							<b>Razred 6</b><br/>
+							<b>Razred 7</b><br/>
+						</div>
+						<div class='col-lg-9' style='height: 400px; overflow-y: auto; overflow-x: hidden;'>
+							<div class="row" id="ClassListInstanceList">
+								
+							</div>
+						</div>
+						<div class='col-lg-12' style='padding-top: 30px;'>
+							<div class="FormButton">
+								<div class="FormButtonContent FormButtonDark" onclick="ShowPart2(); return false;">
+									<span>{{NEWINSTANCE_BUTTON_NEXT}}</span>
+								</div>
+							</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+			<div class="row" id='NewInstancePart1-2' style='display: none;'>
+				<div class='col-lg-12 FormContainer' style='padding-top: 0px;'>
+					<div class="row">
+						<div class='col-lg-12'>
+							<div class='FormEntryTitle'>{{NEWINSTANCE_TEMPLATE_GAME_SELECT}}</div>
+							<!-- <input type='text' placeholder='Išči...' class='FormEntryInputText'><br/> -->
+						</div>
+						<div class='col-lg-3' id='GameList' style='height: 400px; overflow-y: auto; overflow-x: hidden; border-right: solid 1px #cccccc;'>
+							<b>Predloga 1</b><br/>
+							<b>Predloga 2</b><br/>
+							<b>Predloga 3</b><br/>
+							<b>Predloga 4</b><br/>
+							<b>Predloga 5</b><br/>
+							<b>Predloga 6</b><br/>
+							<b>Predloga 7</b><br/>
+						</div>
+						<div class='col-lg-9' style='height: 400px; overflow-y: auto; overflow-x: hidden;'>
+							<div class="row" id="GameListInstanceList">
+								
+							</div>
+						</div>
+						<div class='col-lg-12' style='padding-top: 30px;'>
+							<div class="FormButton">
+								<div class="FormButtonContent FormButtonDark" onclick="ShowPart2(); return false;">
+									<span>{{NEWINSTANCE_BUTTON_NEXT}}</span>
+								</div>
+							</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+			
+			<!-- Part 2 -->
+			<div class="row" id='NewInstancePart2' style='display: none;'>
+				<div class="col-lg-12 FormContainer">
+					<div class='SubpageHeader'>{{NEWINSTANCE_DATA}}</div>
+					
+					<div class='SubpageInstructions'>{{NEWINSTANCE_DATA_DESCRIPTION}}</div>
+					
+					<div class='FormEntryTitle'>{{NEWINSTANCE_DATA_NAME}}</div>
+					<input class="FormEntryInputText" name='InstanceName' type="text" placeholder="{{NEWINSTANCE_DATA_NAME_BOX}}" maxlength="20" value='' id='InstanceNameInputField' onkeyup='CheckIfInstanceNamed()'>
+					<input type='hidden' name='InstanceDescription' value="">
+						
+					<div class='FormEntryTitle'>{{NEWINSTANCE_DATA_SAVE_LOCATION}}</div>
+					<select id='NewInstanceClassList' name='ClassID' class='FormEntryInputSelect'>
+						<option >Razred 1</option>
+						<option >Razred 2</option>
+						<option >Razred 3</option>
+						<option >Razred 4</option>
+					</select>
+					
+					<div class='FormEntryTitle'>{{NEWINSTANCE_DATA_PIC}}</div>
+					<div class='FormInputImageContainer' onclick="editingImage = 'NewInstanceGlyph'; editingImageInputField = 'InstanceGlyphInputField'; fetchContent('SELECTIMAGE');">
+						<div class='FormInputImageBorder'>
+							<input type='hidden' name='InstanceGlyph', id='InstanceGlyphInputField' value="">
+							<img id='NewInstanceGlyph' src='{{TEMPLATE_DIR}}/images/blankimage.svg' class='FormInputImage' />
+						</div>
+					</div>
+					<div class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick="ShowPart3(); return false;">
+							<span>{{NEWINSTANCE_BUTTON_NEXT}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Step 3 -->
+			<div class="row" id='NewInstancePart3' style='display: none;'>
+				<div class="col-lg-12 FormContainer">
+					<div class='SubpageHeader'>{{NEWINSTANCE_SETTINGS}}</div>
+					
+					<div class='SubpageInstructions'>{{NEWINSTANCE_SETTINGS_DESCRIPTION}}</div>
+					
+					<span id='VarDataForAPI'>
+						
+					</span>
+					
+					<h3>{{NEWINSTANCE_SETTINGS_INSTRUCTIONS}}</h3>
+					<span id='GlobalInstructions'>
+					
+					</span>
+					
+					<h3>{{NEWINSTANCE_SETTINGS_GLOBAL}}</h3>
+					<span id='PredefinedVars'>
+						
+					</span>
+					
+					<h3>{{NEWINSTANCE_SETTINGS_DETAIL}}</h3>
+					<span id='VarList'>
+						
+					</span>
+					<div class="FormButton">
+						<div class="FormButtonContent FormButtonDark" onclick="ajaxRequest('InstanceCreateForm', validationParamsInstanceCreate); return false;">
+							<span>{{NEWINSTANCE_SETTINGS_BUTTON_SAVE}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div id='HoveringMenu' style='width: 200px; background-color: red; position: absolute; left: 0px; top: 0px; display: none; z-index: 20;'>
+				<div style='width: 200px; height: 50px; background-color: yellow;' onclick='fetchContent("CLASS")'>Odpri razred</div>
+				<div style='width: 200px; height: 50px; background-color: #ffcc00;' onclick='PageToOpen = 2; fetchContent("CLASS")'>Uredi razred</div>
+				<div style='width: 200px; height: 50px; background-color: #ff9900;' onclick='PageToOpen = 2; fetchContent("MANAGECLASSES")'>Upravljaj uporabnike</div>
+				<div style='width: 200px; height: 50px; background-color: #ff6600;' onclick='$("#HoveringMenu").hide();'>Close</div>
+			</div>
+			
+			<script type='text/javascript'>
+				UserCheck();
+			
+				var CanSeePage2 = false;
+				var CanSeePage3 = false;
+			
+				function replaceAll(find, replace, str) {
+					return str.replace(new RegExp(find, 'g'), replace);
+				}
+				var BaseSelection = 0;
+			
+				function ShowPart1(){
+					$("#NewInstancePart1").show();
+					$("#NewInstancePart2").hide();
+					$("#NewInstancePart3").hide();
+					$("#PartButton1").removeClass("NavigationItemUnselected").addClass("NavigationItemSelected");
+					$("#PartButton2").removeClass("NavigationItemSelected").addClass("NavigationItemUnselected");
+					$("#PartButton3").removeClass("NavigationItemSelected").addClass("NavigationItemUnselected");
+					if(BaseSelection == 1){
+						Select11();
+					}
+					if(BaseSelection == 2){
+						Select12();
+					}
+				}
+				
+				var classListRetrieved = false;
+				function ShowPart2(){
+					if(!CanSeePage2){
+						alert(Mustache.render("{{NEWINSTANCE_ALERT_FIRST_SELECT_BASE}}", SiteLanguage));
+						return;
+					}
+					$("#NewInstancePart1").hide();
+					$("#NewInstancePart2").show();
+					$("#NewInstancePart3").hide();
+					$("#NewInstancePart1-1").hide();
+					$("#NewInstancePart1-2").hide();
+					$("#PartButton1").removeClass("NavigationItemSelected").addClass("NavigationItemUnselected");
+					$("#PartButton2").removeClass("NavigationItemUnselected").addClass("NavigationItemSelected");
+					$("#PartButton3").removeClass("NavigationItemSelected").addClass("NavigationItemUnselected");
+					if(!classListRetrieved){
+						ajaxRequest("", validationParamsGetClassList);
+					}
+				}
+				function ShowPart3(){
+					if(!CanSeePage3){
+						alert(Mustache.render("{{NEWINSTANCE_ALERT_FIRST_NAME_INSTANCE}}", SiteLanguage));
+						return;
+					}
+					$("#GlobalInstructions").html(selectedGameInfo.teacher_instructions);
+					
+					$("#NewInstancePart1").hide();
+					$("#NewInstancePart2").hide();
+					$("#NewInstancePart3").show();
+					$("#NewInstancePart1-1").hide();
+					$("#NewInstancePart1-2").hide();
+					$("#PartButton1").removeClass("NavigationItemSelected").addClass("NavigationItemUnselected");
+					$("#PartButton2").removeClass("NavigationItemSelected").addClass("NavigationItemUnselected");
+					$("#PartButton3").removeClass("NavigationItemUnselected").addClass("NavigationItemSelected");
+					$('[data-toggle="tooltip"]').tooltip();
+					
+					$(".HoveringTileMenu").click(function(e){
+						var x = e.pageX;
+						var y = e.pageY;
+						$("#HoveringMenu").css({"top": y, "left": x}).show();
+					})
+				}
+				
+				function Select11(){
+					BaseSelection = 1;
+					$("#NewInstancePart1-1").show();
+					$("#NewInstancePart1-2").hide();
+					if(!classListRetrieved){
+						ajaxRequest("", validationParamsGetClassList);
+					}
+					$("#BaseTile1").addClass("NewInstanceBaseTileSelected");
+					$("#BaseTile2").removeClass("NewInstanceBaseTileSelected");
+				}
+				 
+				function Select12(){
+					BaseSelection = 2;
+					$("#NewInstancePart1-1").hide();
+					$("#NewInstancePart1-2").show();
+					$("#BaseTile1").removeClass("NewInstanceBaseTileSelected");
+					$("#BaseTile2").addClass("NewInstanceBaseTileSelected");
+				}
+			</script>
+		</form>
+	</div>
+	<script type='text/javascript'>
+		var selectedGameID = -1;
+		var selectedInstanceID = -1;
+		var selectedGameInfo = "";
+		
+		var games = {};
+		var instances = {};
+		var varvalues = {};
+		
+		var validationParamsGetAllGames = {
+			apiURL: "api/GameGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				games = response.gamelist;
+				$("#GameList").html("");
+				if(typeof games != "undefined"){
+					for(var i = 0; i < games.length; i++){
+						var game = games[i];
+						var html = "";
+						html +=	"<div id='BaseGameTile-"+(game.id)+"' class='FolderExplorerFolder' onclick='selectGame("+(game.id)+"); return false;'>";
+						html +=	"	<span class='FolderExplorerFolderText'>"+(game.name)+"</span>"; 
+						//html += "	<p>"+(game.description)+"</p>";
+						html +=	"</div>";
+						$("#GameList").append(html);
+					}
+				}
+			}
+		};
+		
+		var validationParamsGetInstancesForGame = {
+			apiURL: "api/InstanceGetForGame.php?gameID="+selectedGameID,
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				$(".FolderExplorerFolderSelected").removeClass("FolderExplorerFolderSelected");
+				$("#BaseGameTile-"+response.game_id).addClass("FolderExplorerFolderSelected");
+				$("#GameListInstanceList").html("");
+				
+				var html = "";
+				html +=	"<div class='col-lg-3 col-md-3 col-sm-3 col-xs-height col-full-height FolderExplorerFileContainer'>";
+				html +=	"		<div id='GameInstanceEntry-BLANK' class='FolderExplorerFile' onclick='selectInstance(\"BLANK\"); return false;'>";
+				html +=	"			<div class='FolderExplorerFileImageContainer'>";
+				html +=	"				<img src='{{TEMPLATE_DIR}}/images/blank.svg' class='FolderExplorerFileImage' />";
+				html +=	"			</div>";
+				html +=	"			<div class='FolderExplorerFileTextContainer'>";
+				html +=	"				<span class='FolderExplorerFileText'>{{NEWINSTANCE_TEMPLATE_BLANK_VALUES}}</span>";  
+				html +=	"			</div>";
+				html +=	"		</div>";
+				html +=	"	</div>";
+				$("#GameListInstanceList").append(html);
+				
+				var html = "";
+				html +=	"<div class='col-lg-3 col-md-3 col-sm-3 col-xs-height col-full-height FolderExplorerFileContainer'>";
+				html +=	"		<div id='GameInstanceEntry-DEFAULT' class='FolderExplorerFile' onclick='selectInstance(\"DEFAULT\"); return false;'>";
+				html +=	"			<div class='FolderExplorerFileImageContainer'>";
+				html +=	"				<img src='{{TEMPLATE_DIR}}/images/default.svg' class='FolderExplorerFileImage' />";
+				html +=	"			</div>";
+				html +=	"			<div class='FolderExplorerFileTextContainer'>";
+				html +=	"				<span class='FolderExplorerFileText'>{{NEWINSTANCE_TEMPLATE_DEFAULT_VALUES}}</span>"; 
+				html +=	"			</div>";
+				html +=	"		</div>";
+				html +=	"	</div>";
+				$("#GameListInstanceList").append(html);
+				
+				instances = response.instanceslist;
+				if(typeof instances != "undefined"){
+					for(var i = 0; i < instances.length; i++){
+						var instance = instances[i];
+						var html = "";
+						html +=	"	<div class='col-lg-3 col-md-3 col-sm-3 col-xs-height col-full-height FolderExplorerFileContainer'>";
+						html +=	"		<div id='GameInstanceEntry-"+(instance.id)+"' class='FolderExplorerFile' onclick='selectInstance("+(instance.id)+"); return false;'>";
+						html +=	"			<div class='FolderExplorerFileImageContainer'>";
+						html +=	"				<img src='"+(instance.glyph)+"' class='FolderExplorerFileImage' />";
+						html +=	"			</div>";
+						html +=	"			<div class='FolderExplorerFileTextContainer'>";
+						html +=	"				<span class='FolderExplorerFileText'>"+(instance.name)+"</span>"; 
+						html +=	"			</div>";
+						html +=	"		</div>";
+						html +=	"	</div>";
+						$("#GameListInstanceList").append(html);
+					}
+				}
+				validationParamsGetGameInfo.apiURL = "api/GameGetInfo.php?gameID="+selectedGameID;
+				ajaxRequest("", validationParamsGetGameInfo);
+			}
+		};
+		
+		
+		
+		var validationParamsGetInstancesForClass = {
+			apiURL: "api/InstanceGetForClass.php?classID=",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				$(".FolderExplorerFolderSelected").removeClass("FolderExplorerFolderSelected");
+				$("#BaseClassTile-"+response.class_id).addClass("FolderExplorerFolderSelected");
+			
+				$("#ClassListInstanceList").html("");
+				
+				instances = response.instanceslist;
+				if(typeof instances != "undefined"){
+					for(var i = 0; i < instances.length; i++){
+						var instance = instances[i];
+						var html = "";
+						html +=	"	<div class='col-lg-3 col-md-3 col-sm-3 col-xs-height col-full-height FolderExplorerFileContainer'>";
+						html +=	"		<div id='ClassInstanceEntry-"+(instance.id)+"' class='FolderExplorerFile' onclick='selectInstance("+(instance.id)+"); return false;'>";
+						html +=	"			<div class='FolderExplorerFileImageContainer'>";
+						html +=	"				<img src='"+(instance.glyph)+"' class='FolderExplorerFileImage' />";
+						html +=	"			</div>";
+						html +=	"			<div class='FolderExplorerFileTextContainer'>";
+						html +=	"				<span class='FolderExplorerFileText'>"+(instance.name)+"</span>"; 
+						html +=	"			</div>";
+						html +=	"		</div>";
+						html +=	"	</div>";
+						$("#ClassListInstanceList").append(html);
+					}
+				}
+			}
+		};
+		
+		//Adds a new entry to the string list
+		//Index = variable number
+		//ID = entry number (IE 7th string in this variable)
+		var addStringListEntry = function(varname, value, index, id){
+			//alert(varname +"; "+value+"; "+$("#filelist-"+varname));
+			//var html = "			<input id='filelist-"+varname+"-element-0' type='text' class='form-control' value='"+value+"'>";
+			
+			if(id == "NEXT"){
+				var id = 0;
+				while(true){
+					if($("#stringlist-"+varname+"-element-"+id).length == 0){
+						break;
+					}
+					id++;
+				}
+			}
+			
+			//alert(varname +"; "+value+"; "+$("#stringlist-"+varname));
+			var html = "			<input id='stringlist-"+varname+"-element-"+id+"' name='VariableValue-"+index+"-"+id+"' type='text' class='form-control' value='"+value+"'>";
+			$("#stringlist-"+varname).append($(html));
+		}
+		
+		var addFileListEntry = function(varname, value, index, id){
+			//alert(varname +"; "+value+"; "+$("#filelist-"+varname));
+			//var html = "			<input id='filelist-"+varname+"-element-0' type='text' class='form-control' value='"+value+"'>";
+			
+			if(id == "NEXT"){
+				var id = 0;
+				while(true){
+					if($("#File-"+varname+"-"+id+"-Image").length == 0){
+						break;
+					}
+					id++;
+				}
+			}
+			
+			var valueInputField = value;
+			if (typeof value == "undefined" || value == "" || value == "image.svg"){
+				value = "{{TEMPLATE_DIR}}/images/blankimage.svg";
+				valueInputField = "";
+			}
+			
+			var html = "";
+			html += "<div id='EditImageContainer-"+varname+"-"+id+"' class='col-lg-2 FormInputImageContainer'>";
+			html += "	<div class='FormInputImageBorder'>";
+			html += "		<input type='hidden'  name='VariableValue-"+index+"-"+id+"' id='File-"+varname+"-"+id+"-InputField' value='"+valueInputField+"'>";
+			html += "		<img id='File-"+varname+"-"+id+"-Image' src='"+value+"' class='FormInputImage' removableImage='1' />";
+			html += "	</div>";
+			html += "</div>";
+			
+			$("#filelist-"+varname).append($(html));
+			$("#EditImageContainer-"+varname+"-"+id).click(function(e){
+				event.stopPropagation();
+				editingImage = "File-"+varname+"-"+id+"-Image"; 
+				editingImageInputField = "File-"+varname+"-"+id+"-InputField"; 
+				fetchContent('SELECTIMAGE');
+			});
+		}
+		
+		var validationParamsGetGameInfo = {
+			apiURL: "api/GameGetInfo.php?gameID="+selectedGameID,
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				selectedGameInfo = response;
+			}
+		};
+		
+		var validationParamsGetGameInfoThenInstance = {
+			apiURL: "api/GameGetInfo.php?gameID="+selectedGameID,
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				selectedGameInfo = response;
+				validationParamsGetInstanceInfo.apiURL = "api/InstanceGetInfo.php?instanceID="+selectedInstanceID;
+				ajaxRequest("", validationParamsGetInstanceInfo);
+			}
+		};
+		
+		var validationParamsInstanceCreate = {
+			apiURL: "api/InstanceCreate.php",
+			method: "POST",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+			
+			}
+		};
+		
+		var validationParamsGetInstanceInfoThenGame = {
+			apiURL: "api/InstanceGetInfo.php?instanceID="+selectedInstanceID,
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				selectedGameID = parseInt(response.app_id);
+				$("#FormGameID").val(selectedGameID);
+				//alert(selectedGameID);
+				validationParamsGetGameInfoThenInstance.apiURL = "api/GameGetInfo.php?gameID="+selectedGameID;
+				ajaxRequest("", validationParamsGetGameInfoThenInstance);
+			}
+		};
+		var butt3;
+		var validationParamsGetInstanceInfo = {
+			apiURL: "api/InstanceGetInfo.php?instanceID="+selectedInstanceID,
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				$(".FolderExplorerFileSelected").removeClass("FolderExplorerFileSelected");
+				$("#GameInstanceEntry-"+selectedInstanceID).addClass("FolderExplorerFileSelected");
+				$("#ClassInstanceEntry-"+selectedInstanceID).addClass("FolderExplorerFileSelected");
+				varvalues = response.variables;
+				//alert(selectedGameInfo);
+				butt3 = response;
+				
+				for(var varname in selectedGameInfo.variables){
+					var variable2 = selectedGameInfo.variables[varname];
+					//console.log(varname);
+					//console.log(selectedGameInfo.variables[varname])
+					//console.log(varvalues[varname]);
+					selectedGameInfo.variables[varname]["value"] = varvalues[varname]["value"];
+				}
+				createPredefinedEditPanel();
+				createVariableEditPanel();
+			}
+		};
+		
+		var validationParamsGetClassList = {
+			apiURL: "api/ClassGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				$("#ActClassList").html("");
+				$("#NewInstanceClassList").html("");
+				classlist = response.classlist;
+				butt2 = classlist;
+				classListRetrieved = true;
+				if(typeof classlist != "undefined"){
+					for(var i = 0; i < classlist.length; i++){
+						var cls = classlist[i];
+						var html = "";
+						html +=	"<div id='BaseClassTile-"+(cls.id)+"' class='FolderExplorerFolder' onclick='selectClass("+(cls.id)+"); return false;'>";
+						html +=	"	<span class='FolderExplorerFolderText'>"+(cls.name)+"</span>"; 
+						//html += "	<p>"+(game.description)+"</p>";
+						html +=	"</div>";
+						$("#ActClassList").append(html);
+						
+						html = "";
+						html += "<option value='"+(cls.id)+"'>"+(cls.name)+"</option>"
+						$("#NewInstanceClassList").append(html);
+					}
+				}
+				$("#NewInstanceClassList").val(openClassID); 
+			}
+		};
+		
+		function selectGame(gameID){
+			selectedGameID = gameID;
+			$("#FormGameID").val(gameID);
+			validationParamsGetInstancesForGame.apiURL = "api/InstanceGetForGame.php?gameID="+selectedGameID;
+			ajaxRequest("", validationParamsGetInstancesForGame);
+		}
+		
+		function selectClass(classID){
+			validationParamsGetInstancesForClass.apiURL = "api/InstanceGetForClass.php?classID="+classID;
+			ajaxRequest("", validationParamsGetInstancesForClass);
+		}
+		
+		function createPredefinedEditPanel(){
+			$("#PredefinedVars").html(""); 
+			var oneExists = false;
+			
+			function printPredefinedVariable(variable){
+				var html = "";
+				var varname = variable["name"];
+				html +=	"	<div class='col-lg-12 col-md-12 col-sm-12 col-xs-height col-full-height' style='margin-top: 10px;'>";
+				
+				var editInst = replaceAll("'", "\\'", variable["edit_instructions"]);
+				
+				html +=	"		<div class='FormEntryTitle' style='display: inline-block;'>"+variable["description"]+"</div> <div style='display: inline-block' data-toggle='tooltip' data-placement='top' title='"+editInst+"'><img src='{{TEMPLATE_DIR}}/images/i.svg' style='width: 16px; margin-bottom: 2px;'></div> <div style='display: inline-block;'>({{NEWINSTANCE_DATATYPE_INTEGER}} "+variable["min"]+" - "+variable["max"]+")</div>";
+				html += "<input type='number' name='"+variable["input_field_name"]+"' id='input-"+varname+"' class='FormEntryInputText' value='"+variable["default"]+"' min='"+variable["min"]+"' max='"+variable["max"]+"' step='1'>";
+				
+				
+				html +=	"	</div>";
+				
+				$("#PredefinedVars").append(html);
+			}
+			
+			if(parseInt(selectedGameInfo["default_difficulty"]["editable"]) == 1){
+				var variable = selectedGameInfo["default_difficulty"];
+				variable["name"] = "{{NEWINSTANCE_DIFFICULTY_NAME}}";
+				variable["description"] = "{{NEWINSTANCE_DIFFICULTY_DESCRIPTION}}";
+				variable["input_field_name"] = "InstanceDifficulty";
+				printPredefinedVariable(variable);
+				oneExists = true;
+			}
+			
+			if(parseInt(selectedGameInfo["default_levels"]["editable"]) == 1){
+				var variable = selectedGameInfo["default_levels"];
+				variable["name"] = "{{NEWINSTANCE_LEVELS_NAME}}";
+				variable["description"] = "{{NEWINSTANCE_LEVELS_DESCRIPTION}}";
+				variable["input_field_name"] = "InstanceLevels";
+				printPredefinedVariable(variable);
+				oneExists = true;
+			}
+			
+			if(parseInt(selectedGameInfo["default_retries_available"]["editable"]) == 1){
+				var variable = selectedGameInfo["default_retries_available"];
+				variable["name"] = "{{NEWINSTANCE_RETRIES_NAME}}";
+				variable["description"] = "{{NEWINSTANCE_RETRIES_DESCRIPTION}}";
+				variable["input_field_name"] = "InstanceRetriesAvailable";
+				printPredefinedVariable(variable);
+				oneExists = true;
+			} 
+			
+			if(parseInt(selectedGameInfo["default_time_limit"]["editable"]) == 1){
+				var variable = selectedGameInfo["default_time_limit"];
+				variable["name"] = "{{NEWINSTANCE_TIME_LIMIT_NAME}}";
+				variable["description"] = "{{NEWINSTANCE_TIME_LIMIT_DESCRIPTION}}";
+				variable["input_field_name"] = "InstanceTimeLimit";
+				printPredefinedVariable(variable);
+				oneExists = true;
+			}
+			
+			if(!oneExists){
+				$("#PredefinedVars").append("{{NEWINSTANCE_NO_PREDEFINED_VARS}}");
+			}
+		}
+		
+		function createVariableEditPanel(){
+			$("#VarList").html("");
+			var oneExists = false;
+			
+			var index = 0;
+			for(var varname in selectedGameInfo.variables){
+				var variable = selectedGameInfo.variables[varname];
+				var html = "";
+				html +=	"	<div class='col-lg-12 col-md-12 col-sm-12 col-xs-height col-full-height' style='margin-top: 10px;'>";
+				//html +=	"		<b>"+varname+":</b><br />";
+				//html +=	"		<b>Opis:</b> "+variable["description"]+"<br />";
+				//html +=	"		<b>Navodila:</b> "+variable["edit_instructions"]+"<br />";
+				//html +=	"		<b>Omejitve:</b> <span id='vartype-"+varname+"'></span> z omejitami <span id='constraints-"+varname+"'></span>; raw: "+variable["constraints"]+"<br /><br />";
+				
+				var editInst = replaceAll("'", "\\'", variable["edit_instructions"]);
+				
+				html +=	"		<div class='FormEntryTitle' style='display: inline-block;'>"+variable["description"]+"</div> <div style='display: inline-block' data-toggle='tooltip' data-placement='top' title='"+editInst+"'><img src='{{TEMPLATE_DIR}}/images/i.svg' style='width: 16px; margin-bottom: 2px;'></div> <div style='display: inline-block;'><span id='constraints-"+varname+"'></span></div>";
+				
+				//Create fitting input fields, data for lists is inserted in the next step.
+				switch(variable["type"]){
+					case "int":
+						html += "<input type='number' name='VariableValue-"+index+"' id='input-"+varname+"' class='FormEntryInputText' value='"+variable["value"]+"' step='1'>";
+					break;
+					case "float":
+						html +=	"<input type='number' name='VariableValue-"+index+"' id='input-"+varname+"' class='FormEntryInputText' value='"+variable["value"]+"' step='0.01'>";
+					break;
+					case "string":
+						html +=	"<input type='text' name='VariableValue-"+index+"' id='input-"+varname+"' class='FormEntryInputText' value='"+variable["value"]+"'>";
+					break;
+					case "stringlist":
+						html +=	"<div id='stringlist-"+varname+"'></div>";
+						html += "		<button type='button' class='btn btn-success' varname='"+varname+"' onclick='var vn = this.getAttribute(\"varname\"); addStringListEntry(vn, \"\", "+index+", \"NEXT\");'>+ Več vnosov</button>";
+					break;
+					case "filelist":
+						html +=	"<div id='filelist-"+varname+"'></div>";
+						html += "<div class='col-lg-2 FormInputImageContainer'>	<div class='FormInputImageBorder' onclick='addFileListEntry(\""+varname+"\", \"\", "+index+", \"NEXT\");'>	<img src='{{TEMPLATE_DIR}}/images/enroll.svg' class='FormInputImage'>	</div></div>";
+					break;
+				
+				}
+				html +=	"	</div>";
+				
+				//Append the generated html and the variable name to an iterable list for the API.
+				$("#VarList").append(html);
+				$("#VarDataForAPI").append("<input type='hidden' name='VariableName-"+index+"' value='"+varname+"'>");
+				
+				//Fill lists
+				switch(variable["type"]){
+					case "int":
+						var constraintsInt = variable["constraints"];
+						var constraintsIntParts = constraintsInt.split("|");
+						var minValInt = parseInt(constraintsIntParts[0]);
+						var maxValInt = parseInt(constraintsIntParts[1]);
+						var stepInt = parseInt(constraintsIntParts[2]);
+						$("#vartype-"+varname).html("{{NEWINSTANCE_DATATYPE_INTEGER}}");
+						$("#constraints-"+varname).html("({{NEWINSTANCE_DATATYPE_INTEGER}} "+minValInt+" - "+maxValInt+")");
+						$("#input-"+varname).attr({"min": minValInt, "max": maxValInt, "step": stepInt});
+					break;
+					case "float":
+						var constraintsFloat = variable["constraints"];
+						var constraintsFloatParts = constraintsFloat.split("|");
+						var minValFloat = parseFloat(constraintsFloatParts[0]);
+						var maxValFloat = parseFloat(constraintsFloatParts[1]);
+						var stepFloat = parseFloat(constraintsFloatParts[2]);
+						$("#vartype-"+varname).html("{{NEWINSTANCE_DATATYPE_FLOAT}}");
+						$("#constraints-"+varname).html("({{NEWINSTANCE_DATATYPE_FLOAT}} "+minValFloat+" - "+maxValFloat+" {{NEWINSTANCE_DATATYPE_FLOAT_WITH_STEP}} "+stepFloat+")");
+						$("#input-"+varname).attr({"min": minValFloat, "max": maxValFloat, "step": stepFloat});
+					break;
+					case "string":
+						var constraintsString = variable["constraints"];
+						var constraintsStringParts = constraintsString.split("|");
+						var minLengthString = parseInt(constraintsStringParts[0]);
+						var maxLengthString = parseInt(constraintsStringParts[1]);
+						$("#vartype-"+varname).html("{{NEWINSTANCE_DATATYPE_STRING}}");
+						$("#constraints-"+varname).html("({{NEWINSTANCE_DATATYPE_STRING}} "+minLengthString+" - "+maxLengthString+")");
+						$("#input-"+varname).attr({"pattern": ".{"+minLengthString+","+maxLengthString+"}"});
+					break;
+					case "stringlist":
+						var stringListValue = variable["value"];
+						var stringListValueElements = stringListValue;
+						var i = 0;
+						while(i < stringListValueElements.length){
+							var stringListValueElement = stringListValueElements[i];
+							addStringListEntry(varname, stringListValueElement, index, i);
+							i++;
+						}
+						addStringListEntry(varname, "", index, i);
+						$("#vartype-"+varname).html("{{NEWINSTANCE_DATATYPE_STRINGLIST}}");
+					break;
+					case "filelist":
+						var fileListValue = variable["value"];
+						var fileListValueElements = fileListValue;
+						var i = 0;
+						while(i < fileListValueElements.length){
+							var fileListValueElement = fileListValueElements[i];
+							addFileListEntry(varname, fileListValueElement, index, i);
+							i++;
+						}
+						//Add another blank one to the end to indicate more can be added.
+						addFileListEntry(varname, "", index, i);
+						$("#vartype-"+varname).html("{{NEWINSTANCE_DATATYPE_FILELIST}}");
+					break;
+				}
+				index++;
+				oneExists = true;
+			}
+			
+			if(!oneExists){
+				$("#VarList").append("{{NEWINSTANCE_NO_VARS}}");
+			}
+		}
+		
+		function selectInstance(instanceID){
+			selectedInstanceID = instanceID;
+			$("#FormInstancePresetUsed").val(instanceID);
+			if(instanceID == "DEFAULT"){
+				$(".FolderExplorerFileSelected").removeClass("FolderExplorerFileSelected");
+				$("#GameInstanceEntry-DEFAULT").addClass("FolderExplorerFileSelected");
+				//Defaults delivered with gameinfo.
+				for(var varname in selectedGameInfo.variables){
+					var variable = selectedGameInfo.variables[varname];
+					variable["value"] = variable["default_value"];
+				}
+				createPredefinedEditPanel();
+				createVariableEditPanel();
+			}else if(instanceID == "BLANK"){
+				$(".FolderExplorerFileSelected").removeClass("FolderExplorerFileSelected");
+				$("#GameInstanceEntry-BLANK").addClass("FolderExplorerFileSelected");
+				for(var varname in selectedGameInfo.variables){
+					var variable = selectedGameInfo.variables[varname];
+					variable["value"] = "";
+				}
+				createPredefinedEditPanel();
+				createVariableEditPanel();
+			}else{
+				validationParamsGetInstanceInfoThenGame.apiURL = "api/InstanceGetInfo.php?instanceID="+selectedInstanceID;
+				ajaxRequest("", validationParamsGetInstanceInfoThenGame);
+				//if(selectedGameInfo == ""){
+				//	validationParamsGetInstanceInfoThenGame.apiURL = "api/InstanceGetInfo.php?instanceID="+selectedInstanceID;
+				//	ajaxRequest("", validationParamsGetInstanceInfoThenGame);
+				//}else{
+				//	validationParamsGetInstanceInfo.apiURL = "api/InstanceGetInfo.php?instanceID="+selectedInstanceID;
+				//	ajaxRequest("", validationParamsGetInstanceInfo);
+				//}
+			}
+			CanSeePage2 = true;
+			$("#PartButton2").removeClass("NavigationItemDisabled");
+		}
+		
+		function CheckIfInstanceNamed(){
+			if($("#InstanceNameInputField").val().length > 0){
+				CanSeePage3 = true;
+				$("#PartButton3").removeClass("NavigationItemDisabled");
+			}else{
+				CanSeePage3 = false;
+				$("#PartButton3").addClass("NavigationItemDisabled");
+			}
+		}
+		
+		ajaxRequest("", validationParamsGetAllGames);
+	</script> 

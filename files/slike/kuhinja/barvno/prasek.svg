@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.544px" viewBox="0 0 453.543 453.544" enable-background="new 0 0 453.543 453.544"
+	 xml:space="preserve">
+<g id="kvadrat">
+</g>
+<g id="color">
+	<g id="rdeča7bela">
+	</g>
+	<g>
+		
+			<path fill="#CB78A6" stroke="#000000" stroke-width="6.8951" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M226.772,126.047c-64.635,0-104.98,19.297-104.98,98.996c0,142.924,13.725,151.406,104.98,151.406
+			c91.252,0,104.979-8.482,104.979-151.406C331.75,145.344,291.407,126.047,226.772,126.047z M306.672,245.973
+			c-28.205-18.564-48.179-52.966-51.663-93.264c38.998,5.524,51.781,25.466,51.781,72.334
+			C306.791,232.279,306.756,239.263,306.672,245.973z"/>
+		
+			<path fill="#81358A" stroke="#000000" stroke-width="6.8951" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M182.135,161.928c32.404,0,37.675,41.143,61.625,71.604c23.952,30.465,73.699,56.006,50.696,95.01
+			c-17.29,29.32-89.139,34.628-118.569,10.489c-13.689-11.224-27.982-37.864-28.039-84.719
+			C147.767,185.575,159.733,161.928,182.135,161.928z"/>
+		
+			<polygon fill="#81358A" stroke="#000000" stroke-width="6.8951" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			247.805,101.798 247.805,77.095 241.565,77.095 214.197,77.095 207.957,77.095 207.957,101.798 186.597,101.798 186.597,129.754 
+			266.941,129.754 266.941,101.798 		"/>
+	</g>
+</g>
+<g id="cb" display="none">
+	<g id="rdeča7bela_copy" display="inline">
+	</g>
+	<g display="inline">
+		
+			<path fill="none" stroke="#000000" stroke-width="6.8951" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M226.772,126.047c-64.635,0-104.98,19.297-104.98,98.996c0,142.924,13.725,151.406,104.98,151.406
+			c91.252,0,104.979-8.482,104.979-151.406C331.75,145.344,291.407,126.047,226.772,126.047z M306.672,245.973
+			c-28.205-18.564-48.179-52.966-51.663-93.264c38.998,5.524,51.781,25.466,51.781,72.334
+			C306.791,232.279,306.756,239.263,306.672,245.973z"/>
+		
+			<path fill="none" stroke="#000000" stroke-width="6.8951" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M182.135,161.928c32.404,0,37.675,41.143,61.625,71.604c23.952,30.465,73.699,56.006,50.696,95.01
+			c-17.29,29.32-89.139,34.628-118.569,10.489c-13.689-11.224-27.982-37.864-28.039-84.719
+			C147.767,185.575,159.733,161.928,182.135,161.928z"/>
+		
+			<polygon fill="none" stroke="#000000" stroke-width="6.8951" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			247.805,101.798 247.805,77.095 241.565,77.095 214.197,77.095 207.957,77.095 207.957,101.798 186.597,101.798 186.597,129.754 
+			266.941,129.754 266.941,101.798 		"/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="224.685" cy="377.182" r="14.133"/>
+</g>
+</svg>

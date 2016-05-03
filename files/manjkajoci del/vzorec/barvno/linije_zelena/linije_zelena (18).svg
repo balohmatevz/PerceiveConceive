@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="220px"
+	 height="220px" viewBox="0 0 220 220" enable-background="new 0 0 220 220" xml:space="preserve">
+<g id="bg" display="none">
+	<rect x="-2245.836" y="-7281.787" display="inline" fill="#FFFFFF" width="3240.076" height="8444.104"/>
+</g>
+<g id="Layer_3" display="none">
+</g>
+<g id="Layer_1">
+	<g>
+		<defs>
+			<rect id="SVGID_571_" x="0" y="-0.001" width="220" height="220"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_571_"  overflow="visible"/>
+		</clipPath>
+		<rect x="0" y="-0.001" clip-path="url(#SVGID_2_)" fill="#009E73" width="220" height="220"/>
+		<g clip-path="url(#SVGID_2_)">
+			<polyline fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square" stroke-miterlimit="10" points="100,219.999 
+				120,198 100,176.005 120,154.008 100,132.011 120,110.01 100,88.01 120,66.009 100,44.008 120,22.003 100,-0.001 			"/>
+		</g>
+		<g clip-path="url(#SVGID_2_)">
+			<polyline fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square" stroke-miterlimit="10" points="
+				50.008,219.999 70.008,198 50.008,176.005 70.008,154.008 50.008,132.011 70.008,110.01 50.008,88.01 70.008,66.009 
+				50.008,44.008 70.008,22.003 50.008,-0.001 			"/>
+		</g>
+		<g clip-path="url(#SVGID_2_)">
+			<polyline fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="square" stroke-miterlimit="10" points="
+				149.965,219.999 169.965,198 149.965,176.005 169.965,154.008 149.965,132.011 169.965,110.01 149.965,88.01 169.965,66.009 
+				149.965,44.008 169.965,22.003 149.965,-0.001 			"/>
+		</g>
+	</g>
+</g>
+</svg>

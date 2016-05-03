@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.544px" viewBox="0 0 453.543 453.544" enable-background="new 0 0 453.543 453.544"
+	 xml:space="preserve">
+<g id="kvadrat">
+</g>
+<g id="color" display="none">
+	<g id="rdeča7bela" display="inline">
+	</g>
+	<g display="inline">
+		
+			<path fill="#009D73" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M311.646,364.083l-17.649-168.352c-0.543-7.172-6.876-13.039-14.072-13.039c0,0,17.279,0.017,17.279-35.035
+			c0-20.07-16.271-36.344-36.342-36.344h-23.258V86.376h-21.666v24.938h-23.255c-20.073,0-36.343,16.273-36.343,36.344
+			c0,34.554,17.276,35.035,17.276,35.035c-7.195,0-13.531,5.867-14.072,13.039l-17.648,168.352
+			c-0.545,7.178,4.9,13.046,12.095,13.046h145.559C306.747,377.129,312.189,371.261,311.646,364.083z"/>
+		
+			<path fill="#37B34A" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M257.974,90.351l-10.465-13.936h-41.474l-10.467,13.936v11.049h62.406V90.351z M262.627,210.68h-73.849l-16.057,134.04h105.959
+			L262.627,210.68z"/>
+	</g>
+</g>
+<g id="cb">
+	<g id="rdeča7bela_copy">
+	</g>
+	<g>
+		<path fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M215.938,101.399v9.914h-23.255c-20.073,0-36.343,16.273-36.343,36.344c0,34.554,17.276,35.035,17.276,35.035
+			c-7.195,0-13.531,5.867-14.072,13.039l-17.648,168.352c-0.545,7.178,4.9,13.046,12.095,13.046h145.559
+			c7.196,0,12.639-5.868,12.096-13.046l-17.649-168.352c-0.543-7.172-6.876-13.039-14.072-13.039c0,0,17.279,0.017,17.279-35.035
+			c0-20.07-16.271-36.344-36.342-36.344h-23.258v-9.914"/>
+		
+			<polygon fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			188.779,210.68 172.722,344.72 278.682,344.72 262.627,210.68 		"/>
+		
+			<polyline fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+			237.604,101.399 257.974,101.399 257.974,90.351 247.509,76.415 206.035,76.415 195.567,90.351 195.567,101.399 215.938,101.399 
+					"/>
+		
+			<line fill="none" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="237.604" y1="101.399" x2="215.938" y2="101.399"/>
+	</g>
+</g>
+<g id="pivot">
+	<circle fill="none" cx="232.388" cy="378.628" r="14.133"/>
+</g>
+</svg>

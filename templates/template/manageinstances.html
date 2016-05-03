@@ -1,0 +1,108 @@
+	<div class='FirstContentContainer'>
+		<div class="row">
+			<div class="col-lg-12 PageHearderContainer">
+				<h3 class='ContentHeader ContentHeaderDark'>{{MANAGEINSTANCE_TITLE}}</h3>
+				<img src='{{TEMPLATE_DIR}}/images/line.svg' class='PageHeaderLineImg'>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class='col-lg-12 FormContainer'>
+				<div class='SubpageHeader'>{{MANAGEINSTANCE_DELETE_ACTIVITY}}</div>
+				
+				<div class='SubpageInstructions'>{{MANAGEINSTANCE_DELETE_ACTIVITY_INSTRUCTIONS}}</div>
+				
+				<form id='ManageInstancesClassListForm' class='FormTag'>
+					<div class='FormEntryTitle'>{{MANAGEINSTANCE_SELECT_CLASS}}</div>
+					<select name='classID' id='ManageInstancesClassList' class='FormEntryInputSelect'>
+						
+					</select>
+				</form>
+				
+				<form id='ManageInstancesInstanceListForm' class='FormTag'>
+					<div class='FormEntryTitle'>{{MANAGEINSTANCE_SELECT_INSTANCE}}</div>
+					<select name='instanceID' id='ManageInstancesInstanceList' class='FormEntryInputSelect'>
+						
+					</select>
+				</form>
+					
+				<div id='DeleteInstanceButton' class="FormButton">
+					<div class="FormButtonContent FormButtonDark">
+						<span>{{MANAGEINSTANCE_BUTTON_DELETE}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type='text/javascript'>
+		UserCheck();
+		AdminCheck();
+		
+		var validationParamsClassGetAll = {
+			apiURL: "api/ClassGetAll.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				var classes = response.classlist;
+				$("#ManageInstancesClassList").html("");
+				var oneExists = false;
+				for(var index = 0; index < classes.length; index++){
+					var cls = classes[index];
+					var bracketText = "";
+					if(cls.is_public){
+						bracketText = " (Public)";
+					}
+					$("#ManageInstancesClassList").append("<option value='"+cls["id"]+"'>"+cls["name"]+bracketText+"</option>");
+					oneExists = true;
+				}
+				
+				$("#ManageInstancesClassListForm").change(function(){
+					ajaxRequest("ManageInstancesClassListForm", validationParamsInstanceGetAll);
+				});
+				
+				if(oneExists){
+					ajaxRequest("ManageInstancesClassListForm", validationParamsInstanceGetAll);
+				}
+			}
+		};
+		var validationParamsInstanceGetAll = {
+			apiURL: "api/InstanceGetForClass.php",
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				butt2 = response;
+				var instances = response.instanceslist;
+				$("#ManageInstancesInstanceList").html("");
+				var oneExists = false;
+				for(var index = 0; index < instances.length; index++){
+					var instance = instances[index];
+					$("#ManageInstancesInstanceList").append("<option value='"+instance["id"]+"'>"+instance["name"]+"</option>");
+					oneExists = true;
+				}
+				
+				if(oneExists){
+					$("#DeleteInstanceButton").show();
+				}else{
+					$("#DeleteInstanceButton").hide();
+				}
+			}
+		};
+		
+		var validationParamsDeleteInstance = {
+			apiURL: "api/InstanceDelete.php",
+			method: "GET",
+			alertOnSuccess: true,
+			alertOnFail: true,
+			callback: function(response){
+				ajaxRequest("ManageInstancesClassListForm", validationParamsInstanceGetAll);
+			}
+		};
+		
+		ajaxRequest("", validationParamsClassGetAll);
+		
+		$("#DeleteInstanceButton").click(function(){
+			ajaxRequest("ManageInstancesInstanceListForm", validationParamsDeleteInstance);
+		});
+	</script>

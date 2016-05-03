@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="453.543px" height="453.542px" viewBox="0 0 453.543 453.542" enable-background="new 0 0 453.543 453.542"
+	 xml:space="preserve">
+<g id="kvadrat" display="none">
+	
+		<rect x="450.009" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.542"/>
+	
+		<rect y="-450.929" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect x="450.009" y="-450.929" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+	
+		<rect y="452.911" display="inline" fill="none" stroke="#BD1622" stroke-width="0.3359" stroke-miterlimit="10" width="453.543" height="453.543"/>
+</g>
+<g id="Layer_1" display="none">
+</g>
+<g id="Layer_2">
+	<g id="rdeča7bela">
+	</g>
+	<g>
+		
+			<path fill="#90278E" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M102.605,175.433c0,49.328,28.359,92.021,69.654,112.717v18.132c0,0,23.938,4.148,56.047,4.148c32.11,0,56.622-4.148,56.622-4.148
+			V288.15c41.296-20.695,69.658-63.389,69.658-112.717c0,0-76.19,12.449-125.988,12.449
+			C178.8,187.882,102.605,175.433,102.605,175.433z"/>
+		
+			<path fill="#90278E" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M327.21,212.228c-5.951,18.06-32.399,45.971-42.112,49.983"/>
+	</g>
+	<g>
+		
+			<path fill="#CB78A6" stroke="#000000" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M102.905,175.423c27.468,11.716,74.225,19.459,125.836,19.459c51.584,0,98.306-7.732,125.782-19.439
+			c-27.47-11.715-74.225-19.46-125.836-19.46C177.103,155.984,130.38,163.718,102.905,175.423z"/>
+	</g>
+	<rect fill="none" width="453.543" height="453.542"/>
+	<rect x="450.009" y="452.911" fill="none" width="453.543" height="453.543"/>
+</g>
+<g id="pivot" display="none">
+	<circle display="inline" fill="#EC008C" cx="228.595" cy="302.573" r="7.857"/>
+</g>
+</svg>

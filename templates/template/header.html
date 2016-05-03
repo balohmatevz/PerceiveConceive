@@ -1,0 +1,89 @@
+
+    <nav class='navbar navbar-default navbar-fixed-top'>
+      <div class='container'>
+        <div class='navbar-header'>
+          <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar' aria-expanded='false' aria-controls='navbar'>
+            <span class='sr-only'>Toggle navigation</span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+          <a class='navbar-brand' href='#' onclick='fetchContent("HOME"); return false;'>{{HEADER_PROJECT_NAME}}</a>
+        </div>
+        <div id='navbar' class='navbar-collapse collapse'>
+          <!--
+		  <form class='navbar-form navbar-left'>
+			<input type='button' class='btn btn-success' value='{{HEADER_BUTTON_BACK}}' id='BackButton' onclick="fetchContent(backButtonScreen)" style='display: none;'>
+			<input type='button' class='btn btn-success' value='{{HEADER_BUTTON_REFRESH}}' id='RefreshButton' onclick='fetchContent(currentPage);'>
+			<input type='button' class='btn btn-success' value='{{HEADER_BUTTON_EDIT}}' id='EditButton' onclick='EditContent();' style='display: none;'>
+          </form>
+          <form class='navbar-form navbar-right'>
+            <input type='button' class='btn btn-success' value='{{HEADER_BUTTON_FULLSCREEN}}' id='FullScreenButton' style='display: none;'>
+          </form>
+		  -->
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" id='FullScreenButton' style='display: none;'>{{HEADER_BUTTON_FULLSCREEN}}</a></li>
+				<li><a href="#" id='DashButton' onclick='fetchContent("DASH"); return false;' style='display: none;'>{{HEADER_BUTTON_MY_CLASSES}}</a></li>
+				<li><a href="#" id='AboutButton' onclick='fetchContent("ABOUT"); return false;'>{{HEADER_BUTTON_ABOUT}}</a></li>
+				<li><a id='JoinSignInButton' onclick='fetchContent("LOGIN"); return false;' style=' cursor: pointer;'>{{HEADER_BUTTON_LOG_IN}}</a></li>
+				<li class="dropdown">
+					<a id='UserDropdownButton' href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='display: none;'><span id='LoggedInUserDropdownTitle'>Uporabnik</span> <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#" id='UserSettingsButton' onclick='fetchContent("USERSETTINGS"); return false;' style='display: none;'>{{HEADER_MENU_MY_PROFIL}}</a></li>
+						<li><a href="#" id='UserStatisticsButton' onclick='fetchContent("USERSTATISTICS"); return false;' style='display: none;'>Moja statistika</a></li>
+						<li><a href="#" id='LogOutButton' onclick='LogOut(); return false;' style='display: none;'>{{HEADER_MENU_LOG_OUT}}</a></li>
+						<li id='AdminMenuDivider' role="separator" class="divider" style='display: none;'></li>
+						<li><a href="#" id='AdminPanelButton' onclick='fetchContent("ADMINPANEL"); return false;' style='display: none;'>{{HEADER_MENU_ADMINISTRATION}}</a></li>
+					</ul>
+				</li>
+			</ul>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+	<script type='text/javascript'>
+	if(userID != -1){
+		$("#LoggedInUserDropdownTitle").html(userInfo["name"]);
+		
+		if(parseInt(userInfo["role"]) == 2){
+			//Admin
+			$("#AdminPanelButton").show();
+			$("#AdminMenuDivider").show();
+			isAdmin = true;
+		}else{
+			//User
+			$("#AdminPanelButton").hide();
+			$("#AdminMenuDivider").hide();
+			isAdmin = false;
+		}
+		
+		$("#JoinSignInButton").hide(0 , 
+			function(){
+				$("#LogOutButton").show();
+				$("#UserSettingsButton").show();
+				$("#DashButton").show();
+				$("#UserDropdownButton").show();
+			}
+		);
+		
+		$("#FullScreenButton").click(function() {
+			var el = document.getElementById("Screen");
+			var rfs = el.requestFullScreen
+				|| el.webkitRequestFullScreen
+				|| el.mozRequestFullScreen;
+			rfs.call(el);
+			$("#Screen").css("width", "100%");
+			$("#Screen").css("height", "100%");
+			
+			//windowWidth = screen.width;
+			//windowHeight = screen.height;
+			EnterFullScreen();
+			return false;
+		});
+	}
+	
+	var gameInFullScreen = false;
+	
+	$.cookieBar({fixed: true, message: "{{HEADER_COOKIE_TEXT}}", acceptText: "{{HEADER_COOKIE_ACCEPT}}"});
+	$("#cookie-bar").css({top: 50, zIndex: 1030, backgroundColor: "#ffffff", borderBottom: "solid 1px #e7e7e7", color: "black"});
+	
+	</script>

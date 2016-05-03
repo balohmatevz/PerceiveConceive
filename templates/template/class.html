@@ -1,0 +1,169 @@
+	<div class='FirstContentContainer'>
+		<form method='POST' id='UpdateClassForm' class='FormTag'>
+			<div class="row">
+				<div class="col-lg-9 PageHearderContainer">
+					<h3 class='ContentHeader' id='ClassName'>{{CLASS_CLASS_NAME}}</h3>
+				</div>
+				<div class="col-lg-3 PageHearderContainer">
+					<div class="FormButton" onclick='EditContent();' id='EditClassButton' style='display: none;'>
+						<div class="FormButtonContent FormButtonContentSmall">
+							<span id='EditClassButtonText'>{{CLASS_BUTTON_EDIT_CLASS}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<input id='ClassID-InputField' type='hidden' name='updateClassID' value='-1'>
+				
+				
+				<div class="col-lg-3" style="text-align: center;" onclick="if(editingContent){editingImage = 'ClassImage'; editingImageInputField = 'ClassImage-InputField'; fetchContent('SELECTIMAGE');}">
+					<input type="hidden" name="updateClassGlyph" id="ClassImage-InputField" value="{{TEMPLATE_DIR}}/images/blankimage.svg">
+					<img id="ClassImage" src="{{TEMPLATE_DIR}}/images/blankimage.svg" style="max-height: 190px; max-width: 100%;">
+				</div>
+				
+				<div class='col-lg-9' style='font-size: 20px;'>
+					<div id='ClassDescription'>
+					
+					</div>
+					
+					<div class="FormButton" onclick='ajaxRequest("UpdateClassForm", validationParamsUpdateClass);'>
+						<div class="FormButtonContent FormButtonContentSmall" id='UpdateButtonDiv' style='display: none;'>
+							<span>{{CLASS_BUTTON_SAVE_CHANGES}}</span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-lg-12">
+					<img src='{{TEMPLATE_DIR}}/images/line.svg' style='width: 100%; margin-top: 35px; margin-bottom: 15px;'>
+				</div>
+			</div>
+		</form>
+		<div class="row" id='InstanceList'>
+			<!-- instancelist.html -->
+		</div>
+	</div>
+	<script type='text/javascript'>
+		UserCheck();
+		
+		var instances = {};
+		var isTeacher = false;
+		var isEnrolled = false;
+		
+		var validationParamsClassGetInstances = {
+			apiURL: "api/InstanceGetForClass.php?classID="+openClassID,
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				activitylist = response.instanceslist;
+				template_activity = {"ACTIVITYLIST": []};
+				for(var i = 0; i < activitylist.length; i++){
+					var activity = activitylist[i];
+					
+					var rowStart = "";
+					var rowEnd = "";
+					
+					if(i % 4 == 0){
+						rowStart = "<div class='row'>";
+					}
+					if(i % 4 == 3){
+						rowEnd = "</div>";
+					}
+					
+					if(activitylist.length == i + 1){
+						//Close the last one
+						rowEnd = "</div>";
+					}
+					
+					template_activity.ACTIVITYLIST.push({"ID": activity.id, "GLYPH": activity.glyph, "NAME": activity.name, "ROWSTART": rowStart, "ROWEND": rowEnd, "IS_ENROLLED": isEnrolled, "IS_TEACHER": isTeacher || isAdmin});
+				}
+				template_activity.IS_TEACHER = isTeacher || isAdmin;
+				
+				fetchContent("INSTANCELIST", template_activity);
+			}
+		};
+		
+		var validationParamsClassGetOne = {
+			apiURL: "api/ClassGetOne.php?classID="+openClassID,
+			method: "GET",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				$("#ClassName").html(response.name);
+				$("#ClassDescription").html(response.description);
+				$("#ClassImage").attr("src", response.glyph);
+				$("#ClassImage-InputField").val(response.glyph);
+				$("#ClassID-InputField").val(openClassID);
+				
+				
+				for(var i = 0; i < response.teacherlist.length; i++){
+					var teacher = response.teacherlist[i];
+					if(teacher.user_id == userInfo["user_id"]){
+						isTeacher = true;
+					}
+				}
+				
+				for(var i = 0; i < response.enrolleelist.length; i++){
+					var enrollee = response.enrolleelist[i];
+					if(enrollee.user_id == userInfo["user_id"]){
+						isEnrolled = true;
+					}
+				}
+				
+				if(isTeacher || isAdmin){
+					$("#EditClassButton").show();
+				}
+				
+				if(PageToOpen == 2){
+					PageToOpen = 0;
+					EditContent();
+				}
+				
+				ajaxRequest("", validationParamsClassGetInstances);
+			}
+		};
+		
+		var validationParamsUpdateClass = {
+			apiURL: "api/ClassUpdate.php",
+			method: "POST",
+			alertOnSuccess: false,
+			alertOnFail: false,
+			callback: function(response){
+				$("#ClassName").html($("#updateClassName").val());
+				$("#ClassDescription").html($("#updateClassDescription").val().replace(/\n/g,"<br>"));
+				$("#UpdateButtonDiv").fadeOut(200);
+				$("#EditClassButtonText").html("Uredi razred");
+				editingContent = false;
+			}
+		};
+		
+		var editingContent = false;
+		var backupClassName = "";
+		var backupClassDescription = "";
+		var backupImage = "";
+		function EditContent(){
+			editingContent = !editingContent;
+			if(editingContent){
+				backupClassName = $("#ClassName").html();
+				backupClassDescription = $("#ClassDescription").html();
+				backupImage = $("#ClassImage-InputField").val();
+				
+				$("#ClassName").html("<input id='updateClassName' type='text' name='updateClassName' value=''>");
+				$("#updateClassName").val(backupClassName);
+				$("#ClassDescription").html("<textarea id='updateClassDescription' name='updateClassDescription' class='form-control' rows='3'>"+backupClassDescription.replace(/<br>/g,"\n")+"</textarea>");
+				$("#EditClassButtonText").html("{{CLASS_BUTTON_CLOSE}}");
+				$("#UpdateButtonDiv").fadeIn(200);
+				$("#ClassImage").addClass("pointer");
+			}else{
+				$("#ClassName").html(backupClassName);
+				$("#ClassDescription").html(backupClassDescription);
+				$("#ClassImage-InputField").val(backupImage);
+				$("#ClassImage").attr("src", backupImage);
+				$("#UpdateButtonDiv").fadeOut(200);
+				$("#EditClassButtonText").html("Uredi razred");
+				$("#ClassImage").removeClass("pointer");
+			}
+		}
+		
+		ajaxRequest("", validationParamsClassGetOne);
+	</script>
