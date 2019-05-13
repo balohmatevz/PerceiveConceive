@@ -1,5 +1,5 @@
 # PerceiveConceive
-An web app distribution website with heavy emphasis on customizability by non-technical authors. Has heavy focus on accessibility. 
+A web app distribution website with heavy emphasis on customizability by non-technical authors. Has heavy focus on accessibility. 
 
 # Description
 PerceiveConceive is a mobile / web solution, primarily intended for supporting teaching of blind and visually impaired pupils, but can also be used for broader audiences like preschool children, K-12 children and other persons with vision problems.
